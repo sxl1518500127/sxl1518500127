@@ -14,3 +14,22 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// 后台 首页 的路由
+Route::get('admin','Admin\IndexController@index');
+
+// 后台 用户 路由
+Route::resource('admin/users','Admin\UsersController');
+
+// 后台 分类 路由
+Route::resource('admin/cates','Admin\CatesController');
+
+// 后台 分类 路由
+Route::resource('admin/link','Admin\LinkController');
+
+// 后台 订单 路由
+Route::resource('admin/order','Admin\OrderController');
+
+// 后台 网站 路由
+Route::resource('admin/config','Admin\ConfigController');
