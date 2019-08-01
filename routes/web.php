@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::post('admin/goods/xiugai','Admin\GoodsController@xiugai');
 // 后台 首页 的路由
 Route::get('admin','Admin\IndexController@index');
 
@@ -25,6 +25,12 @@ Route::resource('admin/users','Admin\UsersController');
 // 后台 分类 路由
 Route::resource('admin/cates','Admin\CatesController');
 
+// 后台商品添加
+Route::resource('admin/goods','Admin\GoodsController');
+
+// 后台执行修改商品
+
+
 // 后台 分类 路由
 Route::resource('admin/link','Admin\LinkController');
 
@@ -33,3 +39,5 @@ Route::resource('admin/order','Admin\OrderController');
 
 // 后台 网站 路由
 Route::resource('admin/config','Admin\ConfigController');
+
+

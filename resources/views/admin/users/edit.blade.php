@@ -23,14 +23,14 @@
     	<span>用户修改</span>
     </div>
     <div class="mws-panel-body no-padding">
-    	<form class="mws-form" action="/admin/users/{{ $user->id }}" method="post" enctype="multipart/form-data">
+    	<form class="mws-form" action="/admin/users/{{ $user->customerid }}" method="post" enctype="multipart/form-data">
     		{{ csrf_field() }}
             {{ method_field('PUT') }}
     		<div class="mws-form-inline">
     			<div class="mws-form-row">
     				<label class="mws-form-label">用户名</label>
     				<div class="mws-form-item">
-    					<input type="text" disabled name="uname" value="{{ $user->uname }}" class="small">
+    					<input type="text" disabled name="customername" value="{{ $user->customername }}" class="small">
     				</div>
     			</div>
     
@@ -38,23 +38,23 @@
 				<div class="mws-form-row">
     				<label class="mws-form-label">邮箱</label>
     				<div class="mws-form-item">
-    					<input type="text" name="email" value="{{ $user->email }}" class="small">
+    					<input type="text" name="customeremail" value="{{ $user->customeremail }}" class="small">
     				</div>
     			</div>
 			
 				<div class="mws-form-row">
     				<label class="mws-form-label">手机号</label>
     				<div class="mws-form-item">
-    					<input type="text" name="phone" value="{{ $user->phone }}" class="small">
+    					<input type="text" name="customerphone" value="{{ $user->customerphone }}" class="small">
     				</div>
     			</div>
                 
-                <img src="/uploads/{{ $user->profile }}" style="border:1px solid #ccc;border-radius: 10%;width: 110px;">
+                <img src="/uploads/{{ $user->customerphoto }}" style="border:1px solid #ccc;border-radius: 10%;width: 110px;">
 
     			<div class="mws-form-row" style="width: 610px;">
     				<label class="mws-form-label">头像</label>
     				<div class="mws-form-item">
-    					<input type="file" name="profile" value="" class="small">
+    					<input type="file" name="customerphoto" value="" class="small">
     				</div>
     			</div>
     			

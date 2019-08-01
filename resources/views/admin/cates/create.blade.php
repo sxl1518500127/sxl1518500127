@@ -13,16 +13,20 @@
     			<div class="mws-form-row">
     				<label class="mws-form-label">分类名称</label>
     				<div class="mws-form-item">
-    					<input type="text" name="cname" class="small">
+    					<input type="text" name="goodsmod" class="small">
     				</div>
     			</div>
     	
     			<div class="mws-form-row">
     				<label class="mws-form-label">所属分类</label>
     				<div class="mws-form-item">
-    					<select class="small" name="pid">
-    						<option value="0">--请选择--</option>
-    						
+    					<select class="small" name="goodsmid">
+                            <option value="0">--请选择-</option>
+
+                           @foreach($cates as $k=>$v)
+    						<option value="{{$v->id}}">--{{$v->goodsmod}}-</option>
+
+                           @endforeach
     					</select>
     				</div>
     			</div>

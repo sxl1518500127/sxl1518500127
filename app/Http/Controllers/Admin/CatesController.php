@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Cates;
+use App\Models\goods;
 use DB;
 
 class CatesController extends Controller
@@ -12,13 +12,13 @@ class CatesController extends Controller
     public static function getCates()
     {
         // $cates = Cates::all();
-        $cates = DB::select("select *,concat(path,',',id) as paths from cates order by paths asc");
-
+        $cates = DB::select("select *,concat(goodspath,',',id) as paths from goods order by paths asc");
+    
         foreach ($cates as $key => $value) {
             // 统计，出现次数
-            $n = substr_count($value->path,',');
+            $n = substr_count($value->goodspath,',');
             // 重复使用字符串
-            $cates[$key]->cname = str_repeat("|-----",$n).$value->cname;
+            $cates[$key]->goodsmod = str_repeat("|-----",$n).$value->goodsmod;
         }
         return $cates;
     }
@@ -32,8 +32,7 @@ class CatesController extends Controller
     public function index()
     {
         // 加载模板
-        // return view('admin.cates.index',['cates'=>self::getCates()]);
-        return view('admin.cates.index');
+        return view('admin.cates.index',['cates'=>self::getCates()]);
     }
 
     /**
@@ -46,8 +45,7 @@ class CatesController extends Controller
         $id = $request->input('id',0);
 
         // 加载添加视图
-        // return view('admin.cates.create',['id'=>$id,'cates'=>self::getCates()]);
-        return view('admin.cates.create');
+        return view('admin.cates.create',['id'=>$id,'cates'=>self::getCates()]);
     }
 
     /**
@@ -59,20 +57,20 @@ class CatesController extends Controller
     public function store(Request $request)
     {
         // 获取pid
-        $pid = $request->input('pid');
+        $pid = $request->input('goodsmid');
         if($pid == 0){
             $path = 0;
         }else{
             // 获取父级的数据
-           $parent_data = Cates::find($pid);
-           $path = $parent_data->path.','.$parent_data->id;
+           $parent_data = goods::find($pid);
+           $path = $parent_data->goodspath.','.$parent_data->id;
         }
 
         // 添加
-        $cate = new Cates;
-        $cate->cname = $request->input('cname','');
-        $cate->pid = $pid;
-        $cate->path = $path;
+        $cate = new goods;
+        $cate->goodsmod = $request->input('goodsmod','');
+        $cate->goodsmid = $pid;
+        $cate->goodspath = $path;
 
         if($cate->save()){
             return redirect('admin/cates')->with('success','添加成功');
@@ -81,15 +79,25 @@ class CatesController extends Controller
         }
     }
 
+   
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $id = $request->input('id');
+        // dump($id);
+        $wares = DB::table('goodswares')->where('waresgid', $id)->get();
+        $goods = DB::table('goods')->where('id', $id)->first();
+
+        if(!$wares){
+            $wares = [];
+        }
+
+        return view('admin.cates.show',['goods'=>$goods,"wares"=>$wares]);
     }
 
     /**
@@ -100,7 +108,7 @@ class CatesController extends Controller
      */
     public function edit($id)
     {
-        //
+        // echo 565666666;
     }
 
     /**
@@ -125,4 +133,8 @@ class CatesController extends Controller
     {
         //
     }
+
+
+    
+
 }

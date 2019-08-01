@@ -24,11 +24,11 @@ class UsersStore extends FormRequest
     public function rules()
     {
         return [
-            'uname' => 'required|regex:/^[a-zA-Z]{1}[\w]{7,15}$/|unique:users',
-            'upass' => 'required|regex:/^[\w]{6,18}$/',
-            'repass' => 'required|same:upass',
-            'email' => 'required|email',
-            'phone' => 'required|regex:/^1{1}[3-9]{1}[\d]{9}$/',
+            'customername' => 'required|regex:/^[a-zA-Z]{1}[\w]{7,15}$/|unique:usercustomer',
+            'customerpass' => 'required|regex:/^[\w]{6,18}$/',
+            'repass' => 'required|same:customerpass',
+            'customeremail' => 'required|email',
+            'customerphone' => 'required|regex:/^1{1}[3-9]{1}[\d]{9}$/',
         ];
     }
 
@@ -36,17 +36,17 @@ class UsersStore extends FormRequest
     public function messages()
     {
         return [
-            'uname.required'=>'用户名必填',    
-            'uname.regex'=>'用户名格式错误',    
-            'uname.unique'=>'用户名已存在',    
-            'upass.required'=>'密码必填',    
-            'upass.regex'=>'密码格式错误',    
+            'customername.required'=>'用户名必填',    
+            'customername.regex'=>'用户名格式错误',    
+            'customername.unique'=>'用户名已存在',    
+            'customerpass.required'=>'密码必填',    
+            'customerpass.regex'=>'密码格式错误',    
             'repass.required'=>'确认密码必填',    
             'repass.same'=>'俩次密码不一致',    
-            'email.required'=>'邮箱必填',    
-            'email.email'=>'邮箱格式错误',    
-            'phone.required'=>'手机号必填',    
-            'phone.regex'=>'手机号格式错误',    
+            'customeremail.required'=>'邮箱必填',    
+            'customeremail.email'=>'邮箱格式错误',    
+            'customerphone.required'=>'手机号必填',    
+            'customerphone.regex'=>'手机号格式错误',    
         ];
     }
 }

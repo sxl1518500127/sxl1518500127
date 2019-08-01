@@ -2,9 +2,10 @@
 
 
 @section('content')
+
 <form action="/admin/users" method="get">
     关键字
-    <input type="text" name="search" placeholder="用户名" value="">
+    <input type="text" name="search" placeholder="用户名" value="{{ $requests['search'] or '' }}">
     <input type="submit"class="btn btn-danger"  value="搜索">
 </form>
 
@@ -26,49 +27,36 @@
                     <th>操作</th>
                 </tr>
             </thead>
-            <tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <tbody>
+                @foreach($users as $k=>$v)
+                <tr>
+                    <td>{{ $v->customerid }}</td>
+                    <td>{{ $v->customername }}</td>
+                    <td>{{ $v->customeremail }}</td>
+                    <td>{{ $v->customerphone }}</td>
+                    <td>
+                        <img src="/uploads/{{ $v->customerphoto }}" style="width: 50px;border-radius: 8px;">
+                    </td>
+                    <td>
+                        <form action="/admin/users/{{ $v->customerid }}" method="post" style="display: inline;">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <input type="submit" value='删除' class="btn btn-danger">
+                        </form>
+                        
+                        <a href="/admin/users/{{ $v->customerid }}/edit" class="btn btn-info">修改</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
             
         <div id="page_page">
-            
+                {{ $users->appends($requests)->links() }}
         </div>
 
     </div>
 </div>
+
 
 @endsection

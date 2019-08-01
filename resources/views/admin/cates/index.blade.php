@@ -1,73 +1,51 @@
 @extends('admin.layout.index')
 
-
 @section('content')
-<form action="/admin/users" method="get">
-    关键字
-    <input type="text" name="search" placeholder="用户名" value="">
-    <input type="submit"class="btn btn-danger"  value="搜索">
-</form>
-
-
 
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
-        <span><i class="icon-table"></i> 用户列表</span>
+        <span><i class="icon-table"></i> 分离列表</span>
     </div>
     <div class="mws-panel-body no-padding">
         <table class="mws-table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>用户名</th>
-                    <th>邮箱</th>
-                    <th>手机号</th>
-                    <th>头像</th>
+                    <th>分类名称</th>
+                    <th>父级ID</th>
+                    <th>分类路径</th>
+                    <th>状态</th>
+                    <th>创建时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
-            <tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr><tr>
-                <td>1</td>
-                <td>name</td>
-                <td>邮箱</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <tbody>
+                @foreach($cates as $k=>$v)
+                <tr>
+                    <td>{{ $v->id }}</td>
+                    <td>{{ $v->goodsmod }}</td>
+                    <td>{{ $v->goodsmid }}</td>
+                    <td>{{ $v->goodspath }}</td>
+                    <td>
+                        @if($v->status == 1)
+                        <span style="background: #76B249">启用</span>
+                        @else 
+                        <span style="background: #E2641C">未启用   {{substr_count($v->goodspath,',')}}</span>
+                        @endif
+                    </td>
+                    <td>{{ $v->created_at }}</td>
+                    <td>
+                        @if(substr_count($v->goodspath,',') < 1)
+                            <a href="/admin/cates/create?id={{ $v->id }}" class="btn btn-primary">添加子分类</a>
+                        @elseif (substr_count($v->goodspath,',') == 1)
+                            <a href="/admin/cates/show?id={{ $v->id }}" class="btn btn-primary">查看</a>
+                        
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-            
-        <div id="page_page">
-            
-        </div>
-
     </div>
 </div>
 
