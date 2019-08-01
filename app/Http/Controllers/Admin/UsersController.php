@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersStore;
-use App\Models\Users;
+use App\Models\Usercustomer;
 use Hash;
 use DB;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +22,7 @@ class UsersController extends Controller
         $search = $request->input('search','');
 
         // 获取数据
-        $users = Users::where('customername','like','%'.$search.'%')->paginate(2);
+        $users = Usercustomer::where('customername','like','%'.$search.'%')->paginate(2);
 
         // 加载模板
         return view('admin.users.index',['users'=>$users,'requests'=>$request->input()]); 
@@ -50,9 +50,6 @@ class UsersController extends Controller
     public function store(UsersStore $request)
     {
         
-        // dump($request->input());
-        // dump($request->input('customername',''));
-         
         // 检查文件上传
         if ($request->hasFile('customerphoto')) {
             // 获取头像
@@ -64,7 +61,7 @@ class UsersController extends Controller
         DB::beginTransaction();
 
         // 实例化模型
-        $usercustomer = new Users;
+        $usercustomer = new Usercustomer;
         $usercustomer->customername = $request->input('customername','');
         $usercustomer->customerpass = Hash::make($request->input('customerpass',''));
         $usercustomer->customeremail = $request->input('customeremail','');
@@ -122,10 +119,7 @@ class UsersController extends Controller
 
         // 检查用户是否有文件上传
         if(!$request->hasFile('customerphoto')){
-            // dump($request->input());
-            // die();
-            // $user = usercustomer::find($id);
-            // $user = DB::table('usercustomer')->where('customerid', $id)->first();
+
             $user = [];
             $user["customeremail"] = $request->input('customeremail','');
             $user["customerphone"] = $request->input('customerphone','');
@@ -143,17 +137,10 @@ class UsersController extends Controller
             // 接收文件上传
             $path  = $request->file('customerphoto')->store(date('Ymd'));
 
-            $usersinfo = Users::where('customerid',$id)->first();
+            $usersinfo = Usercustomer::where('customerid',$id)->first();
             // 删除图片
             Storage::delete([$usersinfo->customerphoto]);
-            // dump($usersinfo);
-            // 执行修改
-            // $user = Users::where("customerid",$id)->get();
-            // 给用户设置新的图片
-            // dump($user);
-            // dump($path);
-            // die();
-            // 4
+          
             $user['customerphoto'] = $path;
 
             // // 修改用户的主信息

@@ -16,9 +16,8 @@
 @endif
 <!-- 显示 验证错误  结束 -->
 
-
-
 <div class="mws-panel grid_8">
+
     <div class="mws-panel-header">
         <span>用户添加</span>
     </div>

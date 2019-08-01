@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\Models\goods;
 use DB;
 
@@ -11,7 +12,6 @@ class CatesController extends Controller
 {
     public static function getCates()
     {
-        // $cates = Cates::all();
         $cates = DB::select("select *,concat(goodspath,',',id) as paths from goods order by paths asc");
     
         foreach ($cates as $key => $value) {
@@ -19,6 +19,7 @@ class CatesController extends Controller
             $n = substr_count($value->goodspath,',');
             // 重复使用字符串
             $cates[$key]->goodsmod = str_repeat("|-----",$n).$value->goodsmod;
+
         }
         return $cates;
     }
@@ -32,7 +33,9 @@ class CatesController extends Controller
     public function index()
     {
         // 加载模板
+
         return view('admin.cates.index',['cates'=>self::getCates()]);
+
     }
 
     /**
@@ -58,6 +61,7 @@ class CatesController extends Controller
     {
         // 获取pid
         $pid = $request->input('goodsmid');
+
         if($pid == 0){
             $path = 0;
         }else{
@@ -79,13 +83,13 @@ class CatesController extends Controller
         }
     }
 
-   
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show(Request $request)
     {
         $id = $request->input('id');
@@ -108,7 +112,7 @@ class CatesController extends Controller
      */
     public function edit($id)
     {
-        // echo 565666666;
+
     }
 
     /**
@@ -133,8 +137,5 @@ class CatesController extends Controller
     {
         //
     }
-
-
-    
 
 }

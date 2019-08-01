@@ -132,7 +132,8 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
-                    <li class="active">
+                    <li class="active" >
+
                         <a href="#"><i class="icon-users"></i> 用户管理</a>
                         <ul>
                             <li><a href="/admin/users">用户列表</a></li>
@@ -143,10 +144,12 @@
                      <li class="active">
                         <a href="#"><i class="icon-users"></i> 家庭成员管理</a>
                         <ul>
-                            <li><a href="/admin/admin">家庭成员列表</a></li>
-                            <li><a href="/admin/admin/create">成员添加</a></li>
+                            <li><a href="/admin/admins">家庭成员列表</a></li>
+                            <li><a href="/admin/admins/create">成员添加</a></li>
                         </ul>
                     </li>
+    
+
             
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 分类管理</a>
@@ -157,22 +160,22 @@
                     </li>
 
                     <li class="active">
-                        <a href="#"><i class="icon-users"></i> 订单管理</a>
+                        <a href="#"><i class="icon-users"></i> 角色管理</a>
                         <ul>
-                            <li><a href="/admin/order">订单列表</a></li>
+                            <li><a href="/admin/nodes">角色列表</a></li>
+                            <li><a href="/admin/nodes/create">角色添加</a></li>
                         </ul>
                     </li>
 
                     <li class="active">
-                        <a href="#"><i class="icon-users"></i> 链接管理</a>
+                        <a href="#"><i class="icon-users"></i> 权限管理</a>
                         <ul>
-                            <li><a href="/admin/link">链接列表</a></li>
-                            <li><a href="/admin/link/linkadd">链接添加</a></li>
+                            <li><a href="/admin/roles">权限列表</a></li>
+                            <li><a href="/admin/roles/create">权限添加</a></li>
                         </ul>
                     </li>
 
                     <li><a href="/admin/config"><i class="icon-calendar"></i> 网站管理</a></li>
-
 
                 </ul>
             </div>

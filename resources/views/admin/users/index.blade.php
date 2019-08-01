@@ -3,9 +3,11 @@
 
 @section('content')
 
+
 <form action="/admin/users" method="get">
     关键字
     <input type="text" name="search" placeholder="用户名" value="{{ $requests['search'] or '' }}">
+
     <input type="submit"class="btn btn-danger"  value="搜索">
 </form>
 
@@ -27,6 +29,7 @@
                     <th>操作</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach($users as $k=>$v)
                 <tr>
@@ -53,10 +56,10 @@
             
         <div id="page_page">
                 {{ $users->appends($requests)->links() }}
+
         </div>
 
     </div>
 </div>
-
 
 @endsection

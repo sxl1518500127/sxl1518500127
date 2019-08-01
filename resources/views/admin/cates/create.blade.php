@@ -13,13 +13,16 @@
     			<div class="mws-form-row">
     				<label class="mws-form-label">分类名称</label>
     				<div class="mws-form-item">
+
     					<input type="text" name="goodsmod" class="small">
+
     				</div>
     			</div>
     	
     			<div class="mws-form-row">
     				<label class="mws-form-label">所属分类</label>
     				<div class="mws-form-item">
+
     					<select class="small" name="goodsmid">
                             <option value="0">--请选择-</option>
 
@@ -27,6 +30,7 @@
     						<option value="{{$v->id}}">--{{$v->goodsmod}}-</option>
 
                            @endforeach
+
     					</select>
     				</div>
     			</div>
