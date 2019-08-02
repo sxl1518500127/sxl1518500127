@@ -174,7 +174,15 @@
                             <li><a href="/admin/roles/create">权限添加</a></li>
                         </ul>
                     </li>
-
+                    
+                    
+                    <li class="active">
+                        <a href="#"><i class="icon-users"></i> 链接管理</a>
+                        <ul>
+                            <li><a href="/admin/link">链接列表</a></li>
+                            <li><a href="/admin/link/linkadd">链接添加</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/admin/config"><i class="icon-calendar"></i> 网站管理</a></li>
 
                 </ul>

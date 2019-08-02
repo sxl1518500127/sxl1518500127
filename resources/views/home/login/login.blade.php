@@ -30,7 +30,7 @@
 <div id="main" class="layout">
     <div class="nl-content">
         <div class="nl-logo-area">
-            <a href="/"><img src="/homes/common/image/logo.gif" width="55"></a>
+            <a href="/"><img src="/h/homes/common/image/logo.gif" width="55"></a>
         </div>
         <h1 class="nl-login-title">一个帐号，玩转所有小米官网！</h1>
         <p class="nl-login-intro" style="color:#ff5340;">
