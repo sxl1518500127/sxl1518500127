@@ -8,7 +8,7 @@
     <meta name="keywords" content="小米,小米官网,小米手机,小米官网首页,小米商城" />
     <meta name="viewport" content="width=1226" />
     @section('css')
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/h/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/h/homes/common/css/base.min.css" />
     @show
     @section('myCss')
@@ -25,7 +25,7 @@
             <div class="topbar-cart" id="J_miniCartTrigger">
                 <a rel="nofollow" class="cart-mini" id="J_miniCartBtn" href="/cart/"> <i class="iconfont">&#xe60c;</i>
                     购物车
-                    <span class="cart-mini-num J_cartNum"></span>
+                    <span class="cart-mini-num J_cartNum">{{$count}}</span>
                 </a>
                 {{--<div class="cart-menu" id="J_miniCartMenu">--}}
                     {{--<div class="loading">--}}
@@ -85,9 +85,9 @@
                 </ul>
             </div>
             <div class="header-search">
-                <form id="J_searchForm" class="search-form clearfix" action="/list_search" method="get">
+                <form id="J_searchForm" class="search-form clearfix" action="/home/list_search" method="get">
                     <label for="search" class="hide">站内搜索</label>
-                    <input class="search-text" type="search" id="search" name="kWord" autocomplete="off" />
+                    <input class="search-text" type="search" id="search" name="search" autocomplete="off" />
                     <input type="submit" class="search-btn iconfont" value="&#xe616;" />
                     <div class="search-hot-words">
                         <a href="/list_search?kWord=小米手机5">小米手机5</a>
@@ -204,7 +204,7 @@
             <span class="title">小米手机官方微信二维码</span>
         </div>
         <div class="modal-bd">
-            <p style="margin: 0 0 10px;">
+            <p style="margin: 0 0 10px;"> 
                 打开微信，点击右上角的“+”，选择“扫一扫”功能，
                 <br/>
                 对准下方二维码即可。
