@@ -71,14 +71,11 @@ Route::resource('admin/nodes','Admin\NodesController');
 Route::resource('admin/roles','Admin\RolesController');
 });
 
+
 // 前台 首页 路由
 Route::get('/','Home\IndexController@index');
 
-// 前台 登录 路由
-Route::get('/login','Home\LoginController@login');
 
-// 前台 注册  路由
-Route::get('home/login/register','Home\LoginController@register');
 
 // 前台 商品详情 路由
 Route::resource('/detail','Home\DetailController');
@@ -99,3 +96,14 @@ Route::get('/home/list/{id}','Home\ListController@index');
 
 // 商品搜索
 Route::get('/home/list_search','Home\ListController@eidt');
+
+
+// 前台 登录 路由
+Route::get('/login','Home\LoginController@login');
+Route::post('/login/dologin','Home\LoginController@dologin');
+
+// 前台 注册  路由
+Route::resource('/register','Home\RegisterController');
+Route::resource('/register/show','Home\RegisterController@show');
+Route::post('/register/create','Home\RegisterController@create');
+

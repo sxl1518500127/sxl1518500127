@@ -46,7 +46,7 @@ class LoginController extends Controller
    			exit;
    		}
 
-   		   		// 验证密码正确
+   		// 验证密码正确
    		if ($adminpass !== $userinfo->adminpass) {
    		    echo "<script>alert('用户名或者密码错误');location.href='/admin/login';</script>";   			
       			exit;

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=1226" />
     @section('css')
     <link rel="icon" href="/h/favicon.ico" type="image/x-icon" />
+
     <link rel="stylesheet" href="/h/homes/common/css/base.min.css" />
     @show
     @section('myCss')

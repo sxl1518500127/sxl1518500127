@@ -7,10 +7,6 @@
     <meta name="Description" content="">
 
     <title>小米官网</title>
-
-
-
-
     <link href="/h/homes/common/css/login.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="/h/homes/common/js/common.js"></script>
@@ -38,7 +34,17 @@
         </p>
         <div id="login-box" class="nl-frame-container">
             <div class="ng-form-area show-place">
-                <form name="formLogin" action="/login" method="post">
+                <form action="/login/dologin" method="post">
+                    @if (count($errors) > 0)
+                        <div class="mws-form-message error" style="background-color:#ccc; color:red;">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    {{csrf_field()}}
                     <div class="shake-area">
                         <style type="text/css">
                             #error{
@@ -46,33 +52,20 @@
                                 text-align: center;
                             }
                         </style>
-                        <div class="enter-area" id="error">
-                            @if(session('error'))
-                                <h3 id="error">
-                                    {{ session('error') }}
-                                </h3>
-                            @endif
-                        </div>
                         <div class="enter-area">
-                            <input name="username" type="text" value="{{old('username')}}" class="enter-item first-enter-item" placeholder="用户名">
+                            <input name="customername" type="text" class="enter-item first-enter-item" placeholder="用户名" style="height: 40px;">
                             <i class="placeholder">用户名</i>
 
                         </div>
+
                         <div class="enter-area">
-                            <input name="password" type="password" class="enter-item last-enter-item" placeholder="密码">
+                            <input name="customerpass" type="password" class="enter-item first-enter-item" placeholder="密码" style="height: 40px; margin-top: 15px;" >
                             <i class="placeholder">密码</i>
                         </div>
                     </div>
-                    <div class="enter-area img-code-area">
-                    	<input name="Vcode" style="width: 150px;float:left;" type="text" class="enter-item first-enter-item" placeholder="验证码">
-                        
-                        <i class="placeholder">验证码</i>
-                        <img src="/login/captcha" alt="getCaptcha" style="margin-left:20px;height: 46px; " onclick="this.src='/login/captcha?'+Math.random()" />
-                    </div>
-                    {{csrf_field()}}
-                    <input type="submit" name="submit" class="button orange" value="立即登录">
+                
+                    <input type="submit" name="submit" class="button orange" value="立即登录" style="margin-top:30px;">
                     <div class="ng-foot clearfix">
-                        <div class="ng-cookie-area"><label><input type="checkbox" value="1" name="remember" id="remember" class="remember-me">十天免登陆。</label></div>
                         <div class="ng-link-area">
                             <span><a href="/login/password">忘记密码?</a></span>
                             <div class="third-area hide">
@@ -84,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="button" href="/home/login/register">注册小米官网</a>
+                    <a class="button" href="/register">注册小米官网</a>
                 </form>
             </div>
         </div>

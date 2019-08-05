@@ -6,36 +6,66 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
+use App\Models\Login;
+use Hash;
+use DB; 
+
 
 
 class LoginController extends Controller
 {
     // 加载登陆页面
-    public function login(Request $request)
+    public function login()
     {
 
+        // dd($request->all());
+        // $customername = $request->input('customername','');
+        // $customerpass = $request->input('customerpass','');
+        // dump($customername);
+        // dump($customerpass);
     	return view('home.login.login');
     }
 
-    public function register()
-    {
-    	return view('home.login.register');
-    }
 
-    public function getCaptcha()
+    //加载登陆
+    public function dologin(Request $request)
     {
-        //生成验证码图片的Builder对象，配置相应属性
-        $builder = new CaptchaBuilder;
-        //可以设置图片宽高及字体
-        $builder->build($width = 100, $height = 40, $font = null);
-        //获取验证码的内容
-        $phrase = $builder->getPhrase();
+        $this->validate($request, [
+            'customername'  => 'required',
+            'customerpass' => 'required',
+        ],[
+            'customername.required'=>'请填写用户名',
+            'customerpass.required'=>'请填写密码'
+        ]);
+        
+        // 获取信息
+        $customername = $request->input('customername','');
+        $customerpass = $request->input('customerpass','');
 
-        //把内容存入session
-        Input::session()->flash('Vcode', $phrase);
-        //生成图片
-        header("Cache-Control: no-cache, must-revalidate");
-        header('Content-Type: image/jpeg');
-        $builder->output();
+        $userinfo = DB::table('usercustomer')->where('customername',$customername)->first();
+
+        if($customername !== $userinfo->customername){
+            echo "<script>alert('用户名错误');location.href='/login';</script>";               
+                exit;
+            }
+
+
+        // 验证密码正确
+        if (!Hash::check($customerpass,$userinfo->customerpass)) {
+
+            echo "<script>alert('密码错误');location.href='/login';</script>";            
+            exit;
+        }
+
+
+
+        // 登录成功
+        session(['home_login'=>true]);
+
+        session(['home_userinfo'=>$userinfo]);
+        
+        //跳转
+        return redirect('/');
+
     }
 }
