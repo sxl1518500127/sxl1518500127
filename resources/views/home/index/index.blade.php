@@ -3,7 +3,71 @@
 <link rel="stylesheet" href="/h/homes/common/css/index.min.css" />
 @show
 @section('content')
+   <div class="header-nav">
+        <ul class="nav-list J_navMainList clearfix">
+            <li id="J_navCategory" class="nav-category">
 
+            <!-- start banner_y -->
+                <div style="  position: absolute;left:60px;z-index:1000" class="banner_y center">
+                    <div class="nav">
+                        <ul>
+                            @foreach($data as $k=>$v)
+                            <li>
+
+                                <a href="">{{ $v->goodsmod }}</a>
+
+                                <div class="pop">
+
+                                    <div style="border:1px solid red;width:100px" class="left fl pull-left">
+                                    @foreach($erji as $kk=>$vv)
+
+                                        @if($v->id == $kk)
+                                            @foreach($vv as $er)
+                                                <div style="border:1px solid pink;width:500px;height:200px">
+                                                    
+                                                    <span >{{$er->goodsmod}}</span>
+                                                    @foreach($sanji as $kkk => $san)
+                                                        @if($er->id == $kkk)
+                                                        <p>
+                                                            @foreach($san as $kkkk => $sano)
+                                                                <div style="width:230px;border:1px solid pink;">
+                                                                    <div class="xuangou_left fl">
+                                                                        <a href="liebiao.html">
+                                                                            <span class="fl">{{$sano->waresname}}</span>
+                                                                            <div class="clear"></div>
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="xuangou_right fr"><a href="xiangqing.html" >选购</a></div>
+                                                                    <div class="clear"></div>
+                                                                    
+                                                                </div>
+                                                            @endforeach
+                                                        </p>
+                                                        
+                                                        @endif
+                                                    @endforeach
+
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+
+                                    </div>
+
+                                   
+                                    <div class="clear"></div>
+
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>  
+            <!-- end banner -->
+            </li>
+        </ul>
+    </div>
 
 
     <div class="home-hero-container container">
@@ -141,10 +205,8 @@
                 </div>
                 <div class="box-bd">
                     <ul class="xm-carousel-list xm-carousel-col-5-list goods-list rainbow-list clearfix J_carouselList">
-
-
-<!--                                  这里遍历开始                                          -->
-@foreach($goodstar as $k=>$v)
+                    <!--这里遍历开始 -->
+                        @foreach($goodstar as $k=>$v)
                         
                         <li class="rainbow-item">
                             <a class="thumb" href="/detail/{{ $v->id }}">
@@ -169,7 +231,7 @@
                             <p class="price">更多</p>
                         </li>
                         
-<!--                                  这里遍历结束                                          -->
+                    <!--  这里遍历结束  -->
                         <li class="rainbow-item">
                             <a class="thumb" href="/datail"  target="_blank">
                                 <img src="http://i3.mifile.cn/a4/40d24892-317d-4883-ad63-647f1b9e3cdf" srcset="" alt="" />
@@ -194,7 +256,7 @@
                     <div class="more J_brickNav"></div>
                 </div>
                 <div class="box-bd J_brickBd">
-                <!-- 智能硬件 start-->
+                    <!-- 智能硬件 start-->
                     <div class="row">
                         <div class="span4 span-first">
                             <ul class="brick-promo-list clearfix">
@@ -206,40 +268,30 @@
                         </div>
                         <div class="span16">
                             <ul class="brick-list clearfix">
-<!--                                  这里遍历开始                                          -->
-@foreach($goods as $k=>$v)
-@if($k > 1)
-                                <li class="brick-item brick-item-m brick-item-m-2" data-gid="1161200059">
-                                    <div class="figure figure-img">
-                                        <a href="/detail/{{ $v->id }}">
-                                            <img src="uploads/{{ $v->waresimgpath }}" width="160" height="160" alt=""></a>
-                                    </div>
-                                    <h3 class="title">
-                                        <a href="/detail/{{ $v->id }}">{{ $v->waresname }}</a>
-                                    </h3>
-                                    <p class="desc"></p>
-                                    <p class="price">
-                                        <span class="num">{{ $v->waresprice }}</span>
-                                        元
-                                    </p>
-                                    <!-- <div class="flag flag-postfree">免邮费</div> -->
-                                </li>
-                                @endif
-                        @endforeach
-
-<!--                                  这里遍历结束                                          -->
-
-
+                                @foreach($goods as $k=>$v)
+                                    @if($k > 1)
+                                        <li class="brick-item brick-item-m brick-item-m-2" data-gid="1161200059">
+                                            <div class="figure figure-img">
+                                                <a href="/detail/{{ $v->id }}">
+                                                    <img src="uploads/{{ $v->waresimgpath }}" width="160" height="160" alt=""></a>
+                                            </div>
+                                            <h3 class="title">
+                                                <a href="/detail/{{ $v->id }}">{{ $v->waresname }}</a>
+                                            </h3>
+                                            <p class="desc"></p>
+                                            <p class="price">
+                                                <span class="num">{{ $v->waresprice }}</span>
+                                                元
+                                            </p>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                 <!-- 智能硬件 end-->
                 </div>
             </div>
-
-
-
-
 
             <div id="video" class="home-video-box xm-plain-box J_itemBox J_videoBox is-visible">
                 <div class="box-hd">

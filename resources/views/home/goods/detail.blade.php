@@ -4,6 +4,9 @@
 @section('css')
     <title>小米商城</title>
     <style type="text/css">
+        .aa{
+            background:#fff;
+        }
         img{
             width: auto;
         }
@@ -61,7 +64,6 @@
             <div class="row">
                 <div class="span13  J_mi_goodsPic_block goods-detail-left-info">
                     <div class="goods-pic-box  " id="J_mi_goodsPicBox">
-
                         <div class="goods-big-pic J_bigPicBlock">
                             <img src="/uploads/{{ $goods->waresimgpath }}" class="J_goodsBigPic" id="J_BigPic" />
                         </div>
@@ -71,8 +73,6 @@
                         <div class="goods-small-pic clearfix">
                             <ul id="goodsPicList">
                                 <!--        遍历开始           -->
-
-
                                 <li class="current"><img src="/uploads/{{ $goods->waresimgpath }}" /></li>
 
                                 <!--        遍历结束           -->
@@ -86,65 +86,60 @@
                     <div class="goods-info-leftborder"></div>
                     <form action="##" method="get" id="yourformid">
                         <dl class="goods-info-box ">
-                        <dt class="goods-info-head">
-                        <dl id="J_goodsInfoBlock">
-                            <dt id="goodsName" class="goods-name">
-                                
-                            </dt>
+                            <dt class="goods-info-head">
+                            <dl id="J_goodsInfoBlock">
+                                <dt id="goodsName" class="goods-name">
+                                    
+                                </dt>
 
-                            <dd class="goods-phone-type">
-                                <p>waresname</p>
-                            </dd>
-                            <dd class="goods-info-head-price clearfix">
-                                <b class="J_mi_goodsPrice"></b>
-                                <i>&nbsp;{{$goods->waresprice }}元</i>
-                                <del>
-                                    <span class="J_mi_marketPrice"></span>
-                                </del>
-                            </dd>
+                                <dd class="goods-phone-type">
+                                    <p>waresname</p>
+                                </dd>
+                                <dd class="goods-info-head-price clearfix">
+                                    <b class="J_mi_goodsPrice"></b>
+                                    <i>&nbsp;{{$goods->waresprice }}元</i>
+                                    <del>
+                                        <span class="J_mi_marketPrice"></span>
+                                    </del>
+                                </dd>
 
-                            <dd style="margin-top: 15px;">
-                                <span >选择 版本</span>
-                                <div class="clearfix">
-@if($sizes)
-@foreach($sizes as $kk=>$vv)                        
+                                <dd style="margin-top: 15px;">
+                                    <span >选择 版本</span>
+                                    <div class="clearfix">
+                                        @if($sizes)
+                                            @foreach($sizes as $kk=>$vv)  
+                                                <div class="attr" name="attr" title="" id="attr" price="">
+                                                    {{ $vv ? $vv : 123}}
+                                                </div>
 
-
-                                    <div class="attr" name="attr" title="" id="attr" price="">
-                                        {{ $vv ? $vv : 123}}
+                                            @endforeach
+                                        @endif
                                     </div>
+                                </dd>
 
-                        @endforeach
-@endif
-                                </div>
-                            </dd>
-
-                            <!--颜色-->
+                                <!--颜色-->
 
                                 <dd class="goods-info-head-colors clearfix" >
                                     <div class="hidden" num="" name="hidden">
                                         <span class="goods-info-head-colors clearfix">选择 颜色</span >
-@if($colors)
+                                        @if($colors)
 
-@foreach($colors as $kkk=>$vvv)                        
+                                            @foreach($colors as $kkk=>$vvv)                        
 
-                                        <div  class="float">
-                                            <div>
-                                                <a href="" class="smallAttr" name="color" title="" data-stat-id="bd7cb1fe26f82654" id="color">
-                                        {{ $vvv ? $vvv : 未定义}}
+                                                <div  class="float">
+                                                    <div>
+                                                        <a href="" class="smallAttr" name="color" title="" data-stat-id="bd7cb1fe26f82654" id="color">
+                                                            {{ $vvv ? $vvv : 未定义}}
 
-                                                </a>
-                                            </div>
-                                        </div>
-                        @endforeach
-@endif
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </dd>
 
-                            <!--颜色-->
-
-
-
+                                <!--颜色-->
                                 <input type="hidden" name="sku_attr" value="">
                                 <input type="hidden" name="good_id" value="">
                                 <input type="hidden" name="sku_color" value="">
@@ -160,197 +155,194 @@
                                         <li class="J_scrollHref " data-href="#goodsComment" data-index="2"> <i class="iconfont"></i> 满意度<b>99.1%</b> </li>
                                     </ul>
                                 </dd>
-                        </dl>
-                        </dt>
+                            </dl>
+                            </dt>
 
-                    </dl>
+                        </dl>
                     </form>
                 </div>
-
-
             </div>
         </div>
     </div>
     <div class="full-screen-border"></div>
-    <div class="goods-detail-nav" id="goodsDetail">
-        <div class="container">
-            <ul class="detail-list J_detailNav J_originNav">
-                <li class="current detail-nav"> <a data-href="#goodsDesc" data-index="0" class="J_scrollHref" data-stat-id="2f27371406a047cd" >详情描述</a> </li>
-                <li class="detail-nav"> <a data-href="#goodsParam" data-index="1" class="J_scrollHref" data-stat-id="bbde2caff4f4853c" href="#info">规格参数</a> </li>
-                <li class="detail-nav"> <a data-href="#goodsComment" data-index="2" class="J_scrollHref" data-stat-id="158b28b83a4cca1a" href="#comment">评价晒单 </a> </li>
-            </ul>
-        </div>
-    </div>
-    <div class="full-screen-border"></div>
-    <div class="goods-detail-desc J_itemBox" id="goodsDesc">
-        <div class="container" >
-                <strong>名称：{{$goods->waresname}}</strong><br>
-                <strong>价格：{{$goods->waresprice}}</strong><br>
-                <strong>库存：{{$goods->waresstock}}</strong><br>
-                <strong>销量：{{$goods->waressellcount}}</strong><br>
-            <div class="shape-container" >
-               <img src="/uploads/{{ $goods->waresimgpath }}" />     
-            </div>
-        </div>
-    </div>
-    <div class="goods-detail-nav-name-block J_itemBox" id="goodsParam">
-        <div class="container main-block">
-            <div class="border-line"></div>
-            <h2 class="nav-name" name="info" id="info">规格参数</h2>
-
-        </div>
-    </div>
-
-
-
-    <!--规格-->
-    <style>
-        .table tr,td{
-            border: 1px solid #e0e0e0;
-            height: 50px;
-            text-align:center;
-            width:300px;
-        }
-    </style>
-            <div class="xq">
-{!!$goods->waresdescript!!}
-</div>
-    <div class="goods-detail-param  J_itemBox hidden" num="">
-
-        <div class="container table" >
-
-
-
-        </div>
-    </div>
-
-    <!--规格结束-->
-
-    <div class="goods-detail-nav-name-block J_itemBox" id="goodsComment">
-        <div class="container main-block">
-            <div class="border-line"></div>
-            <h2 class="nav-name">评价晒单</h2>
-        </div>
-    </div>
-    <!--评价-->
-    <div class="goods-detail-comment J_itemBox hasContent" id="goodsCommentContent">
-        <div class="goods-detail-comment-groom" id="J_recommendComment">
+    <div class="aa">
+        <div class="goods-detail-nav" id="goodsDetail">
             <div class="container">
-                <ul class="main-block">
-                    <li class="percent">
-                        <div class="per-num">
-                            <i>99.1</i>%
-                        </div>
-                        <div class="per-title">
-                            购买后满意
-                        </div>
-                        <div class="per-amount">
-                            <i>3097</i>名用户投票
-                        </div>
-                    </li>
-
-                    <li class="item-rainbow-3 groom-content">
-                        <dl>
-                            <dt>
-                            <div class="groom-content-userImage">
-                                <img src="/h/homes/common/image/u6bPscBa4MZjpi_90.jpg" alt="" />
-                            </div>
-                            <div class="groom-content-userName">
-                                王欢
-                            </div>
-                            <div class="groom-content-commentNum">
-                                53人有相似评价
-                            </div>
-                            </dt>
-                            <dd>
-                                <i class="iconfont"></i> 手感很好 大小合适 开窗很大
-                            </dd>
-                        </dl>
-                    </li>
-
-                    <li class="item-rainbow-2 groom-content">
-                        <dl>
-                            <dt>
-                            <div class="groom-content-userImage">
-                                <img src="/h/homes/common/image/head_3.png" alt="" />
-                            </div>
-                            <div class="groom-content-userName">
-                                海涛
-                            </div>
-                            <div class="groom-content-commentNum">
-                                7人有相似评价
-                            </div>
-                            </dt>
-                            <dd>
-                                <i class="iconfont"></i> 非常不错！很贴合，手感也好！
-                            </dd>
-                        </dl>
-                    </li>
+                <ul class="detail-list J_detailNav J_originNav">
+                    <li class="current detail-nav"> <a data-href="#goodsDesc" data-index="0" class="J_scrollHref" data-stat-id="2f27371406a047cd" >详情描述</a> </li>
+                    <li class="detail-nav"> <a data-href="#goodsParam" data-index="1" class="J_scrollHref" data-stat-id="bbde2caff4f4853c" href="#info">规格参数</a> </li>
+                    <li class="detail-nav"> <a data-href="#goodsComment" data-index="2" class="J_scrollHref" data-stat-id="158b28b83a4cca1a" href="#comment">评价晒单 </a> </li>
                 </ul>
             </div>
         </div>
+        <div class="full-screen-border"></div>
+        <div class="goods-detail-desc J_itemBox" id="goodsDesc">
+            <div class="container" >
+                    <strong>名称：{{$goods->waresname}}</strong><br>
+                    <strong>价格：{{$goods->waresprice}}</strong><br>
+                    <strong>库存：{{$goods->waresstock}}</strong><br>
+                    <strong>销量：{{$goods->waressellcount}}</strong><br>
+                <div class="shape-container" >
+                   <img src="/uploads/{{ $goods->waresimgpath }}" />     
+                </div>
+            </div>
+        </div>
+        <div class="goods-detail-nav-name-block J_itemBox" id="goodsParam">
+            <div class="container main-block">
+                <div class="border-line"></div>
+                <h2 class="nav-name" name="info" id="info">规格参数</h2>
 
-        <div class="goods-detail-comment-content" id="J_commentDetailBlock">
-            <div class="container">
-                <div class="row">
-                    <div class="span14 goods-detail-comment-list">
-                        <div class="comment-order-title">
-                            <div class="left-title">
-                                <h3 class="comment-name">最有帮助的评价</h3>
+            </div>
+        </div>
+
+
+
+        <!--规格-->
+        <style>
+            .table tr,td{
+                border: 1px solid #e0e0e0;
+                height: 50px;
+                text-align:center;
+                width:300px;
+            }
+        </style>
+        <div class="xq">
+            {!!$goods->waresdescript!!}
+        </div>
+        <div class="goods-detail-param  J_itemBox hidden" num="">
+
+            <div class="container table" >
+            </div>
+        </div>
+
+        <!--规格结束-->
+
+        <div class="goods-detail-nav-name-block J_itemBox" id="goodsComment">
+            <div class="container main-block">
+                <div class="border-line"></div>
+                <h2 class="nav-name">评价晒单</h2>
+            </div>
+        </div>
+        <!--评价-->
+        <div class="goods-detail-comment J_itemBox hasContent" id="goodsCommentContent">
+            <div class="goods-detail-comment-groom" id="J_recommendComment">
+                <div class="container">
+                    <ul class="main-block">
+                        <li class="percent">
+                            <div class="per-num">
+                                <i>99.1</i>%
                             </div>
-                        </div>
-                        <ul class="comment-box-list" id="J_supComment">
+                            <div class="per-title">
+                                购买后满意
+                            </div>
+                            <div class="per-amount">
+                                <i>3097</i>名用户投票
+                            </div>
+                        </li>
 
-                            <!--******评价********-->
-                            <li class="item-rainbow-1" data-id="134117576">
-                                <div class="user-image">
-                                    <img src="" alt="" />
+                        <li class="item-rainbow-3 groom-content">
+                            <dl>
+                                <dt>
+                                <div class="groom-content-userImage">
+                                    <img src="/h/homes/common/image/u6bPscBa4MZjpi_90.jpg" alt="" />
                                 </div>
-                                <div class="user-emoj">
-                                    喜欢
-                                    <i class="iconfont"></i>
+                                <div class="groom-content-userName">
+                                    王欢
                                 </div>
-                                <div class="user-name-info">
-                                    <span class="user-time"></span>
+                                <div class="groom-content-commentNum">
+                                    53人有相似评价
                                 </div>
+                                </dt>
+                                <dd>
+                                    <i class="iconfont"></i> 手感很好 大小合适 开窗很大
+                                </dd>
+                            </dl>
+                        </li>
 
-                                <dl class="user-comment">
-                                    <dt class="user-comment-content J_commentContent">
-                                    <p class="content-detail"> <a href="http://order.mi.com/comment/commentDetail/comment_id/134117576" target="_blank"> </a> </p>
-                                    </dt>
-                                    {{--<dd class="user-comment-self-input">--}}
-                                        {{--<div class="input-block">--}}
-                                            {{--<input type="text" placeholder="回复楼主" class="J_commentAnswerInput" />--}}
-                                            {{--<a href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn" data-commentid="134117576">回复</a>--}}
-                                        {{--</div>--}}
-                                    {{--</dd>--}}
-                                    {{--<dd class="user-comment-answer">--}}
-                                        {{--<img class="self-image" src="/homes/common/image/head_4.png" alt="" />--}}
-                                        {{--<p>和我换- <span class="answer-user-name">268707921</span> </p>--}}
-                                    {{--</dd>--}}
-                                </dl>
-                            </li>
-                            <!--******评价结束********-->
+                        <li class="item-rainbow-2 groom-content">
+                            <dl>
+                                <dt>
+                                <div class="groom-content-userImage">
+                                    <img src="/h/homes/common/image/head_3.png" alt="" />
+                                </div>
+                                <div class="groom-content-userName">
+                                    海涛
+                                </div>
+                                <div class="groom-content-commentNum">
+                                    7人有相似评价
+                                </div>
+                                </dt>
+                                <dd>
+                                    <i class="iconfont"></i> 非常不错！很贴合，手感也好！
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                        </ul>
-                    </div>
-                    <div class="span6 goods-detail-comment-timeline">
-                        <h3 class="comment-name" id="comment" name="comment">最新评价</h3>
-                        <ul class="comment-timeline-list" id="J_timelineComment">
+            <div class="goods-detail-comment-content" id="J_commentDetailBlock">
+                <div class="container">
+                    <div class="row">
+                        <div class="span14 goods-detail-comment-list">
+                            <div class="comment-order-title">
+                                <div class="left-title">
+                                    <h3 class="comment-name">最有帮助的评价</h3>
+                                </div>
+                            </div>
+                            <ul class="comment-box-list" id="J_supComment">
 
-                            <!--******最新回复********-->
-                            <li class="purple timelineunit J_commentContent" data-id="135575831"> <p class="line-content"> <a href="http://order.mi.com/comment/commentDetail/comment_id/135575831" target="_blank"></a> </p>
-                                <div class="line-foot">
-                                    <div class="line-left">
-                                        来自于 
+                                <!--******评价********-->
+                                <li class="item-rainbow-1" data-id="134117576">
+                                    <div class="user-image">
+                                        <img src="" alt="" />
+                                    </div>
+                                    <div class="user-emoj">
+                                        喜欢
+                                        <i class="iconfont"></i>
+                                    </div>
+                                    <div class="user-name-info">
+                                        <span class="user-time"></span>
                                     </div>
 
-                                </div>
-                                <div class="line-dot item-rainbow-4"></div>
-                            </li>
-                            <!--******最新回复结束********-->
-                        
-                        </ul>
+                                    <dl class="user-comment">
+                                        <dt class="user-comment-content J_commentContent">
+                                        <p class="content-detail"> <a href="http://order.mi.com/comment/commentDetail/comment_id/134117576" target="_blank"> </a> </p>
+                                        </dt>
+                                        {{--<dd class="user-comment-self-input">--}}
+                                            {{--<div class="input-block">--}}
+                                                {{--<input type="text" placeholder="回复楼主" class="J_commentAnswerInput" />--}}
+                                                {{--<a href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn" data-commentid="134117576">回复</a>--}}
+                                            {{--</div>--}}
+                                        {{--</dd>--}}
+                                        {{--<dd class="user-comment-answer">--}}
+                                            {{--<img class="self-image" src="/homes/common/image/head_4.png" alt="" />--}}
+                                            {{--<p>和我换- <span class="answer-user-name">268707921</span> </p>--}}
+                                        {{--</dd>--}}
+                                    </dl>
+                                </li>
+                                <!--******评价结束********-->
+                            </ul>
+                        </div>
+                       
+                        <div class="span6 goods-detail-comment-timeline">
+                            <h3 class="comment-name" id="comment" name="comment">最新评价</h3>
+                            <ul class="comment-timeline-list" id="J_timelineComment">
+
+                                <!--******最新回复********-->
+                                <li class="purple timelineunit J_commentContent" data-id="135575831"> <p class="line-content"> <a href="http://order.mi.com/comment/commentDetail/comment_id/135575831" target="_blank"></a> </p>
+                                    <div class="line-foot">
+                                        <div class="line-left">
+                                            来自于 
+                                        </div>
+
+                                    </div>
+                                    <div class="line-dot item-rainbow-4"></div>
+                                </li>
+                                <!--******最新回复结束********-->
+                            
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
