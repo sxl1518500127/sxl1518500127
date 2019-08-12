@@ -14,8 +14,13 @@
     @show
     @section('myCss')
     @show
+    <script type='text/javascript' src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId=231515b0-b999-11e9-ba32-bfd32cf2bdfe&autoShow=false&language=ZHCN' async='async'></script>
 </head>
 <body>
+<script type="text/javascript">
+  
+</script>
+
 @section('header')
     <div class="site-topbar">
         <div class="container">
@@ -137,24 +142,19 @@
             <div class="footer-links clearfix">
 
                 <dl class="col-links col-links-first">
-                    <dt></dt>
-
-                    <dd>
-                        <a rel="nofollow" href="/help/article"   target="_blank"></a>
-                    </dd>
-
-                    
+                    <!-- {{$links}} -->
+                @foreach($links as $k=>$v)
+                    <dt><a href="{{ $v->linkdir }}">{{ $v->linkname }}</a></dt>
+                @endforeach
                 </dl>
 
- 
-
                 <div class="col-contact">
-                    <p class="phone">400-100-5678</p>
+                    <p class="phone">888-888-8888</p>
                     <p>
                         <span class="J_serviceTime-normal">周一至周日 8:00-18:00</span>
                         <span class="J_serviceTime-holiday" style="display:none;">2月7日至13日服务时间 9:00-18:00</span>
                         <br>（仅收市话费）</p>
-                    <a rel="nofollow" class="btn btn-line-primary btn-small" href="/" target="_blank">
+                    <a rel="nofollow" class="btn btn-line-primary btn-small" onclick="qimoChatClick();">
                         <i class="iconfont">&#xe600;</i>
                         24小时在线客服
                     </a>
@@ -214,7 +214,7 @@
     <script src="/h/data/indexNav.js"></script>
     <script src="/h/data/indexData.js"></script>
     <script src="/h/homes/common/myjs/jquery.SuperSlide.js"></script>
-    <script src="/h/homes/common/myjs/common.js"></script>
+    <!-- <script src="/h/homes/common/myjs/common.js"></script> -->
     <script src="/h/homes/common/myjs/index.js"></script>
     @show
     @section('LDjs')

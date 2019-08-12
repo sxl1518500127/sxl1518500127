@@ -103,7 +103,6 @@ Route::get('/user/comment','Home\UserController@comment');
 // 商品搜索
 Route::get('/home/list_search','Home\ListController@eidt');
 
-
 // 前台 登录 路由
 Route::get('/login','Home\LoginController@login');
 Route::post('/login/dologin','Home\LoginController@dologin');
@@ -112,4 +111,8 @@ Route::post('/login/dologin','Home\LoginController@dologin');
 Route::resource('/register','Home\RegisterController');
 Route::resource('/register/show','Home\RegisterController@show');
 Route::post('/register/create','Home\RegisterController@create');
+
+
+// 前台 商品
+Route::resource('/list','Home\ListController');
 

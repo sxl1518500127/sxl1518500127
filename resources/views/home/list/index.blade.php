@@ -35,9 +35,9 @@
         <div class="order-list-box clearfix">
             <form method="GET" name="listform">
                 <ul class="order-list">
-                    <li class="first active"><a title="销量" href="http://mm.com/category.php?category=69&amp;display=grid&amp;brand=0&amp;price_min=0&amp;price_max=0&amp;filter_attr=0&amp;page=1&amp;sort=sales_volume&amp;order=ASC#goods_list" class="curr" rel="nofollow"><span class="search_DESC">销量</span>&nbsp;<i class="iconfont"></i></a></li>
-                    <li class=""><a title="价格" href="http://mm.com/category.php?category=69&amp;display=grid&amp;brand=0&amp;price_min=0&amp;price_max=0&amp;filter_attr=0&amp;page=1&amp;sort=shop_price&amp;order=ASC#goods_list" rel="nofollow"><span class="">价格</span></a></li>
-                    <li class=""><a title="上架时间" href="http://mm.com/category.php?category=69&amp;display=grid&amp;brand=0&amp;price_min=0&amp;price_max=0&amp;filter_attr=0&amp;page=1&amp;sort=goods_id&amp;order=DESC#goods_list" rel="nofollow"><span class="">上架时间</span></a></li>
+                    <li class="first active"><a title="销量" href="" class="curr" rel="nofollow"><span class="search_DESC">销量</span>&nbsp;<i class="iconfont"></i></a></li>
+                    <li class=""><a title="价格" href="" rel="nofollow"><span class="">价格</span></a></li>
+                    <li class=""><a title="上架时间" href="" rel="nofollow"><span class="">上架时间</span></a></li>
                     <input type="hidden" name="category" value="69" />
                     <input type="hidden" name="display" value="grid" id="display" />
                     <input type="hidden" name="brand" value="0" />
@@ -52,59 +52,32 @@
 
         </div>
         <div  class="clearfix">
-
-            <form name="compareForm" action="http://mm.com/compare.php" method="post" onsubmit="return compareGoods(this);">
-                <div class="goods-list-box">
-                    @foreach($wares as $ware)
+            <form name="compareForm" action="" method="post" enctype="multipart/form-data" >
+                @foreach($lists as $k=>$v)
+                <div class="goods-list-box"> 
                     <div class="goods-item" style="width:292px;">
                         <div class="figure figure-img">
-                            <a href=""><img src="" alt="红米Note2" class="goodsimg" /></a>
+                            <a href="/detail/{{ $v->id }}"><img src="/uploads/{{ $v->waresimgpath }}" class="goodsimg" /></a>
                         </div>
-                        <p class="desc"></p>
-                        <h2 class="title"><a href="" title="红米Note2"></a></h2>
-                        <p class="price"> 本店价<font class="shop_s"><em>元</em></font>
-                            <del>
-                                专柜价
-                                <font class="market_s"><em>元</em></font>
-                            </del>
-                        </p>
-
-                        <div class="thumbs J_attrImg" >
-                            <div style="width:212px;margin:0 auto;" >
-                                <ul class="thumb-list clearfix J_imgList">
-
-                                    <a><img src="" width="34" height="34" /></a>
-
-                                </ul>
-                            </div>
-                        </div>
-
+                        <p class="price">￥<font class="shop_s"><em>{{ $v->waresprice }}</em></font></p>
+                        <p class="">{{ $v->waresname }}</p>
+                        <p class="desc">已销售{{ $v->waressellcount }}部</p>
                         <div class="actions clearfix">
                             <a href="javascript:collect(82);" class="btn-like J_likeGoods"><i class="iconfont"></i> <span>收藏</span></a>
                             <a href="javascript:addToCart(82)" class="btn-buy J_buyGoods"><span>购买</span> <i class="iconfont"></i></a>
                         </div>
-
                     </div>
-                    @endforeach
-                    {{--这里是需要遍历的单体 结束--}}
-
-
                 </div>
+                @endforeach
             </form>
+
         </div>
 
-        @endsection
-
-
-        @section('js')
 
             <script src="/h/data/indexNav.js"></script>
             <script src="/h/data/indexData.js"></script>
 
-            <script src="/h/homes/common/myjs/common.js"></script>
-
-        @show
-        @section('LDjs')
+            <!-- <script src="/h/homes/common/myjs/common.js"></script> -->
         <script type="Text/Javascript" language="JavaScript">
             <!--
             function selectPage(sel)
@@ -128,13 +101,6 @@
             var is_cancel = "取消";
             var select_spe = "请选择商品属性";
         </script>
-        <form name="selectPageForm" action="http://mm.com/category.php" method="get">
-            <div class="clearfix">
-                <div id="pager" class="pagebar">
-                    <span class="f_l f6" style="margin-right:10px;">总计 <b>好多个</b> 个记录</span>
-                </div>
-            </div>
-        </form>
         <script type="Text/Javascript" language="JavaScript">
             <!--
             function selectPage(sel)

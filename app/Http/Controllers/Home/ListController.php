@@ -12,12 +12,12 @@ class ListController extends Controller
 {
 
 
-	public function index($id)
-	{
-		$goods = DB::table('goodswares')->where('waresgid', $id)->get();
-
-		return view('home.list.index',["wares"=>$goods]);
-	}
+	// 加载页面
+    public function index()
+    {
+    	// dd('0');
+    	return view('home.list.index');
+    }
 
 	public function __construct()
 	{
@@ -41,7 +41,7 @@ class ListController extends Controller
 		// dump($data);
 		foreach($data as $k => $v){
 			$arr = $this->word($v->waresname);
-			dump($arr);
+			// dump($arr);
 			foreach($arr as $kk => $vv){
 				DB::table('waresword')->insert(['waresid'=>$v->id,'word'=>$vv]);
 			}
@@ -108,6 +108,20 @@ class ListController extends Controller
     }
 
 
+    public function show($id)
+    {
+    	// dd($id);
+
+		$lists = DB::table('goods')
+            ->join('goodswares', 'goodswares.waresgid', '=', 'goods.id')
+            ->where('goods.id',$id)
+            ->select('goodswares.*', 'goods.id')
+            ->get();
+        // dd($lists);
+    	return view('home.list.index',['lists'=>$lists]);
+   			
+    }
+
     public function __destruct(){
     	//关闭
 		$this->cws->close();
@@ -115,3 +129,4 @@ class ListController extends Controller
 
 
 }
+

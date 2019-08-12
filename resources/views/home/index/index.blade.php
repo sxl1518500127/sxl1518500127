@@ -150,7 +150,16 @@
                             <p class="price"></p>
                         </li>
 <!--                                  这里遍历结束                                          -->
-                       
+                        <li class="rainbow-item">
+                            <a class="thumb" href="/datail"  target="_blank">
+                                <img src="http://i3.mifile.cn/a4/40d24892-317d-4883-ad63-647f1b9e3cdf" srcset="" alt="" />
+                            </a>
+                            <h3 class="title">
+                                <a href="/datail" target="_blank"></a>
+                            </h3>
+                            <p class="desc"></p>
+                            <p class="price">更多...</p>
+                        </li>
                     </ul>
                 </div>
             </div>
