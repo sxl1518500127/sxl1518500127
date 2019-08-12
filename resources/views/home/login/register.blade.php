@@ -8,17 +8,17 @@
     <meta name="Description" content="" />
     <title>小米官网</title>
 
-    <link href="/homes/common/css/login.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/homes/common/js/common.js"></script>
-    <script type="text/javascript" src="/homes/common/js/user.js"></script>
+    <link href="/h/homes/common/css/login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/h/homes/common/js/common.js"></script>
+    <script type="text/javascript" src="/h/homes/common/js/user.js"></script>
 </head>
 <body>
-<script type="text/javascript" src="/homes/common/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="/homes/common/js/jquery.json.js"></script>
-<script type="text/javascript" src="/homes/common/js/transport_jquery.js"></script>
-<script type="text/javascript" src="/homes/common/js/utils.js"></script>
-<script type="text/javascript" src="/homes/common/js/jquery.SuperSlide.js"></script>
-<script type="text/javascript" src="/homes/common/js/xiaomi_common.js"></script>
+<script type="text/javascript" src="/h/homes/common/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/h/homes/common/js/jquery.json.js"></script>
+<script type="text/javascript" src="/h/homes/common/js/transport_jquery.js"></script>
+<script type="text/javascript" src="/h/homes/common/js/utils.js"></script>
+<script type="text/javascript" src="/h/homes/common/js/jquery.SuperSlide.js"></script>
+<script type="text/javascript" src="/h/homes/common/js/xiaomi_common.js"></script>
 <script>
     $(function(){
 
@@ -74,7 +74,7 @@
 <div class="register_wrap">
     <div class="bugfix_ie6 dis_none">
         <div class="n-logo-area clearfix">
-            <a href="/" class="fl-l" style="margin-left: 450px"><img src="/homes/common/image/logo.gif" width="55" /></a>
+            <a href="/" class="fl-l" style="margin-left: 450px"><img src="/h/homes/common/image/logo.gif" width="55" /></a>
         </div>
     </div>
     <div id="main">

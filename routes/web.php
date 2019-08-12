@@ -76,12 +76,10 @@ Route::get('/','Home\IndexController@index');
 
 // 前台 登录 路由
 Route::get('/login','Home\LoginController@login');
-
-// 前台 注册  路由
-Route::get('home/login/register','Home\LoginController@register');
+Route::post('/login/dologin','Home\LoginController@dologin');
 
 // 前台 商品详情 路由
-Route::resource('/detail','Home\DetailController');
+Route::get('/detail/{id}','Home\DetailController@index');
 
 // 前台 购物车 路由
 Route::resource('/cart','Home\CartController');
@@ -92,3 +90,148 @@ Route::get('/user/order','Home\UserController@order');
 Route::get('/user/address','Home\UserController@address');
 Route::get('/user/comment','Home\UserController@comment');
 
+
+// 前台 注册  路由
+Route::resource('/register','Home\RegisterController');
+Route::resource('/register/show','Home\RegisterController@show');
+Route::post('/register/create','Home\RegisterController@create');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 执行修改个人信息
+Route::post('/user/store','Home\UserController@store');
+
+// 执行添加收货地址
+Route::get('/user/add','Home\UserController@add');
+
+// 执行删除收货地址
+Route::get('/user/del','Home\UserController@del');
+
+// 执行设置默认收货地址
+Route::get('/user/update','Home\UserController@update');
+
+// 注销账号
+Route::get('/user/logout','Home\UserController@logout');
+
+//修改密码页面
+Route::get('/user/password','Home\UserController@password');
+
+//执行修改密码页面
+Route::post('/user/newpass','Home\UserController@newpass');

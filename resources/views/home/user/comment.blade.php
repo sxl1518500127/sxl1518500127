@@ -61,7 +61,15 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="box-bd">
+                                <ul class="uc-nav-list">
 
+                                    
+                                    <li>
+                                        <a href="/user/password">修改密码</a>
+                                    </li>
+                                </ul>
+                            </div>
                     </div>
                 </div>
 

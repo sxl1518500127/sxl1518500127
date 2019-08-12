@@ -1,5 +1,5 @@
 @extends('home.layout.index')
-@section('title','我的地址')
+@section('title','我的信息')
 @section('css')
 <link rel="stylesheet" href="/h/homes/common/css/base.min.css" />
 <link rel="stylesheet" href="/h/homes/common/css/main.min.css" />
@@ -12,7 +12,7 @@
         <div class="container">
             <a href='//www.mi.com/index.html'>首页</a>
             <span class="sep">&gt;</span>
-            <span>收货地址</span>
+            <span>我的密码</span>
         </div>
     </div>
 
@@ -28,11 +28,11 @@
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
                                     <li>
-                                        <a href="/user/show">我的订单</a>
+                                        <a href="/user/order">我的订单</a>
                                     </li>
                                     
                                     <li>
-                                        <a href="/user/comment/">评价晒单</a>
+                                        <a href="/user/comment">评价晒单</a>
                                     </li>
                                     
                                 </ul>
@@ -42,15 +42,17 @@
                             <div class="box-hd">
                                 <h3 class="title">个人中心</h3>
                             </div>
+
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
 
                                     
-                                    <li  class="active">
+                                    <li>
                                         <a href="/user/address">收货地址</a>
                                     </li>
                                 </ul>
                             </div>
+
 
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
@@ -66,8 +68,8 @@
                                 <ul class="uc-nav-list">
 
                                     
-                                    <li>
-                                        <a href="/user/password">修改密码</a>
+                                    <li class="active">
+                                        <a href="/user/index">修改密码</a>
                                     </li>
                                 </ul>
                             </div>
@@ -81,51 +83,36 @@
                     <div class="uc-box uc-main-box">
                         <div class="uc-content-box">
                             <div class="box-hd">
-                                <h1 class="title">收货地址</h1>
+                                <h1 class="title">修改密码</h1>
                             </div>
                             <div class="box-bd">
 
-                                <div class="user-address-list J_addressList clearfix">
-                                    <div class="address-item address-item-new" data-type="" id="J_newAddress"> <i class="iconfont">&#xe609;</i>
-                                        添加新地址
-                                    </div>
-@foreach($address as $k=>$v)
+                                        <div class="personal-r f-r">
+            <div class="personal-right">
+  
+                    <form class="mws-form" action="/user/newpass" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
 
-                                    <div class="address-item J_addressItem" 
-                                     data-address_id=''
-                                     data-consignee=''
-                                     data-tel=''
-                                     data-province_name=''
-                                     data-city_name=''
-                                     data-district_name=''
-                                     data-address=''
-                                    >
-                                    @if($v->cargodefault == 1)
-                                    <img style="float: left;" width="20px" src="http://bpic.588ku.com/element_origin_min_pic/01/54/03/085746fb56c1414.jpg">
-                                    @endif
-                                        <dl>
-                                            <dt>
-                                                <span class="tag"></span><em class="uname">{{$v->cargoname}}</em>
-                                            </dt>
-                                            <dd class="utel">{{$v->cargophone}}</dd>
-                                            <dd class="uaddress">
-                                                <br>{{$v->cargoaddres}}</dd>
-                                        </dl>
-                                        <div class="actions">
-                                            <!-- <a href="javascript:void(0);" data-id="" class="modify J_addressModify">修改</a> -->
-                                            <a href="javascript:void(0);"  id="{{ $v->id }}" class="modify J_addressDel">删除</a>
-                                    @if($v->cargodefault != 1)
+                    <div class="dt1">
+                        <p class="dt-p f-l">原 密 码 ：<input id="myInput" name="pass" type="password" oninput="myFunction()" value="" /></p>
+                            <div style="clear:both;"></div>
+                    </div>
 
-                                            <a href="javascript:void(0);"  id="{{ $v->id }}" class="modify J_addressMo">设为默认</a>
-                                    @endif
+                    <div class="dt1">
+                        <p class="dt-p f-l">新 密 码 ：<input id="myInput" name="newpass" type="password" oninput="myFunction()" value="" /></p>
+                            <div style="clear:both;"></div>
+                    </div>
 
-                                        </div>
-                                    </div>
-@endforeach
-                                    
-                                    
-                                </div>
-
+                    <div class="dt1">
+                        <p class="dt-p f-l">确认密码：<input id="myInput" name="newpasss" type="password" oninput="myFunction()" value="" /></p>
+                            <div style="clear:both;"></div>
+                    </div>
+  
+                    <input type="submit" id="baocun" style="display:none" class="btn btn-success" value="保存" />
+                    </form>
+                </div>
+            </div>
+        </div>
                             </div>
                         </div>
                     </div>
@@ -137,6 +124,17 @@
             </div>
         </div>
     </div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myInput").value;
+    var baocun = document.getElementById("baocun");
+
+    baocun.style.display = "inline";
+    
+}
+    </script>
+
+
 @endsection
 
 @section('js')

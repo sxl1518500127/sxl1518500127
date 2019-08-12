@@ -109,34 +109,7 @@ $(function(){
     ~function($,cate){
         function dealCateNavHtml(arr){
             
-            if(arr.length){
-                var temp = '<div class="site-category"> <ul id="J_categoryList" class="site-category-list clearfix">';
-                for(var i=0;i<arr.length;i++){
-                    temp+= '<li class="category-item">';
-                        temp+= '<a class="title" href="/list?id='+arr[i]['data']['id']+'">';
-                            temp+=arr[i]['data']['title']+' <i class="iconfont"></i>';
-                        temp+= '</a>';
-                        temp+= '<div class="children clearfix children-col-2"  style="width:'+265*Math.ceil(arr[i]['child'].length/7)+'px;">';
-                            temp+= '<ul class="children-list children-list-col children-col-1">';
-                                for(var j=0;j<arr[i]['child'].length;j++){
-                                    temp+= '<li class="star-goods">';
-                                        temp+= '<a class="link" href="/detail?id='+arr[i]['child'][j]["id"]+'">';
-                                            temp+= '<img class="thumb" src="'+arr[i]['child'][j]["img"]+'" width="40" height="40" alt="">';
-                                            temp+= '<span class="text">'+arr[i]['child'][j]["title"]+'</span>';
-                                        temp+= '</a>';
-                                        // temp+= '<a class="btn btn-line-primary btn-small btn-buy" href="'+arr['child'][j]["id"]+'" data-stat-id="79cf129bec5862f2">选购</a>',
-                                    temp+= '</li>';
-                                    if(j%6==0&&j!=0){
-                                        temp+= '</ul><ul class="children-list children-list-col children-col-1">';
-                                    }
-                                }
-                            temp+= '</ul>';
-                        temp+= '</div>';
-                    temp+= '</li>';
-                }
-                temp+='</ul></div>';
-                $('#J_navCategory').append(temp);
-            }
+        
         }
         dealCateNavHtml(cate);
         $('#J_categoryList').find('.category-item').on({

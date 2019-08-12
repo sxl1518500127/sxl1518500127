@@ -58,9 +58,14 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="box-bd">
+                                <ul class="uc-nav-list">
+                                    <li>
+                                        <a href="/user/password">修改密码</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-
-
                     </div>
             </div>
             <div class="span16">
@@ -69,23 +74,100 @@
                         <div class="box-hd">
                             <h1 class="title">我的订单<small>请谨防钓鱼链接或诈骗电话，<a href="//www.mi.com/service/buy/antifraud/" target="_blank">了解更多&gt;</a></small></h1>
                             <div class="more clearfix">
-                                <ul class="filter-list J_orderType">
-                                    <li class="first"><a href="/user/order" >全部有效订单</a></li>
-                                    <li><a id="J_unpaidTab" href="/user/order?s=0" data-type="0">待支付</a></li>
-                                    <li><a id="J_unpaidTab" href="/user/order?s=1" data-type="1">待发货</a></li>
-                                    <li><a id="J_sendTab" href="/user/order?s=2" data-type="2">待收货</a></li><!--
-                                    <li><a href="http://dami.com/user/order?s=10" data-type="5">已关闭</a></li> -->
-                                </ul>
-                                
+                                <div class="tab">
+                                  <b id="quan" class="tablinks" onclick="openCity(event, 'London')">全部有效订单</b>&nbsp&nbsp&nbsp
+                                  <b class="tablinks" onclick="openCity(event, 'Paris')">未付款</b>&nbsp&nbsp&nbsp
+                                  <b class="tablinks" onclick="openCity(event, 'Tokyo')">已付款</b>&nbsp&nbsp&nbsp
+                                  <b class="tablinks" onclick="openCity(event, 'aaa')">已收货</b>&nbsp&nbsp&nbsp
+                                  <b class="tablinks" onclick="openCity(event, 'bbb')">待评价</b>&nbsp&nbsp&nbsp
+                                  <b class="tablinks" onclick="openCity(event, 'ccc')">退款</b>
+                                </div>                                
                             </div>
                         </div>
-                        <div class="box-bd">
-                            <div id="J_orderList">
-                                <div class="loading hide"><div class="loader"></div></div>
+
+
+
+
+
+                            <div id="Paris" class="tabcontent">
+                              <h3>未付款</h3>
+                    @foreach($arr as $k=>$v)
+
+                    <div style="border:1px solid #ff6700" class="order-detail">
+                        <div class="order-summary">
+                            <div style="color:#ff6700" class="order-status">等待付款</div>
+                            <p style="color:#ff6700" class="order-desc J_deliverDesc">
+                                现在支付，预计2-3天送达
+                                <span class="beta">wait</span>
+                            </p>
+                        </div><table class="order-detail-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-main">
+                                        <p class="caption-info">
+                                            2019年08月06日 01:56
+                                            <span class="sep">|</span>
+                                            是是是
+                                            <span class="sep">|</span>
+                                            订单号：
+                                            <a href="/user/orderView?num=1565056599464828">1565056599464828</a>
+                                            <span class="sep">|</span>
+                                            在线支付
+                                        </p>
+                                    </th>
+                                    <th class="col-sub">
+                                        <p class="caption-price">
+                                            订单金额：
+                                            <span class="num">3072.00</span>
+                                            元
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="order-items">
+                                        <ul class="goods-list"><li>
+                                                <div class="figure figure-thumb">
+                                                    <a href="/detail?id=1" target="_blank">
+                                                        <img src="" width="80" height="80" alt=""></a>
+                                                </div>
+                                                <p class="name">
+                                                    <a target="_blank" href="/detail?id=1">MI/小米 4C 标准版全网通 2GB内存＋16GB容量 手机 粉色</a>
+                                                </p>
+                                                <p class="price">768.00元 × 4</p>
+                                            </li></ul>
+                                    </td>
+                        <td class="order-actions">
+                            <a class="btn btn-small btn-primary" href="/order/pay?id=23" target="_blank">立即支付</a>
+                            <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id=23">订单详情</a>-->
+                        </td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @endforeach
+                    
                             </div>
-                            <div id="J_orderListPages">
+
+                            <div id="Tokyo" class="tabcontent">
+                              <h3>已付款</h3>
+                              <p>Tokyo is the capital of Japan.</p>
                             </div>
-                        </div>
+
+                            <div id="aaa" class="tabcontent">
+                              <h3>已收货</h3>
+                              <p>aaa</p>
+                            </div>
+
+                            <div id="bbb" class="tabcontent">
+                              <h3>待评价</h3>
+                              <p>bbb</p>
+                            </div>
+
+                            <div id="ccc" class="tabcontent">
+                              <h3>退款</h3>
+                              <p>ccc</p>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -140,8 +222,34 @@
 </style>
 @endsection
 @section('js')
+<script type="text/javascript">
+function openCity(evt, cityName) {
+    var quan = document.getElementById("quan");
+
+
+
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    quan.onclick = function () {
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "block";
+    }
+    }
+
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
 <script src="/h/homes/common/myjs/jquery.min.js"></script>
 <script src="/h/data/indexNav.js"></script>
 <script src="/h/data/indexData.js"></script>
-<script src="/h/homes/common/myjs/common.js"></script>
+<!-- <script src="/h/homes/common/myjs/common.js"></script> -->
 @endsection
