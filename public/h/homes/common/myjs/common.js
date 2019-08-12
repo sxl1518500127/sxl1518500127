@@ -105,68 +105,7 @@ $(function(){
         // }
     }($);
     
-    //分类导航
-    ~function($,cate){
-        function dealCateNavHtml(arr){
-            
-            if(arr.length){
-                var temp = '<div class="site-category"> <ul id="J_categoryList" class="site-category-list clearfix">';
-                for(var i=0;i<arr.length;i++){
-                    temp+= '<li class="category-item">';
-                        temp+= '<a class="title" href="/list?id='+arr[i]['data']['id']+'">';
-                            temp+=arr[i]['data']['title']+' <i class="iconfont"></i>';
-                        temp+= '</a>';
-                        temp+= '<div class="children clearfix children-col-2"  style="width:'+265*Math.ceil(arr[i]['child'].length/7)+'px;">';
-                            temp+= '<ul class="children-list children-list-col children-col-1">';
-                                for(var j=0;j<arr[i]['child'].length;j++){
-                                    temp+= '<li class="star-goods">';
-                                        temp+= '<a class="link" href="/detail?id='+arr[i]['child'][j]["id"]+'">';
-                                            temp+= '<img class="thumb" src="'+arr[i]['child'][j]["img"]+'" width="40" height="40" alt="">';
-                                            temp+= '<span class="text">'+arr[i]['child'][j]["title"]+'</span>';
-                                        temp+= '</a>';
-                                        // temp+= '<a class="btn btn-line-primary btn-small btn-buy" href="'+arr['child'][j]["id"]+'" data-stat-id="79cf129bec5862f2">选购</a>',
-                                    temp+= '</li>';
-                                    if(j%6==0&&j!=0){
-                                        temp+= '</ul><ul class="children-list children-list-col children-col-1">';
-                                    }
-                                }
-                            temp+= '</ul>';
-                        temp+= '</div>';
-                    temp+= '</li>';
-                }
-                temp+='</ul></div>';
-                $('#J_navCategory').append(temp);
-            }
-        }
-        dealCateNavHtml(cate);
-        $('#J_categoryList').find('.category-item').on({
-            mouseenter: function(){
-                $(this).addClass('category-item-active');
-            },
-            mouseleave: function(){
-                $(this).removeClass('category-item-active');
-            }
-        });
-        //console.log($('#J_navCategory').find('.link-category').css('visibility'));
-        //分类导航划过显示
-        $('#J_navCategory').on({
-            mouseenter:function(){
-
-                if($(this).find('.link-category').css('visibility')!='hidden'){
-                    $('.site-category').show();
-                }
-                
-            },
-            mouseleave:function(){
-                
-                if($(this).find('.link-category').css('visibility')!='hidden'){
-                    $('.site-category').hide();
-                }
-            }
-        })
-
-    }($,cate);
-
+   
     //点击播放视频
     ~function($){
         var $v = $('#J_modalVideo');
@@ -188,43 +127,6 @@ $(function(){
         })
     }($);
 
-    //生成网站主导航
-    ~function($){
-        //处理导航数据
-        function dealNavData(navData){
-            var str = '';
-            for(var i=0;i<navData.length;i++){
-                str +='<li class="nav-item">';
-                    str +='<a class="link" href="javascript:void(0);">';
-                            str +='<span class="text">'+navData[i].title+'</span>';
-                            str +='<span class="arrow"></span>';
-                        str +='</a>';
-                        str +='<div class="item-children">';
-                            str +='<div class="container">';
-                                str +='<ul class="children-list clearfix">';
-                                for(var j=0;j<navData[i]['info'].length;j++){
-                                    str +='<li class="first">';
-                                        str +='<div class="figure figure-thumb">';
-                                            str +='<a href="/detail?id='+navData[i]['info'][j]['good_id']+'">';
-                                                str +='<img src="'+navData[i]['info'][j]['img']+'" width="160" height="110">';
-                                            str +='</a>';
-                                        str +='</div>';
-                                        str +='<div class="title">';
-                                            str +='<a href="'+navData[i]['info'][j]['good_id']+'">'+navData[i]['info'][j]['title']+'</a>';
-                                        str +='</div>';
-                                        str +='<p class="price">'+navData[i]['info'][j]['price']+'</p>';
-                                    str +='</li>';
-                                }   
-                                str +='</ul>';
-                            str +='</div>';
-                        str +='</div>';
-                    str +='</li>';
-            }
-            $('.J_navMainList').append(str);
-        }
-        dealNavData(navData);
-    }($,navData);
-    
 
     //鼠标滑过显示个人中心菜单效果
     $('#J_userInfo').on('mouseenter','.user',function(){

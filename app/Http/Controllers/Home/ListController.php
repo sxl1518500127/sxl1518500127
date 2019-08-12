@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Home;
 
-
+use App\Http\Controllers\Home\CartController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App\Http\Controllers\Home\CartController;
 
 
 class ListController extends Controller
@@ -56,7 +55,7 @@ class ListController extends Controller
     	// $this->dataWord();
     	// dump($count);
     	//接受搜索//购物车商品数量
-    	$count = CartController::countCar();
+    	// $count = CartController::countCar();
     	$search = $request->input('search','');
     	//中文分词start
     	if(!empty($search)){
@@ -71,9 +70,8 @@ class ListController extends Controller
     	}
     	
     	//中文分词end
-
-
-    	return view('home.list.list_search',['wares'=>$data2,"count"=>$count]);
+    	// return view('home.list.list_search',['wares'=>$data2,"count"=>$count]);
+    	return view('home.list.list_search',['wares'=>$data2]);
     }
 
 

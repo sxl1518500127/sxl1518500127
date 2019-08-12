@@ -10,6 +10,7 @@ $(function(){
     $('.J_plus').on('click',function(){
         changePrice(this,'plus');
     })
+
     //change
     $('.J_goodsNum').on('change keyup',function(){
         changePrice(this,'change');
@@ -18,55 +19,55 @@ $(function(){
 
     //删除操作
     $('.J_delGoods').on('click',function(){
+        // alert(123);
         var item,cartid,skuid;
         //获取所在行
         item = $(this).parents('.item-box');
         skuid = item.find('.J_cartGoods').data('sid');
         cartid = item.data('cid');
         $.ajax({
-            url:'/cart/delcart',
+            url:'/cart/delete',
             data:{id:cartid,'listItem':listItem},
-            dataType:'json',
+            // dataType:'json',
+            type:'POST',
             success:function(data){
-                if(data.status==0){
-                    item.slideUp(100,function(){
-                        item.remove();
-                        //初始化数据
-                        CheckboxLen = $('.J_itemCheckbox').length;
-                        $.each(listItem,function(i,v){
-                            if(v==skuid){
-                                listItem.splice(i,1);
-                            }
-                        })
-
-                        changeAllTotal(data.alltotal);
-                    })
-                }else{
-                    alert(data.msg);
-                }
+                item.remove();
+                $('#J_cartTotalPrice').html(data.alltotal);
+                //初始化数据
+                location.reload();
+                CheckboxLen = $('.J_itemCheckbox').length;
+                $.each(listItem,function(i,v){
+                    if(v==skuid){
+                        listItem.splice(i,1);
+                    }
+                })
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                console.log(textStatus);
             }
 
         });
+
+
     })
 
-
+    //danxuan
     $('.J_itemCheckbox').on('click',function(){
-              
-        //改变全选状态
-
+        
         $(this).toggleClass('icon-checkbox-selected');
-        // console.log(this);
         $('.J_itemCheckbox').each(function(i,v){
             var sid = $(v).parents('.J_cartGoods').data('sid');
-            // console.log(i+'-'+i,sid,$.inArray(sid,listItem));
             if($(v).hasClass('icon-checkbox-selected')){
+
                 ($.inArray(sid,listItem)<0)&&listItem.push(sid)
             }else{
+                //改变全选状态
+                $('#J_selectAll').removeClass('icon-checkbox-selected');
                 $.each(listItem,function(i,v){
                     if(v==sid){
                         listItem.splice(i,1);
-                        //改变全选状态
-                        $('#J_selectAll').removeClass('icon-checkbox-selected');
+                        // console.log(listItem.splice(i,1));
+                        
                     }
                 })
             }
@@ -78,13 +79,18 @@ $(function(){
         $(this).parents('.J_cartGoods').find('.J_goodsNum').trigger('change');
         
     })
+
     //全选
     $('#J_selectAll').on('click',function(){
         $(this).toggleClass('icon-checkbox-selected');
         if($(this).hasClass('icon-checkbox-selected')){
             listItem = [];
+            // console.log($(this).hasClass('icon-checkbox-selected'));
+
             $('.J_goodsNum').each(function(i,v){
+                // console.log(v);
                 $(v).parents('.item-table').find('.J_itemCheckbox').addClass('icon-checkbox-selected');
+                // console.log($(v).attr('name'));
                 listItem.push($(v).attr('name'));
             })
             //计算总价
@@ -99,7 +105,7 @@ $(function(){
             listItem = [];
             $('#J_cartTotalPrice').html('0.0');
         }
-        // console.log(listItem)
+            // console.log(listItem)
         
     });
     //改变小计
@@ -121,10 +127,9 @@ $(function(){
         
         //获取所在行
         item = $(obj).parents('.item-box');
-        $skuid = method=='change'?$(obj).attr('name'):$(obj).siblings('input').attr('name');
-        num = method=='change'?$(obj).val():$(obj).siblings('input').val()
+        $skuid = method =='change'?$(obj).attr('name'):$(obj).siblings('input').attr('name');
+        num = method =='change'?$(obj).val():$(obj).siblings('input').val();
         $num = parseInt(num);
-
         if(!$.isNumeric($num)){
             alert('请填写数字');
             return;
@@ -156,17 +161,16 @@ $(function(){
 
         }
         
-
+        
         //发送一个ajax请求
         $.ajax({
-            url:'/cart/addproduct',
+            url:"/home/addproduct",
             type:'GET',
             data:{id:$skuid,num:$num,"listItem":listItem},
             dataType:"json",
             success: function(data){
                 if(method!='minus'&&data.status==1){
                     item.find('.J_goodsNum').val(data.stock).trigger('change');
-
                 }
                 if(data.status==0){
                     !data.nofollow&&changeATotal(item,data);
@@ -207,7 +211,7 @@ $(function(){
             return;
         }
         $.ajax({
-            url:'/order/confirm',
+            url:'/order/postcon',
             type:"POST",
             data:{listItem:listItem},
             dataType:'json',

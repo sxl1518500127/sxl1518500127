@@ -82,6 +82,12 @@ Route::resource('/detail','Home\DetailController');
 
 // 前台 购物车 路由
 Route::resource('/cart','Home\CartController');
+Route::get('/home/addproduct','Home\CartController@addproduct');
+Route::post('/cart/delete','Home\CartController@delete');
+Route::post('/order/postcon','Home\CartController@postcon');
+Route::get('/order/confirm','Home\CartController@confirm');
+Route::get('/order/getPay','Home\CartController@getPay');
+Route::get('/order/success','Home\CartController@success');
 
 // 前台 用户gerenzhongxin 路由
 Route::get('/user/index','Home\UserController@index');
@@ -92,7 +98,7 @@ Route::get('/user/comment','Home\UserController@comment');
 
 
 // 商品列表
-Route::get('/home/list/{id}','Home\ListController@index');
+// Route::get('/home/list/{id}','Home\ListController@index');
 
 // 商品搜索
 Route::get('/home/list_search','Home\ListController@eidt');

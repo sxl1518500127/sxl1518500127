@@ -26,7 +26,7 @@
             <div class="topbar-cart" id="J_miniCartTrigger">
                 <a rel="nofollow" class="cart-mini" id="J_miniCartBtn" href="/cart/"> <i class="iconfont">&#xe60c;</i>
                     购物车
-                    <span class="cart-mini-num J_cartNum">{{$count}}</span>
+                    <span class="cart-mini-num J_cartNum"></span>
                 </a>
                 {{--<div class="cart-menu" id="J_miniCartMenu">--}}
                     {{--<div class="loading">--}}
@@ -34,21 +34,17 @@
                     {{--</div>--}}
                 {{--</div>--}}
             </div>
-             <?php if(!session('uid')){?>
+            @if(empty($_SESSION["home_login"] ))
             <div class="topbar-info" id="J_userInfo">
                 <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
                 <span class="sep">|</span>
                 <a  rel="nofollow" class="link" href="/login/register" >注册</a>
             </div>
-            <?php 
-                }else{ 
-
-                    $user = \App\Http\Controllers\Home\UserController::gainUsername();
-            ?>
+            @else
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
                     <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
-                        <span class="name">{{$user->username}}</span> <i class="iconfont"></i>
+                        <span class="name">{{$_SESSION["home_userinfo"]->customername}}</span> <i class="iconfont"></i>
                     </a>
                     <ul class="user-menu" style="display: none;">
 
@@ -66,7 +62,7 @@
                 <span class="sep">|</span>
                 <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
             </div>
-            <?php } ?>
+            @endif
         </div>
     </div>
     <div class="site-header">
