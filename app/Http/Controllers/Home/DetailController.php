@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class DetailController extends Controller
 {
@@ -12,10 +13,36 @@ class DetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
+        $goods = DB::table('goodswares')->where('id',$id)->first();
+
+        $goodsspec = DB::table('goodsspec')->where('wid',$id)->first();
+
+        // dump($goods);
+        if($goodsspec){
+            //规格
+            $size = $goodsspec->goodspec;
+
+        //颜色
+        $color = $goodsspec->color;
+        }else{
+            $size = "未定义";
+            $color = "未定义";
+        }
+
+        //分割字符串
+        $sizes = explode(',',$size);
+
+
+        //分割字符串
+        $colors = explode(',',$color);
+
+        // dd($goodsspec);
+
+
         //显示模板
-        return view('home.goods.detail');
+        return view('home.goods.detail',['goods'=>$goods,'sizes'=>$sizes,'colors'=>$colors]);
     }
 
     /**
@@ -45,7 +72,7 @@ class DetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }

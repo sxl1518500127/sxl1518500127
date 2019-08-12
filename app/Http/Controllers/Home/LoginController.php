@@ -16,7 +16,8 @@ class LoginController extends Controller
     // 加载登陆页面
     public function login()
     {
-    	return view('home.login.login');
+
+     return view('home.login.login');
     }
 
 
@@ -40,7 +41,9 @@ class LoginController extends Controller
         if($customername !== $userinfo->customername){
             echo "<script>alert('用户名错误');location.href='/login';</script>";               
                 exit;
+
         }
+
 
 
         // 验证密码正确

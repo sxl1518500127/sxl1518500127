@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="/h/homes/common/css/index.min.css" />
 @show
 @section('content')
+
+
+
     <div class="home-hero-container container">
         <div class="home-hero">
             <div class="home-hero-slider">
@@ -107,7 +110,7 @@
                     <ul class="home-promo-list clearfix">
                         <li class="first">
                             <a class="item" href="/" data-stat-aid="AA13327" data-stat-pid="2_16_1_77" target="_blank">
-                                <img alt="米兔儿童手表-0720" src="http://i3.mifile.cn/a4/bcd96601-1406-4716-8258-975a90e8a706" srcset="http://i3.mifile.cn/a4/fbde1968-89d6-402b-bcee-7451c7b327e3 2x" />
+                                <img alt="米兔儿童手表-0720" src="http://i3.mifile.cn/a4/bcd96601-1406-4716-8258-975a90e8a706"/>
                             </a>
                         </li>
                         <li>
@@ -138,17 +141,34 @@
                 </div>
                 <div class="box-bd">
                     <ul class="xm-carousel-list xm-carousel-col-5-list goods-list rainbow-list clearfix J_carouselList">
+
+
 <!--                                  这里遍历开始                                          -->
+@foreach($goodstar as $k=>$v)
+                        
                         <li class="rainbow-item">
-                            <a class="thumb" href="/datail"  target="_blank">
-                                <img src="http://i3.mifile.cn/a4/40d24892-317d-4883-ad63-647f1b9e3cdf" srcset="" alt="" />
+                            <a class="thumb" href="/detail/{{ $v->id }}">
+                                <img src="uploads/{{ $v->waresimgpath }}" srcset="" alt="" />
                             </a>
                             <h3 class="title">
-                                <a href="/datail" target="_blank"></a>
+                                <a href="/detail/{{ $v->id }}"></a>
                             </h3>
-                            <p class="desc"></p>
-                            <p class="price"></p>
+                            <p class="desc">{{$v->waresname}}</p>
+                            <p class="price">{{$v->waresprice}}</p>
                         </li>
+                        @endforeach
+
+                        <li class="rainbow-item">
+                            <a class="thumb" href="/detail/"  target="_blank">
+                                <img src="" srcset="" alt="" />
+                            </a>
+                            <h3 class="title">
+                                <a href="/detail" target="_blank"></a>
+                            </h3>
+                            <p class="desc">更多</p>
+                            <p class="price">更多</p>
+                        </li>
+                        
 <!--                                  这里遍历结束                                          -->
                         <li class="rainbow-item">
                             <a class="thumb" href="/datail"  target="_blank">
@@ -187,22 +207,26 @@
                         <div class="span16">
                             <ul class="brick-list clearfix">
 <!--                                  这里遍历开始                                          -->
-
+@foreach($goods as $k=>$v)
+@if($k > 1)
                                 <li class="brick-item brick-item-m brick-item-m-2" data-gid="1161200059">
                                     <div class="figure figure-img">
-                                        <a href="/detail">
-                                            <img src="" width="160" height="160" alt=""></a>
+                                        <a href="/detail/{{ $v->id }}">
+                                            <img src="uploads/{{ $v->waresimgpath }}" width="160" height="160" alt=""></a>
                                     </div>
                                     <h3 class="title">
-                                        <a href="/detail"></a>
+                                        <a href="/detail/{{ $v->id }}">{{ $v->waresname }}</a>
                                     </h3>
                                     <p class="desc"></p>
                                     <p class="price">
-                                        <span class="num"></span>
+                                        <span class="num">{{ $v->waresprice }}</span>
                                         元
                                     </p>
                                     <!-- <div class="flag flag-postfree">免邮费</div> -->
                                 </li>
+                                @endif
+                        @endforeach
+
 <!--                                  这里遍历结束                                          -->
 
 
@@ -301,4 +325,5 @@
             </div>
         </div>
     </div>
+
 @endsection

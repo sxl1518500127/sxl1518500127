@@ -27,7 +27,7 @@
             float: left;
             display: block;
             text-align: center;
-            height: 45px;
+            height: 45px
             margin: 10px;
         }
         .float{
@@ -38,6 +38,10 @@
         }
         .select{
             border-color: #ff6700;
+        }
+        .xq img{
+            width:400px;
+            height:500px;
         }
     </style>
     <script src="/h/homes/common/js/jquery-1.9.1.min.js"></script>
@@ -57,8 +61,9 @@
             <div class="row">
                 <div class="span13  J_mi_goodsPic_block goods-detail-left-info">
                     <div class="goods-pic-box  " id="J_mi_goodsPicBox">
+
                         <div class="goods-big-pic J_bigPicBlock">
-                            <img src="" class="J_goodsBigPic" id="J_BigPic" />
+                            <img src="/uploads/{{ $goods->waresimgpath }}" class="J_goodsBigPic" id="J_BigPic" />
                         </div>
                         <div class="goods-pic-loading">
                             <div class="loader loader-gray"></div>
@@ -66,7 +71,10 @@
                         <div class="goods-small-pic clearfix">
                             <ul id="goodsPicList">
                                 <!--        遍历开始           -->
-                                <li class="current"><img src="" /> </li>
+
+
+                                <li class="current"><img src="/uploads/{{ $goods->waresimgpath }}" /></li>
+
                                 <!--        遍历结束           -->
                             </ul>
                         </div>
@@ -85,27 +93,29 @@
                             </dt>
 
                             <dd class="goods-phone-type">
-                                <p> </p>
+                                <p>waresname</p>
                             </dd>
                             <dd class="goods-info-head-price clearfix">
                                 <b class="J_mi_goodsPrice"></b>
-                                <i>&nbsp;元</i>
+                                <i>&nbsp;{{$goods->waresprice }}元</i>
                                 <del>
                                     <span class="J_mi_marketPrice"></span>
                                 </del>
                             </dd>
 
-
                             <dd style="margin-top: 15px;">
                                 <span >选择 版本</span>
                                 <div class="clearfix">
+@if($sizes)
+@foreach($sizes as $kk=>$vv)                        
 
 
                                     <div class="attr" name="attr" title="" id="attr" price="">
-
+                                        {{ $vv ? $vv : 123}}
                                     </div>
 
-
+                        @endforeach
+@endif
                                 </div>
                             </dd>
 
@@ -114,13 +124,20 @@
                                 <dd class="goods-info-head-colors clearfix" >
                                     <div class="hidden" num="" name="hidden">
                                         <span class="goods-info-head-colors clearfix">选择 颜色</span >
+@if($colors)
+
+@foreach($colors as $kkk=>$vvv)                        
 
                                         <div  class="float">
                                             <div>
-                                                <a href="" class="smallAttr" name="color" title="" data-stat-id="bd7cb1fe26f82654" id="color"></a>
+                                                <a href="" class="smallAttr" name="color" title="" data-stat-id="bd7cb1fe26f82654" id="color">
+                                        {{ $vvv ? $vvv : 未定义}}
+
+                                                </a>
                                             </div>
                                         </div>
-
+                        @endforeach
+@endif
                                     </div>
                                 </dd>
 
@@ -149,6 +166,8 @@
                     </dl>
                     </form>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -165,10 +184,12 @@
     <div class="full-screen-border"></div>
     <div class="goods-detail-desc J_itemBox" id="goodsDesc">
         <div class="container" >
+                <strong>名称：{{$goods->waresname}}</strong><br>
+                <strong>价格：{{$goods->waresprice}}</strong><br>
+                <strong>库存：{{$goods->waresstock}}</strong><br>
+                <strong>销量：{{$goods->waressellcount}}</strong><br>
             <div class="shape-container" >
-
-
-
+               <img src="/uploads/{{ $goods->waresimgpath }}" />     
             </div>
         </div>
     </div>
@@ -176,6 +197,7 @@
         <div class="container main-block">
             <div class="border-line"></div>
             <h2 class="nav-name" name="info" id="info">规格参数</h2>
+
         </div>
     </div>
 
@@ -185,12 +207,14 @@
     <style>
         .table tr,td{
             border: 1px solid #e0e0e0;
-            height: 80px;
-            text-align: center;
-            width: 400px;
+            height: 50px;
+            text-align:center;
+            width:300px;
         }
     </style>
-
+            <div class="xq">
+{!!$goods->waresdescript!!}
+</div>
     <div class="goods-detail-param  J_itemBox hidden" num="">
 
         <div class="container table" >
@@ -362,6 +386,7 @@
         $(this).attr('class','attr select');
         $('[name="hidden"]').attr('class','hidden');
         $('[num="'+attr+'"]').attr('class','').siblings('[num]').attr('class','hidden');
+        // alert($(this).html());
 
     });
     $('[name="color"]').click(function () {

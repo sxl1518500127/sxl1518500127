@@ -57,7 +57,7 @@ class GoodsController extends Controller
         }
         // 开启事务
         DB::beginTransaction();
-
+        // dd($request->all());
         // 实例化模型
         $goods = new Goods;
         $goods->waresgid = $request->input('id','');

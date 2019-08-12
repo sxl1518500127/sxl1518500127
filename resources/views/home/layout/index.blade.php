@@ -3,14 +3,16 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta charset="UTF-8" />
-    <title>@yield('title')</title>
+    <title>小米商城</title>
     <meta name="description" content="小米商城-直营小米公司旗下所有产品，囊括小米手机、红米手机、小米电视、智能硬件、配件及小米生活周边，同时提供小米客户服务及售后支持。" />
     <meta name="keywords" content="小米,小米官网,小米手机,小米官网首页,小米商城" />
     <meta name="viewport" content="width=1226" />
     @section('css')
-    <link rel="icon" href="/h/favicon.ico" type="image/x-icon" />
 
+    <link rel="icon" href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565602120553&di=35b68f54837c8b008eb079efede7a5bb&imgtype=0&src=http%3A%2F%2Fpic192.nipic.com%2Ffile%2F20181119%2F20144696_101353530633_2.jpg" type="image/x-icon"/>  
     <link rel="stylesheet" href="/h/homes/common/css/base.min.css" />
+    <link rel="stylesheet" href="/h/css/style.css" />
+
     @show
     @section('myCss')
     @show
@@ -39,19 +41,25 @@
                     {{--</div>--}}
                 {{--</div>--}}
             </div>
-            @if(empty($_SESSION["home_login"] ))
+
+
+@if(empty($_SESSION['home_userinfo']->customername))
+
             <div class="topbar-info" id="J_userInfo">
                 <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
                 <span class="sep">|</span>
                 <a  rel="nofollow" class="link" href="/login/register" >注册</a>
             </div>
-            @else
+
+
+@else
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
-                        <span class="name">{{$_SESSION["home_userinfo"]->customername}}</span> <i class="iconfont"></i>
+                    <a rel="nofollow" id="user-name" href="/user/index" target="_blank">
+                        <span class="name">{{$_SESSION['home_userinfo']->customername}}</span> <i class="iconfont"></i>
+
                     </a>
-                    <ul class="user-menu" style="display: none;">
+                    <ul id="user-menu" style="display: none;background:#333;position:relative;top:-13px">
 
                         <li>
                             <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
@@ -67,7 +75,29 @@
                 <span class="sep">|</span>
                 <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
             </div>
-            @endif
+
+<script>
+  (function(){
+      //获取到按钮和对应显示隐藏的标签
+      var btn = document.getElementById('user-name');
+      var box = document.getElementById('user-menu');
+      //初始化时间
+      var timer = null; 
+      //鼠标移入按钮时候显示标签
+      box.onmouseover = btn.onmouseover = function(){
+        if(timer) clearTimeout(timer)
+          box.style.display = 'block';
+      }
+      //移出后半秒标签内容自动消失
+      box.onmouseout = btn.onmouseout = function(){
+          timer = setTimeout(function(){
+            box.style.display = 'none';
+          },500); 
+      }
+  })();
+</script>
+
+@endif
         </div>
     </div>
     <div class="site-header">
@@ -81,7 +111,73 @@
                         <a class="link-category" href="/list">
                             <span class="text">全部商品分类</span>
                         </a>
-                        <!-- 分类导航 start -->
+                <!-- start banner_y -->
+        <div style=" position: relative;left:-100px;top:-16px" class="banner_y center">
+
+            <div class="nav">   
+
+                <ul>
+
+@foreach($data as $k=>$v)
+                    <li>
+
+                        <a href="">{{ $v->goodsmod }}</a>
+
+                        <div class="pop">
+
+                            <div style="border:1px solid red;width:100px" class="left fl pull-left">
+                            @foreach($erji as $kk=>$vv)
+
+                                @if($v->id == $kk)
+                                @foreach($vv as $er)
+                                <div style="border:1px solid pink;width:500px;height:200px">
+                                    
+                                    <span >{{$er->goodsmod}}</span>
+                                    @foreach($sanji as $kkk => $san)
+                                    @if($er->id == $kkk)
+                                    <p>
+                                    @foreach($san as $kkkk => $sano)
+                                    <div style="width:230px;border:1px solid pink;">
+                                    <div class="xuangou_left fl">
+                                        <a href="liebiao.html">
+                                            
+                                            <span class="fl">{{$sano->waresname}}</span>
+                                            <div class="img fl"><img style="width:50px;height:50px" src="/uploads/" alt=""></div>
+                                            <div class="clear"></div>
+                                        </a>
+                                    </div>
+
+                                    <div class="xuangou_right fr"><a href="xiangqing.html" >选购</a></div>
+                                    <div class="clear"></div>
+                                    
+                                </div>
+                                    @endforeach
+                                    </p>
+                                    
+                                    @endif
+                                    @endforeach
+
+                                </div>
+                                @endforeach
+                                @endif
+                            @endforeach
+
+                            </div>
+
+                           
+                            <div class="clear"></div>
+
+                        </div>
+
+                    </li>
+@endforeach
+
+                </ul>
+
+            </div>
+        
+        </div>  
+    <!-- end banner -->
                     </li>
 
                 </ul>
@@ -206,19 +302,23 @@
                 <br/>
                 对准下方二维码即可。
             </p>
-            <img alt="" src="//c1.mifile.cn/f/i/2014/cn/qr.png" width="375" height="375" />
+            <img alt="" src="" width="375" height="375" />
         </div>
     </div>
+
     @section('js')
+
     <script src="/h/homes/common/myjs/jquery.min.js"></script>
-    <script src="/h/data/indexNav.js"></script>
+
     <script src="/h/data/indexData.js"></script>
+
     <script src="/h/homes/common/myjs/jquery.SuperSlide.js"></script>
-    <!-- <script src="/h/homes/common/myjs/common.js"></script> -->
+
     <script src="/h/homes/common/myjs/index.js"></script>
     @show
     @section('LDjs')
     @show
+
 </body>
 </html>
    

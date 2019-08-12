@@ -165,7 +165,7 @@ var inpData = {};
     })
     //市选择
     $('#J_modalEditAddress').on('change','#J_city',function(){
-        var index = $('#J_province').val()-1;
+        var index = $('#J_province').val()-2;
         var subindex = $(this).find('option:selected').index()-1;
         if(subindex>-1){
             data_init_country(data,index,subindex);
@@ -184,7 +184,7 @@ var inpData = {};
         }else{
             inpData.country = '';
         }
-        // console.log(inpData);
+
     })
 
 
@@ -255,15 +255,18 @@ var inpData = {};
         });
         if(e&&inpData.province&&inpData.city&&inpData.country){
             $.ajax({
-                url:'/address/add',
+                url:'/user/add',
                 data:inpData,
                 dataType:'json',
                 success:function(data){
                     if(data.status==0){
-                        createAddress(inpData,data.msg)
-                        $('#J_cancel').trigger('click');
+                        // createAddress(inpData,data.msg)
+                        // $('#J_cancel').trigger('click');
+                       
+
+                       window.location.href="/user/address";
                     }else{
-                        alert(data.msg);
+                        alert("收货地址个数不能大于三个");
                     }
 
                 }
@@ -274,31 +277,31 @@ var inpData = {};
     })
 
     //生成新的收货地址
-    function createAddress(data,aid){
-        var html = '';
-        html += '<div class="address-item J_addressItem selected">';
-        html += '<dl><dt><em class="uname">这些擦</em></dt>';
-        html += '<dd class="utel">12312312312</dd>';
-        html += '<dd class="uaddress"></dd></dl>';
-        html += '<div class="actions">';
-        html += '<!--<a href="javascript:void(0);" data-id="1" class="modify J_addressModify">修改</a>--><a href="javascript:void(0);" class="modify J_addressDel">删除</a>';
-        html += '</div></div>';
+    // function createAddress(data,aid){
+    //     var html = '';
+    //     html += '<div class="address-item J_addressItem selected">';
+    //     html += '<dl><dt><em class="uname">这些擦</em></dt>';
+    //     html += '<dd class="utel">12312312312</dd>';
+    //     html += '<dd class="uaddress"></dd></dl>';
+    //     html += '<div class="actions">';
+    //     html += '<!--<a href="javascript:void(0);" data-id="1" class="modify J_addressModify">修改</a>--><a href="javascript:void(0);" class="modify J_addressDel">删除1</a>';
+    //     html += '</div></div>';
 
-        var $newAddress = $(html).insertAfter($('#J_newAddress'));
+    //     var $newAddress = $(html).insertAfter($('#J_newAddress'));
 
-        $newAddress.data('address_id',aid);
-        $newAddress.data('consignee',data.uname);
-        $newAddress.data('tel',data.phone);
-        $newAddress.data('province_name',data.province);
-        $newAddress.data('city_name',data.city);
-        $newAddress.data('district_name',data.country);
-        $newAddress.data('address',data.address);
-        $newAddress.find('.uname').html(data.uname);
-        $newAddress.find('.utel').html(data.phone);
-        $newAddress.find('.uaddress').html(data.province+' '+data.city+' '+data.country+' <br>'+data.address);
+    //     $newAddress.data('address_id',aid);
+    //     $newAddress.data('consignee',data.uname);
+    //     $newAddress.data('tel',data.phone);
+    //     $newAddress.data('province_name',data.province);
+    //     $newAddress.data('city_name',data.city);
+    //     $newAddress.data('district_name',data.country);
+    //     $newAddress.data('address',data.address);
+    //     $newAddress.find('.uname').html(data.uname);
+    //     $newAddress.find('.utel').html(data.phone);
+    //     $newAddress.find('.uaddress').html(data.province+' '+data.city+' '+data.country+' <br>'+data.address);
 
-        $('#J_confirmAddress').html(data.uname+' '+data.phone+'<br>'+data.province+' '+data.city+' '+data.country+' <br>'+data.address);
-    }
+    //     $('#J_confirmAddress').html(data.uname+' '+data.phone+'<br>'+data.province+' '+data.city+' '+data.country+' <br>'+data.address);
+    // }
 
 
 
@@ -306,21 +309,60 @@ var inpData = {};
      * 删除用户指定的地址
      */
     $('.J_addressList ').on('click.del','.J_addressDel',function(){
+        // var zhi = document.getElementsByClassName('J_addressDel');
+        
+        // console.log(zhi);
+        // alert(zhi.getAttribute('data-address_id'));
         //获取地址id
         var aid,_self,parents;
         _self = $(this);
         parents = _self.parents('.J_addressItem');
-        aid = parents.data('address_id');
+        aid = $(this).attr('id');
+
         $.ajax({
-            url:'/address/del',
+            url:'/user/del',
+            data:{id:aid},
+            type:'GET',
+            dataType:'json',
+            success:function(data){
+        
+
+                if(data.status==0){
+
+
+                    parents.fadeOut(200,function(){
+                        parents.remove();
+                    })
+                }else{
+                    alert(data.msg);
+                }
+            }
+        });
+    });
+
+
+    /**
+     * 设置默认地址
+     */
+    $('.J_addressList ').on('click.del','.J_addressMo',function(){
+        // var zhi = document.getElementsByClassName('J_addressDel');
+        
+        // console.log(zhi);
+        // alert(zhi.getAttribute('data-address_id'));
+        //获取地址id
+        var aid,_self,parents;
+        _self = $(this);
+        parents = _self.parents('.J_addressItem');
+        aid = $(this).attr('id');
+
+        $.ajax({
+            url:'/user/update',
             data:{id:aid},
             type:'GET',
             dataType:'json',
             success:function(data){
                 if(data.status==0){
-                    parents.fadeOut(200,function(){
-                        parents.remove();
-                    })
+                   window.location.href="/user/address";
                 }else{
                     alert(data.msg);
                 }
