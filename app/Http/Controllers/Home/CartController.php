@@ -304,12 +304,12 @@ class CartController extends Controller
             // $carts[$value] = $tupian->waresimgpath;
 
             // 删除购物车  清除session
-            // $del = DB::table("shopcart")->where('uid',$uid)->where('wid',$value)->delete();
-            // if($del){
-            //     unset($_SESSION["car"][$value]);
-            //     unset($listItem[$value]);
+            $del = DB::table("shopcart")->where('uid',$uid)->where('wid',$value)->delete();
+            if($del){
+                unset($_SESSION["car"][$value]);
+                unset($listItem[$value]);
                 
-            // }
+            }
         }
         
 
@@ -630,15 +630,5 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        echo 5555;
-    }
+    
 }

@@ -19,9 +19,6 @@
     <script type='text/javascript' src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId=231515b0-b999-11e9-ba32-bfd32cf2bdfe&autoShow=false&language=ZHCN' async='async'></script>
 </head>
 <body>
-<script type="text/javascript">
-  
-</script>
 
 @section('header')
     <div class="site-topbar">
@@ -118,7 +115,7 @@
 
                 <ul>
 
-@foreach($data as $k=>$v)
+                    @foreach($data as $k=>$v)
                     <li>
 
                         <a href="">{{ $v->goodsmod }}</a>
@@ -142,7 +139,7 @@
                                         <a href="liebiao.html">
                                             
                                             <span class="fl">{{$sano->waresname}}</span>
-                                            <div class="img fl"><img style="width:50px;height:50px" src="/uploads/" alt=""></div>
+                                            <div class="img fl"><img style="width:50px;height:50px" src="" alt=""></div>
                                             <div class="clear"></div>
                                         </a>
                                     </div>
@@ -310,7 +307,6 @@
 
     <script src="/h/homes/common/myjs/jquery.min.js"></script>
 
-    <script src="/h/data/indexData.js"></script>
 
     <script src="/h/homes/common/myjs/jquery.SuperSlide.js"></script>
 

@@ -253,7 +253,7 @@
                         <dl>
                             <dt>
                             <div class="groom-content-userImage">
-                                <img src="/homes/common/image/u6bPscBa4MZjpi_90.jpg" alt="" />
+                                <img src="/h/homes/common/image/u6bPscBa4MZjpi_90.jpg" alt="" />
                             </div>
                             <div class="groom-content-userName">
                                 王欢
@@ -272,7 +272,7 @@
                         <dl>
                             <dt>
                             <div class="groom-content-userImage">
-                                <img src="/homes/common/image/head_3.png" alt="" />
+                                <img src="/h/homes/common/image/head_3.png" alt="" />
                             </div>
                             <div class="groom-content-userName">
                                 海涛
@@ -332,11 +332,6 @@
                             </li>
                             <!--******评价结束********-->
 
-
-
-
-
-
                         </ul>
                     </div>
                     <div class="span6 goods-detail-comment-timeline">
@@ -365,9 +360,6 @@
 </body>
 @endsection
 @section('js')
-
-<script src="/h/data/indexNav.js"></script>
-<script src="/h/data/indexData.js"></script>
 
 <script src="/h/homes/common/myjs/common.js"></script>
 
