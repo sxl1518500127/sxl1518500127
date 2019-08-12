@@ -3,7 +3,81 @@
 <link rel="stylesheet" href="/h/homes/common/css/index.min.css" />
 @show
 @section('content')
+           <div class="header-nav">
+                <ul class="nav-list J_navMainList clearfix">
+                    <li id="J_navCategory" class="nav-category">
 
+                <!-- start banner_y -->
+        <div style="  position: absolute;left:447px;z-index:1000" class="banner_y center">
+
+            <div class="nav">   
+
+                <ul>
+
+@foreach($data as $k=>$v)
+                    <li>
+
+                        <a href="">{{ $v->goodsmod }}</a>
+
+                        <div class="pop">
+
+                            <div style="border:1px solid red;width:100px" class="left fl pull-left">
+                            @foreach($erji as $kk=>$vv)
+
+                                @if($v->id == $kk)
+                                @foreach($vv as $er)
+                                <div style="border:1px solid pink;width:500px;height:200px">
+                                    
+                                    <span >{{$er->goodsmod}}</span>
+                                    @foreach($sanji as $kkk => $san)
+                                    @if($er->id == $kkk)
+                                    <p>
+                                    @foreach($san as $kkkk => $sano)
+                                    <div style="width:230px;border:1px solid pink;">
+                                    <div class="xuangou_left fl">
+                                        <a href="liebiao.html">
+                                            
+                                            <span class="fl">{{$sano->waresname}}</span>
+
+                                            <div class="clear"></div>
+                                        </a>
+                                    </div>
+
+                                    <div class="xuangou_right fr"><a href="xiangqing.html" >选购</a></div>
+                                    <div class="clear"></div>
+                                    
+                                </div>
+                                    @endforeach
+                                    </p>
+                                    
+                                    @endif
+                                    @endforeach
+
+                                </div>
+                                @endforeach
+                                @endif
+                            @endforeach
+
+                            </div>
+
+                           
+                            <div class="clear"></div>
+
+                        </div>
+
+                    </li>
+@endforeach
+
+                </ul>
+
+            </div>
+        
+        </div>  
+    <!-- end banner -->
+                    </li>
+
+                </ul>
+            </div>
 
 
     <div class="home-hero-container container">

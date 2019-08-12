@@ -4,6 +4,9 @@
 @section('css')
     <title>小米商城</title>
     <style type="text/css">
+        .aa{
+            background:#fff;
+        }
         img{
             width: auto;
         }
@@ -172,6 +175,7 @@
         </div>
     </div>
     <div class="full-screen-border"></div>
+    <div class="aa">
     <div class="goods-detail-nav" id="goodsDetail">
         <div class="container">
             <ul class="detail-list J_detailNav J_originNav">
@@ -334,7 +338,7 @@
 
 
 
-
+</div>
 
 
                         </ul>

@@ -122,21 +122,21 @@ $(function(){
         });
         //console.log($('#J_navCategory').find('.link-category').css('visibility'));
         //分类导航划过显示
-        $('#J_navCategory').on({
-            mouseenter:function(){
+        // $('#J_navCategory').on({
+        //     mouseenter:function(){
 
-                if($(this).find('.link-category').css('visibility')!='hidden'){
-                    $('.site-category').show();
-                }
+        //         if($(this).find('.link-category').css('visibility')!='hidden'){
+        //             $('.site-category').show();
+        //         }
                 
-            },
-            mouseleave:function(){
+        //     },
+        //     mouseleave:function(){
                 
-                if($(this).find('.link-category').css('visibility')!='hidden'){
-                    $('.site-category').hide();
-                }
-            }
-        })
+        //         if($(this).find('.link-category').css('visibility')!='hidden'){
+        //             $('.site-category').hide();
+        //         }
+        //     }
+        // })
 
     }($,cate);
 
