@@ -141,7 +141,9 @@
                                 <input type="hidden" name="num" value="1">
                                 <dd class="goods-info-head-cart" id="goodsDetailBtnBox">
                                     <button disabled="disabled" href="http://cart.mi.com/cart/add/2161600004" id="goodsDetailAddCartBtn" class="btn  btn-primary goods-add-cart-btn" data-disabled="false" data-gid="2161600004" data-package="0" data-stat-id="e7ed8543f67c5bd7" > <i class="iconfont"></i>加入购物车 </button>
-                                    <a id="goodsDetailCollectBtn" data-isfavorite="false" class=" btn btn-gray  goods-collect-btn " data-stat-id="9d1c11913f946c7f" > <i class="iconfont default"></i> <i class="iconfont red"></i><i class="iconfont red J_redCopy"></i>喜欢 </a>
+                                    @if($_SESSION)
+                                    <a href="/user/attentions/{{$goods->id}}" id="goodsDetailCollectBtn" data-isfavorite="false" class=" btn btn-gray  goods-collect-btn " data-stat-id="9d1c11913f946c7f" > <i class="iconfont default"></i> <i class="iconfont red"></i><i class="iconfont red J_redCopy"></i>关注 </a>
+                                    @endif
                                 </dd>
                                 <dd class="goods-info-head-userfaq">
                                     <ul>
@@ -171,14 +173,39 @@
         </div>
         <div class="full-screen-border"></div>
         <div class="goods-detail-desc J_itemBox" id="goodsDesc">
-            <div class="container" >
-                    <strong>名称：{{$goods->waresname}}</strong><br>
-                    <strong>价格：{{$goods->waresprice}}</strong><br>
-                    <strong>库存：{{$goods->waresstock}}</strong><br>
-                    <strong>销量：{{$goods->waressellcount}}</strong><br>
-                <div class="shape-container" >
-                   <img src="/uploads/{{ $goods->waresimgpath }}" />     
-                </div>
+                    <div class="media">
+                      <div class="media-left media-middle">
+                        
+                      </div>
+                      <div class="media-body">
+                        <center>
+                            <table class="table table-condensed">
+                                <thead>
+                                    
+                                    
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>价格</th>
+                                        <th>库存</th>
+                                        <th>销量</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{$goods->waresname}}</td>
+                                            <td>{{$goods->waresprice}}</td>
+                                            <td>{{$goods->waresstock}}</td>
+                                            <td>{{$goods->waressellcount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>商品图</td>
+                                            <td colspan="3" ><img src="/uploads/{{ $goods->waresimgpath }}" class="media-object" style="width:500px;height:500px"></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </center>
+                      </div>
+
             </div>
         </div>
         <div class="goods-detail-nav-name-block J_itemBox" id="goodsParam">
@@ -219,77 +246,25 @@
         </div>
         <!--评价-->
         <div class="goods-detail-comment J_itemBox hasContent" id="goodsCommentContent">
-            <div class="goods-detail-comment-groom" id="J_recommendComment">
-                <div class="container">
-                    <ul class="main-block">
-                        <li class="percent">
-                            <div class="per-num">
-                                <i>99.1</i>%
-                            </div>
-                            <div class="per-title">
-                                购买后满意
-                            </div>
-                            <div class="per-amount">
-                                <i>3097</i>名用户投票
-                            </div>
-                        </li>
-
-                        <li class="item-rainbow-3 groom-content">
-                            <dl>
-                                <dt>
-                                <div class="groom-content-userImage">
-                                    <img src="/h/homes/common/image/u6bPscBa4MZjpi_90.jpg" alt="" />
-                                </div>
-                                <div class="groom-content-userName">
-                                    王欢
-                                </div>
-                                <div class="groom-content-commentNum">
-                                    53人有相似评价
-                                </div>
-                                </dt>
-                                <dd>
-                                    <i class="iconfont"></i> 手感很好 大小合适 开窗很大
-                                </dd>
-                            </dl>
-                        </li>
-
-                        <li class="item-rainbow-2 groom-content">
-                            <dl>
-                                <dt>
-                                <div class="groom-content-userImage">
-                                    <img src="/h/homes/common/image/head_3.png" alt="" />
-                                </div>
-                                <div class="groom-content-userName">
-                                    海涛
-                                </div>
-                                <div class="groom-content-commentNum">
-                                    7人有相似评价
-                                </div>
-                                </dt>
-                                <dd>
-                                    <i class="iconfont"></i> 非常不错！很贴合，手感也好！
-                                </dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
             <div class="goods-detail-comment-content" id="J_commentDetailBlock">
                 <div class="container">
                     <div class="row">
                         <div class="span14 goods-detail-comment-list">
                             <div class="comment-order-title">
                                 <div class="left-title">
-                                    <h3 class="comment-name">最有帮助的评价</h3>
+                                    <h3 class="comment-name">全部的评价</h3>
                                 </div>
                             </div>
                             <ul class="comment-box-list" id="J_supComment">
 
                                 <!--******评价********-->
+                                @foreach($comment as $k=>$v)
+
                                 <li class="item-rainbow-1" data-id="134117576">
+
                                     <div class="user-image">
-                                        <img src="" alt="" />
+                                        <img src="/uploads/{{$v->waresimgpath}}" alt="" />
+                                        {{$v->customernickname ? $v->customernickname : $v->customername}}
                                     </div>
                                     <div class="user-emoj">
                                         喜欢
@@ -301,7 +276,7 @@
 
                                     <dl class="user-comment">
                                         <dt class="user-comment-content J_commentContent">
-                                        <p class="content-detail"> <a href="http://order.mi.com/comment/commentDetail/comment_id/134117576" target="_blank"> </a> </p>
+                                        <p class="content-detail"> <a href="">{{$v->commentstr}}</a> </p>
                                         </dt>
                                         {{--<dd class="user-comment-self-input">--}}
                                             {{--<div class="input-block">--}}
@@ -313,8 +288,10 @@
                                             {{--<img class="self-image" src="/homes/common/image/head_4.png" alt="" />--}}
                                             {{--<p>和我换- <span class="answer-user-name">268707921</span> </p>--}}
                                         {{--</dd>--}}
+                                        {{$v->commenttime}}
                                     </dl>
                                 </li>
+                                @endforeach
                                 <!--******评价结束********-->
                             </ul>
                         </div>
@@ -324,15 +301,18 @@
                             <ul class="comment-timeline-list" id="J_timelineComment">
 
                                 <!--******最新回复********-->
-                                <li class="purple timelineunit J_commentContent" data-id="135575831"> <p class="line-content"> <a href="http://order.mi.com/comment/commentDetail/comment_id/135575831" target="_blank"></a> </p>
+                                @foreach($comments as $k=>$v)
+
+                                <li class="purple timelineunit J_commentContent" data-id="135575831"> <p class="line-content"> <a href="">{{$v->commentstr}}</a> </p>
                                     <div class="line-foot">
                                         <div class="line-left">
-                                            来自于 
+                                            来自于 {{$v->customernickname ? $v->customernickname : $v->customername}}
                                         </div>
 
                                     </div>
                                     <div class="line-dot item-rainbow-4"></div>
                                 </li>
+                                @endforeach
                                 <!--******最新回复结束********-->
                             
                             </ul>

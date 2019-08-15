@@ -22,7 +22,7 @@ class ListController extends Controller
 	public function __construct()
 	{
 		// 引入类文件
-		require 'D:/wamp/www/laravel/public/pscws4/pscws4.class.php';
+		require '/pscws4/pscws4.class.php';
 		// 实例化
 		@$this->cws = new \PSCWS4;
 		//设置字符集
@@ -94,7 +94,7 @@ class ListController extends Controller
 
 		//获取所有的结果
 		$res = $this->cws->get_result();
-		
+		// dd($res);
 		$list = [];
 		foreach($res as $k => $v){
 			$list[] = $v['word'];

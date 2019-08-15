@@ -67,7 +67,7 @@ div.tab button.active {
                                         <a href="/user/order">我的订单</a>
                                     </li>
                                     
-                                    <li  class="active">
+                                    <li>
                                         <a href="/user/comment/">评价晒单</a>
                                     </li>
                                     
@@ -97,7 +97,7 @@ div.tab button.active {
 
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-                                    <li>
+                                    <li class="active">
                                         <a href="/user/attention">我的关注</a>
                                     </li>
                                 </ul>
@@ -118,50 +118,38 @@ div.tab button.active {
                     <div class="uc-box uc-main-box">
                         <div class="uc-content-box">
                             <div class="box-hd">
-                                <h1 class="title">商品评价</h1>
-                            </div>
+                                <h1 class="title">我的关注</h1>
+                            <div class="box-bd">
+                                <div class="xm-goods-list-wrap">
+                                    @if(count($lists) > 0)
+                                    <ul class="xm-goods-list clearfix">
+                                    @foreach($lists as $k=>$v)
 
-                            <div class="tab">
-                                <button class="tablinks" onclick="openCity(event, 'London')">待评价商品</button>
-                                <button class="tablinks" onclick="openCity(event, 'Paris')">已评价商品</button>
-                            </div>
+                                        <li class="xm-goods-item">
+                                            <div class="figure figure-img">
+                                                <a href="/detail/{{$v->id}}" target="_blank">
+                                                    <img src="/uploads/{{$v->waresimgpath}}" />
+                                                </a>
+                                                <a href="/user/delatten/{{$v->id}}">取消关注</a>
+                                            </div>
+                                            <h3 class="title">
+                                                <a href="/detail/{{$v->id}}">{{$v->waresname}}</a>
+                                            </h3>
+                                            <p class="price">{{$v->waresprice}}元</p>
+                                            <div>
+                                                <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/detail/{{$v->id}}">去购买</a>
+                                                <br>
+                                            </div>
+                                        </li>
+                                    @endforeach
 
-                            <div id="London" style="display:block" class="tabcontent">
-                                @foreach($lists as $k=>$v)
-                                    @if($v->iscomment == "1")
-                                    <li class="xm-goods-item">
-                                        <div class="figure figure-img">
-                                            <a href="/detail/{{$v->wid}}">
-                                                <img src="/uploads/{{$v->waresimgpath}}" />
-                                            </a>
-                                        </div>
-                                        <h3 class="title">
-                                            <a href="/detail?id">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
-                                        </h3>
-                                        <p class="price">{{$v->waresprice}}元</p>
-                                        <div class="">
-                                            <a class="btn btn-primary" data-gid="2161000055" href="/comment/comments/{{$v->wid}}">去评价</a>
-                                        </div>
-                                    </li>
+                                    </ul>
+                                   @else
+                                        <b style="color:red">暂无关注</b>
                                     @endif
-                                @endforeach
-                            </div>
 
-                            <div id="Paris" class="tabcontent">
-                                @foreach($lists as $k=>$v)
-                                    @if($v->iscomment == "2")
-                                    <li class="xm-goods-item">
-                                        <div class="figure figure-img">
-                                            <a href="/detail/{{$v->wid}}">
-                                                <img src="/uploads/{{$v->waresimgpath}}" />
-                                            </a>
-                                        </div>
-                                        <h3 class="title">
-                                            <a href="/detail?id">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
-                                        </h3>
-                                        <p class="price">{{$v->waresprice}}元</p>
-                                    @endif
-                                @endforeach
+
+                                </div>
                             </div>
                         </div>
                     </div>

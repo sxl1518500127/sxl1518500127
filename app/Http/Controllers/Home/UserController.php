@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    // 个人信息
     public function index()
     {  
         $id = $_SESSION['home_userinfo']->customerid;
@@ -43,6 +44,7 @@ class UserController extends Controller
     }
 
 
+    // 地址模板
     public function address()
     {
 
@@ -53,6 +55,7 @@ class UserController extends Controller
         return view('home.user.address',['address'=>$address]);
     }
 
+    // 删除地址
     public function del(Request $request)
     {
         $id = $request->input('id');
@@ -65,13 +68,7 @@ class UserController extends Controller
         }
     }
 
-    // 我的评论
-    public function comment()
-    {
-        //显示模板
-        return view('home.user.comment');
-    }
-
+    // 用户修改
     public function store(Request $Request)
     {
         $id = $_SESSION['home_userinfo']->customerid;
@@ -106,6 +103,8 @@ class UserController extends Controller
         }
     }
 
+
+    // 添加地址
     public function add(Request $request)
     {   
         // 用户id
@@ -164,12 +163,14 @@ class UserController extends Controller
 
     }
 
+    // 修改密码模板
     public function password()
     { 
         //显示模板
         return view('home.user.password');
     }
 
+    // 修改密码
     public function newpass(Request $request)
     {
         if ($request->input('newpass') != $request->input('newpasss')) {
@@ -197,4 +198,143 @@ class UserController extends Controller
            echo "<script>alert('修改成功');location.href='/user/password';</script>"; 
         }
     }
+
+    // 我的评论
+    public function comment()
+    {
+        //获取当前登陆的id
+        $id = $_SESSION['home_userinfo']->customerid;
+
+        // 获取当前可评论的商品
+        $ping = DB::table('doindent')->where(['uid'=>$id,'indentstatus'=>'4'])->get();
+        foreach ($ping as $k => $v) {
+            $bianhao = $v->indentbian;
+
+        // 获取当前可评论的商品详情
+        $lists = DB::table('indentpublic')
+            ->join('goodswares', 'goodswares.id', '=', 'indentpublic.wid')
+            ->select('goodswares.*', 'indentpublic.*')
+            ->get();
+        }
+
+
+        //显示模板
+        return view('home.user.comment',['lists'=>$lists]);
+    }
+
+
+    // 评论页面
+    public function comments($wid)
+    {
+        //获取当前登陆的id
+        $id = $_SESSION['home_userinfo']->customerid;
+
+        // 获取当前可评论的商品
+        $ping = DB::table('doindent')->where(['uid'=>$id,'indentstatus'=>'4'])->get();
+        foreach ($ping as $k => $v) {
+            $bianhao = $v->indentbian;
+
+            // 获取当前可评论的商品详情
+            $lists = DB::table('indentpublic')
+                ->join('goodswares', 'goodswares.id', '=', 'indentpublic.wid')
+                ->where('goodswares.id',$wid)
+                ->select('goodswares.*', 'indentpublic.*')
+                ->get();
+        }
+
+        //显示模板
+        return view('home.comment.index',['lists'=>$lists]);
+    }
+
+
+    // 添加评论
+    public function insert(Request $request)
+    {
+        // 评论内容
+        $commentstr = $request->input('commentstr');
+
+        // 评论的商品id
+        $wid = $request->input('wid');
+
+        // 评星
+        $score = number_format($request->input('score',2),1);
+
+        //当前评论内容的用户
+        $uid = $_SESSION['home_userinfo']->customerid;
+
+        // 获取当前的时间戳
+        $time = time();
+
+        // 更换时间戳格式
+        $start = date('Y-m-d H:i:s',$time);
+
+        // 获取当前的ip
+        $ip = $_SERVER["REMOTE_ADDR"];
+
+        // 修改indentpublic表状态
+        $upd = DB::table('indentpublic')->where('wid', $wid)->update(['iscomment'=>2]);
+
+        $add = DB::table('commentwares')->insert(['commentstr'=>$commentstr,'wid'=>$wid,'uid'=>$uid,'commenttime'=>$start,'commentip'=>$ip,'score'=>$score]);
+
+        if ($add) {
+            echo "<script>alert('评论成功');location.href='/user/comment';</script>";               
+            exit;
+        }else{
+            echo "<script>alert('评论失败');location.href='/comment/comments';</script>";               
+            exit;
+        }
+
+    }
+
+    //我的关注模板
+    public function attention()
+    {
+        // 查询出关注的商品
+        $lists = DB::table('storeup')
+        ->join('goodswares', 'goodswares.id', '=', 'storeup.wid')
+        ->join('usercustomer', 'usercustomer.customerid', '=', 'storeup.uid')
+        ->select('goodswares.*', 'usercustomer.*')
+        ->get();
+
+        return view('home.user.attention',['lists'=>$lists]);
+    }
+
+    // 我的关注页面
+    public function attentions($id)
+    {
+        $uid = $_SESSION['home_userinfo']->customerid;
+
+        $atten = DB::table('storeup')->where(['wid'=>$id,'uid'=>$uid])->get();
+        if (!count($atten) > 0) {
+            $add = DB::table('storeup')->insert(['wid'=>$id,'uid'=>$uid]);
+        }else{
+            echo "<script>alert('已经关注该商品了');location.href='/';</script>";               
+            exit;
+        }
+        
+        if ($add) {
+            echo "<script>alert('关注成功');location.href='/user/attention';</script>";               
+            exit;
+        }else{
+            echo "<script>alert('已经关注该商品了');location.href='/';</script>";               
+            exit;
+        }
+    }
+
+
+    // 取消关注
+    public function delatten($id)
+    {
+        $uid = $_SESSION['home_userinfo']->customerid;
+        $res = DB::table('storeup')->where(['wid'=>$id,'uid'=>$uid])->delete();  
+        if ($res) {
+            echo "<script>alert('取消关注成功');location.href='/user/attention';</script>";               
+            exit;
+        }else{
+            echo "<script>alert('取消关注失败');location.href='/';</script>";               
+            exit;
+        }
+    }
+
+
 }

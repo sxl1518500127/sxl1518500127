@@ -8,7 +8,7 @@
             <li id="J_navCategory" class="nav-category">
 
             <!-- start banner_y -->
-                <div style="  position: absolute;left:60px;z-index:1000" class="banner_y center">
+                <div style="  position: absolute;left:445px;z-index:1000" class="banner_y center">
                     <div class="nav">
                         <ul>
                             @foreach($data as $k=>$v)
@@ -258,6 +258,11 @@
                                 @foreach($goods as $k=>$v)
                                     @if($k <=7)
                                         <li class="brick-item brick-item-m brick-item-m-2" data-gid="1161200059">
+                                            @if($_SESSION)
+                                            <a href="/user/attentions/{{$v->id}}" class="btn-like J_likeGoods" data-cid="1160800057" onclick="return false;" data-stat-id="ff751b1fdf797192" >
+                                                <a href="/user/attentions/{{$v->id}}"><i class="iconfont"></i></a>
+                                            </a>
+                                            @endif
                                             <div class="figure figure-img">
                                                 <a href="/detail/{{ $v->id }}">
                                                     <img src="uploads/{{ $v->waresimgpath }}" width="160" height="160" alt=""></a>
