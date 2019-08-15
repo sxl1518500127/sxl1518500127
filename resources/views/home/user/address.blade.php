@@ -54,10 +54,16 @@
 
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
                                     <li>
                                         <a href="/user/index">我的信息</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="box-bd">
+                                <ul class="uc-nav-list">
+                                    <li>
+                                        <a href="/user/attention">我的关注</a>
                                     </li>
                                 </ul>
                             </div>

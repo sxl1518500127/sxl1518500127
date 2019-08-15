@@ -38,11 +38,33 @@ class DetailController extends Controller
         //分割字符串
         $colors = explode(',',$color);
 
-        // dd($goodsspec);
+        // 评论
+        $comment = DB::table('commentwares')
+            ->join('goodswares', 'goodswares.id', '=', 'commentwares.wid')
+            ->join('usercustomer', 'usercustomer.customerid', '=', 'commentwares.uid')
+            ->select('goodswares.*', 'commentwares.*','usercustomer.*')
+            ->where('goodswares.id',$id)
+            ->get();
+
+        // 最新评论
+        $comments = DB::table('commentwares')
+            ->join('goodswares', 'goodswares.id', '=', 'commentwares.wid')
+            ->join('usercustomer', 'usercustomer.customerid', '=', 'commentwares.uid')
+            ->select('goodswares.*', 'commentwares.*','usercustomer.*')
+            ->orderBy('commentwares.id','desc')
+            ->take(2)
+            ->where('goodswares.id',$id)
+            ->get();
+
+        // $uid = $_SESSION['home_userinfo']->customerid ? $_SESSION['home_userinfo']->customerid : '1';
+
+        // 查询该商品是否以收藏
+        // $atten = DB::table('storeup')->where('wid',$id)->where('uid',$uid)->get();
+        // dd($atten);
 
 
         //显示模板
-        return view('home.goods.detail',['goods'=>$goods,'sizes'=>$sizes,'colors'=>$colors]);
+        return view('home.goods.detail',['goods'=>$goods,'sizes'=>$sizes,'colors'=>$colors,'comment'=>$comment,'comments'=>$comments]);
     }
 
     /**

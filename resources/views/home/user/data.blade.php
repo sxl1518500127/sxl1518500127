@@ -63,10 +63,17 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
+                                    <li>
+                                        <a href="/user/attention">我的关注</a>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                    
+                            <div class="box-bd">
+                                <ul class="uc-nav-list">
                                     <li>
                                         <a href="/user/password">修改密码</a>
                                     </li>
@@ -95,19 +102,14 @@
 
                     <form class="mws-form" action="/user/store" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-
                         当前头像：
-
-
-                                    <label>
-                                        <input title="更改头像" value="/uploads/{{$user->customerphoto}}" style="position:absolute;opacity:0;" type="file" oninput="myFunction()" name="tupian" id="" class="img1" />
-                                        <img style="width: 100px;height: 100px;" src="/uploads/{{$user->customerphoto}}">
-                                    <label>
+                            <label>
+                                <input title="更改头像" value="/uploads/{{$user->customerphoto}}" style="position:absolute;opacity:0;" type="file" oninput="myFunction()" name="tupian" id="" class="img1" />
+                                <img style="width: 100px;height: 100px;" src="/uploads/{{$user->customerphoto}}">
+                            <label>
 
                             <div style="clear:both;"></div>
-
                         <div style="clear:both;"></div>
-
                     <div class="dt1">
                         <p class="dt-p f-l">昵称：<input style="border:none;" id="myInput" name="customernickname" oninput="myFunction()" type="text" value="{{$user->customernickname}}" /></p>
                             <div style="clear:both;"></div>
