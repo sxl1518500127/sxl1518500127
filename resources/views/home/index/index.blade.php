@@ -18,30 +18,27 @@
 
                                 <div class="pop">
 
-                                    <div style="border:1px solid red;width:100px" class="left fl pull-left">
+                                    <div style="width:100px" class="left fl pull-left">
                                     @foreach($erji as $kk=>$vv)
 
                                         @if($v->id == $kk)
                                             @foreach($vv as $er)
-                                                <div style="border:1px solid pink;width:500px;height:200px">
-                                                    
+                                                <div style="width:800px;height:100px;margin-left:10px">
                                                     <span >{{$er->goodsmod}}</span>
                                                     @foreach($sanji as $kkk => $san)
                                                         @if($er->id == $kkk)
                                                         <p>
                                                             @foreach($san as $kkkk => $sano)
-                                                                <div style="width:230px;border:1px solid pink;">
-                                                                    <div class="xuangou_left fl">
-                                                                        <a href="liebiao.html">
-                                                                            <span class="fl">{{$sano->waresname}}</span>
-                                                                            <div class="clear"></div>
-                                                                        </a>
+                                                                @if($kkkk <=5)
+                                                                    <div style="width:100px;font-size:12px;float: left;margin-left:10px;margin-top:-30px;" >
+                                                                        <div class="xuangou_left ">
+                                                                            <a href="/detail/{{$sano->id}}">
+                                                                                <span  style="width:100px;height:30px;clear:both;overflow:hidden;">{{$sano->waresname}}</span>
+                                                                                <div class="clear"></div>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
-
-                                                                    <div class="xuangou_right fr"><a href="xiangqing.html" >选购</a></div>
-                                                                    <div class="clear"></div>
-                                                                    
-                                                                </div>
+                                                                @endif
                                                             @endforeach
                                                         </p>
                                                         
@@ -215,32 +212,22 @@
                             <h3 class="title">
                                 <a href="/detail/{{ $v->id }}"></a>
                             </h3>
-                            <p class="desc">{{$v->waresname}}</p>
+                            <p class="desc"><a href="/detail/{{ $v->id }}">{{$v->waresname}}</a></p>
                             <p class="price">{{$v->waresprice}}</p>
                         </li>
                         @endforeach
 
-                        <li class="rainbow-item">
-                            <a class="thumb" href="/detail/"  target="_blank">
-                                <img src="" srcset="" alt="" />
-                            </a>
-                            <h3 class="title">
-                                <a href="/detail" target="_blank"></a>
-                            </h3>
-                            <p class="desc">更多</p>
-                            <p class="price">更多</p>
-                        </li>
                         
                     <!--  这里遍历结束  -->
                         <li class="rainbow-item">
                             <a class="thumb" href="/datail"  target="_blank">
-                                <img src="http://i3.mifile.cn/a4/40d24892-317d-4883-ad63-647f1b9e3cdf" srcset="" alt="" />
+                                <!-- <img src="http://i3.mifile.cn/a4/40d24892-317d-4883-ad63-647f1b9e3cdf" srcset="" alt="" /> -->
                             </a>
                             <h3 class="title">
-                                <a href="/datail" target="_blank"></a>
+                                <!-- <a href="/datail" target="_blank"></a> -->
                             </h3>
                             <p class="desc"></p>
-                            <p class="price">更多...</p>
+                            <p class="price"><a href="/home/list_search">更多>>></a></p>
                         </li>
                     </ul>
                 </div>
@@ -269,7 +256,7 @@
                         <div class="span16">
                             <ul class="brick-list clearfix">
                                 @foreach($goods as $k=>$v)
-                                    @if($k > 1)
+                                    @if($k <=7)
                                         <li class="brick-item brick-item-m brick-item-m-2" data-gid="1161200059">
                                             <div class="figure figure-img">
                                                 <a href="/detail/{{ $v->id }}">

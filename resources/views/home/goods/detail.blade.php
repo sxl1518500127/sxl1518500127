@@ -93,11 +93,11 @@
                                 </dt>
 
                                 <dd class="goods-phone-type">
-                                    <p>waresname</p>
+                                    <p>{{$goods->waresname}}</p>
                                 </dd>
                                 <dd class="goods-info-head-price clearfix">
-                                    <b class="J_mi_goodsPrice"></b>
-                                    <i>&nbsp;{{$goods->waresprice }}元</i>
+                                    <b class="J_mi_goodsPrice">{{$goods->waresprice }}</b>
+                                    <i>&nbsp;元</i>
                                     <del>
                                         <span class="J_mi_marketPrice"></span>
                                     </del>
@@ -108,10 +108,7 @@
                                     <div class="clearfix">
                                         @if($sizes)
                                             @foreach($sizes as $kk=>$vv)  
-                                                <div class="attr" name="attr" title="" id="attr" price="">
-                                                    {{ $vv ? $vv : 123}}
-                                                </div>
-
+                                                <div class="attr" name="attr" banbena="{{ $vv ? $vv : 123}}"  title="" id="attr" price="">{{ $vv ? $vv : 123}}</div>
                                             @endforeach
                                         @endif
                                     </div>
@@ -128,10 +125,7 @@
 
                                                 <div  class="float">
                                                     <div>
-                                                        <a href="" class="smallAttr" name="color" title="" data-stat-id="bd7cb1fe26f82654" id="color">
-                                                            {{ $vvv ? $vvv : 未定义}}
-
-                                                        </a>
+                                                        <a href="" class="smallAttr" name="color" title="{{ $vvv ? $vvv : 未定义}}" data-stat-id="bd7cb1fe26f82654" id="color">{{ $vvv ? $vvv : 未定义}} </a>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -141,9 +135,9 @@
 
                                 <!--颜色-->
                                 <input type="hidden" name="sku_attr" value="">
-                                <input type="hidden" name="good_id" value="">
+                                <input type="hidden" name="id" value="{{$goods->id }}">
                                 <input type="hidden" name="sku_color" value="">
-                                <input type="hidden" name="sku_price" value="">
+                                <input type="hidden" name="sku_price" value="{{$goods->waresprice }}">
                                 <input type="hidden" name="num" value="1">
                                 <dd class="goods-info-head-cart" id="goodsDetailBtnBox">
                                     <button disabled="disabled" href="http://cart.mi.com/cart/add/2161600004" id="goodsDetailAddCartBtn" class="btn  btn-primary goods-add-cart-btn" data-disabled="false" data-gid="2161600004" data-package="0" data-stat-id="e7ed8543f67c5bd7" > <i class="iconfont"></i>加入购物车 </button>
@@ -353,18 +347,19 @@
 @endsection
 @section('js')
 
-<script src="/h/homes/common/myjs/common.js"></script>
-
+<!-- <script src="/h/homes/common/myjs/common.js"></script>
+ -->
 @show
 @section('LDjs')
 <script type="text/javascript">
     $('[name="attr"]').click(function () {
         var attr = $(this).attr('title');
-        var price = $(this).attr('price');
-        $('input[name="sku_attr"]').val(attr);
+        var arrr = $(this).attr('banbena');
+        var price = $('[class="J_mi_goodsPrice"]').html();
+        $('input[name="sku_attr"]').val(arrr);
         $('input[name="sku_price"]').val(price);
 
-        $('[class="J_mi_goodsPrice"]').html(price);
+        // $('[class="J_mi_goodsPrice"]').html(price);
 
         $(this).siblings().attr('class','attr');
         $(this).attr('class','attr select');
@@ -375,8 +370,6 @@
     });
     $('[name="color"]').click(function () {
         var color = $(this).html();
-
-
         $('[name="color"]').attr('class','smallAttr');
         $(this).attr('class','smallAttr current');
         $('input[name="sku_color"]').val(color);
@@ -387,13 +380,13 @@
 
     $('#goodsDetailAddCartBtn').click(function () {
 
-        console.log($('#yourformid').serialize());
+        // console.log($('#yourformid').serialize());
 //        return false;
         $.ajax({
 
             type: "get",
             dataType:'json',
-            url:"/cart/ajaxaddcart",
+            url:"/addcart",
             data:$('#yourformid').serialize(),// 你的formid
             async: false,
             error: function() {

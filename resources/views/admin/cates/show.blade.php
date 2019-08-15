@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
         <span><i class="icon-table"></i><<<a href="/admin/cates">返回上一层</a> &nbsp;  {{$goods->goodsmod}}列表 <a style="margin-left:700px" href="/admin/goods/create?id={{$goods->id}}">添加{{$goods->goodsmod}}</a></span>
@@ -25,7 +26,7 @@
                 @foreach($wares as $k=>$v)
                 <tr>
                     <td>{{ $v->id }}</td>
-                    <td>{{ $v->waresname }}</td>
+                    <td width="260px">{{ $v->waresname }}</td>
                     <td>{{ $v->waresprice }}</td>
                     <td>
                         <img src="/uploads/{{ $v->waresimgpath }}" style="width: 50px;border-radius: 8px;">
@@ -47,8 +48,17 @@
                     </td>
                 </tr>
                 @endforeach
+            
             </tbody>
+            <tfoot>
+
+
+            </tfoot>
         </table>
+        <div id="page_page">
+
+            {{ $wares->appends($requests)->links() }}
+        </div>
     </div>
 </div>
 

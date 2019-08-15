@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\gds;
 use App\Models\goods;
 use DB;
 
@@ -61,17 +61,19 @@ class CatesController extends Controller
     {
         // 获取pid
         $pid = $request->input('goodsmid');
-
+        // dump($pid);
         if($pid == 0){
             $path = 0;
         }else{
             // 获取父级的数据
-           $parent_data = goods::find($pid);
+           $parent_data = DB::table("goods")->where("id",$pid)->first();
+
+           // dd($parent_data);
            $path = $parent_data->goodspath.','.$parent_data->id;
         }
 
         // 添加
-        $cate = new goods;
+        $cate = new gds;
         $cate->goodsmod = $request->input('goodsmod','');
         $cate->goodsmid = $pid;
         $cate->goodspath = $path;
@@ -92,16 +94,17 @@ class CatesController extends Controller
 
     public function show(Request $request)
     {
+
         $id = $request->input('id');
         // dump($id);
-        $wares = DB::table('goodswares')->where('waresgid', $id)->get();
+        $wares = DB::table('goodswares')->where('waresgid', $id)->paginate(5);
         $goods = DB::table('goods')->where('id', $id)->first();
 
         if(!$wares){
             $wares = [];
         }
 
-        return view('admin.cates.show',['goods'=>$goods,"wares"=>$wares]);
+        return view('admin.cates.show',['goods'=>$goods,"wares"=>$wares,'requests'=>$request->input()]);
     }
 
     /**

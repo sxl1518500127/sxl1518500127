@@ -242,11 +242,6 @@ class CartController extends Controller
                 $public->specstr = $value->warespec." ".$value->color;
                 $public->bianhao = $bianhao;//BIANHAO
                 $re2 = $public->save();
-                // $car = DB::table("shopcart")->where('id',$value->id)->delete();
-                // if($car){
-                //     unset($_SESSION["car"][$value->id]);
-                //     unset($listItem[$value->id]);
-                // }
             }
 
         }else{
@@ -288,37 +283,19 @@ class CartController extends Controller
         $carts = [];
         $wares = [];
         foreach ($listItem as $key => $value) {
-           // dd($value);
-            
-            //获取商品信息
-            // $wares[] = DB::table("goodswares")->where('id',$value)->first();
-
-
             //获取购物车信息
             // $carts[$value] = DB::table("shopcart")->where('uid',$uid)->where('wid',$value)->first();
 
             $carts[] =goods::join('shopcart','shopcart.wid','goodswares.id')->where(['goodswares.id'=>$value,'shopcart.uid'=>$uid,'shopcart.wid'=>$value])->get();
-
-            // dump($res);
-            // dump($tupian->waresimgpath);
-            // $carts[$value] = $tupian->waresimgpath;
 
             // 删除购物车  清除session
             $del = DB::table("shopcart")->where('uid',$uid)->where('wid',$value)->delete();
             if($del){
                 unset($_SESSION["car"][$value]);
                 unset($listItem[$value]);
-                
             }
         }
         
-
-        // dump($carts);
-      
-        //获取总件数 总价格
-        // die();
-
-        // $order->order_num = time('YmdHis').rand(100000,999999);//订单编号
         $num = 0;
         $allTotal = 0;
    
@@ -335,7 +312,6 @@ class CartController extends Controller
         }
 
         //删除购物车  
-        //foreach
         $indents = DB::table("doindent")->where('indentstatus',"0")->where("uid",$uid)->orderby("id","desc")->first();
 
         return view('home.order.confirm',[
@@ -366,12 +342,63 @@ class CartController extends Controller
     }
     /**
      * Store a newly created resource in storage.
-     *
+     * 购物车详情到购物车
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addcart(Request $request)
     {
+        $id = $request->input("id");
+        //判断是否添加过
+        if(empty($_SESSION["car"][$id])){
+            // 获取商品
+            $data = DB::table("goodswares")->where("id",$id)->first();
+            $data->num  = 1;
+            // $data = DB::table("shopcart")->insert(["uid"->$_SESSION["home"]["user"],"wid"=>$id]);
+            $data->xiaoji = $data->waresprice * $data->num;
+            $data->spec = $data->waresprice;
+            $_SESSION["car"][$id] = $data;
+            if(!empty($_SESSION['home_login'])){
+                DB::beginTransaction();
+                $shopcart = new shopcart;
+                $shopcart->uid = $_SESSION['home_userinfo']->customerid;
+                $shopcart->wid = $id;
+                $shopcart->xiaoji = $request->input("sku_price") * $request->input("num");
+                $shopcart->warespec = $request->input("sku_attr")." ".$request->input("color");
+                $shopcart->spec = $data->waresprice;
+                $shopcart->count = $request->input("num");
+                $res = $shopcart->save();
+                if(!$res){
+                    DB::rollBack();
+                    unset($_SESSION["car"][$id]);
+                    return back()->with('error', '添加失败');
+                }else{
+                    DB::commit();
+                }
+            }
+        }else{
+            
+            $_SESSION["car"][$id]->num = $_SESSION["car"][$id]->num+1;
+            $_SESSION["car"][$id]->xiaoji = ($_SESSION["car"][$id]->num * $_SESSION["car"][$id]->waresprice);
+            if(!empty($_SESSION['home_login'])){
+                DB::beginTransaction();
+                $shopcart = DB::table("shopcart")->where("uid",$_SESSION['home_userinfo']->customerid)->where("wid",$id)->update(["xiaoji"=>$_SESSION["car"][$id]->xiaoji,"count"=>$_SESSION["car"][$id]->num]);
+                if(!$shopcart){
+                    DB::rollBack();
+                    unset($_SESSION["car"][$id]);
+                    return back()->with('error', '添加失败');
+                }else{
+                    DB::commit();
+                }
+            }
+
+        }
+
+        $this->data['status'] = 0;
+        $this->data['msg'] = '成功加入购物车';
+        echo json_encode($this->data);
+        die;
+
 
     }
 

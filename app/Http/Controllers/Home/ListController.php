@@ -71,7 +71,7 @@ class ListController extends Controller
     	
     	//中文分词end
     	// return view('home.list.list_search',['wares'=>$data2,"count"=>$count]);
-    	return view('home.list.list_search',['wares'=>$data2]);
+    	return view('home.list.list_search',['wares'=>$data2,"search"=>$search]);
     }
 
 

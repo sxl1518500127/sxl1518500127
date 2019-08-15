@@ -33,42 +33,53 @@ Route::post('admin/login/dologin','Admin\LoginController@dologin');
 // Route::group(['middleware'=>['login','allow']],function(){
 Route::group(['middleware'=>['login']],function(){
 
+	// 后台 首页 的路由
+	Route::get('admin','Admin\IndexController@index');
 
-// 后台 首页 的路由
-Route::get('admin','Admin\IndexController@index');
+	// 后台 用户 路由
+	Route::resource('admin/users','Admin\UsersController');
 
-// 后台 用户 路由
-Route::resource('admin/users','Admin\UsersController');
+	// 后台 分类 路由
+	Route::resource('admin/cates','Admin\CatesController');
 
-// 后台 分类 路由
-Route::resource('admin/cates','Admin\CatesController');
+	// 后台商品添加
+	Route::resource('admin/goods','Admin\GoodsController');
 
-// 后台商品添加
-Route::resource('admin/goods','Admin\GoodsController');
-
-// 后台执行修改商品
+	// 后台执行修改商品
 
 
-// 后台 分类 路由
-Route::resource('admin/link','Admin\LinkController');
+	// 后台 分类 路由
+	Route::resource('admin/link','Admin\LinkController');
 
-// 后台 订单 路由
-Route::resource('admin/order','Admin\OrderController');
+	// 后台 订单 路由
+	Route::resource('admin/order','Admin\OrderController');
 
-// 后台 网站 路由
-Route::resource('admin/config','Admin\ConfigController');
+	//后台发货 
+	Route::get('admin/fahuo/{id}','Admin\OrderController@fahuo');
 
-// 后台 管理员 路由
-Route::resource('admin/admins','Admin\AdminController');
+	// 订单编辑
+	Route::get('admin/doindents/{id}','Admin\OrderController@show');
 
-// 后台 管理员权限修改 路由
-Route::post('admin/xgrole/{id}','Admin\AdminController@xgrole');
+	// 查看订单详情
+	Route::get('admin/store/{id}','Admin\OrderController@store');
 
-// 后台 权限 管理、
-Route::resource('admin/nodes','Admin\NodesController');
+	// 订单修改
+	Route::post('admin/create','Admin\OrderController@create');
 
-// 后台 角色 管理、
-Route::resource('admin/roles','Admin\RolesController');
+	// 后台 网站 路由
+	Route::resource('admin/config','Admin\ConfigController');
+
+	// 后台 管理员 路由
+	Route::resource('admin/admins','Admin\AdminController');
+
+	// 后台 管理员权限修改 路由
+	Route::post('admin/xgrole/{id}','Admin\AdminController@xgrole');
+
+	// 后台 权限 管理、
+	Route::resource('admin/nodes','Admin\NodesController');
+
+	// 后台 角色 管理、
+	Route::resource('admin/roles','Admin\RolesController');
 });
 
 
@@ -87,6 +98,7 @@ Route::get('/detail/{id}','Home\DetailController@index');
 Route::resource('/cart','Home\CartController');
 Route::get('/home/addproduct','Home\CartController@addproduct');
 Route::post('/cart/delete','Home\CartController@delete');
+Route::get('/addcart','Home\CartController@addcart');
 Route::post('/order/postcon','Home\CartController@postcon');
 Route::get('/order/confirm','Home\CartController@confirm');
 Route::get('/order/getPay','Home\CartController@getPay');

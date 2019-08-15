@@ -40,7 +40,7 @@
             </div>
 
 
-@if(empty($_SESSION['home_userinfo']->customername))
+            @if(empty($_SESSION['home_userinfo']->customername))
 
             <div class="topbar-info" id="J_userInfo">
                 <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
@@ -49,7 +49,7 @@
             </div>
 
 
-@else
+            @else
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
                     <a rel="nofollow" id="user-name" href="/user/index" target="_blank">

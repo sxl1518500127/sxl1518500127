@@ -29,7 +29,7 @@
        
         <div class="topbar-info" id="J_userInfo">
                 <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
+                    <a rel="nofollow" class="user-name" href="/user/index" target="_blank">
                         <span class="name">{{$_SESSION["home_userinfo"]->customername}}</span> <i class="iconfont"></i>
                     </a>
                     <ul class="user-menu" style="display: none;">

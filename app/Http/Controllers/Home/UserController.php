@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Usercustomer;
+use App\Models\goods;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,11 +31,15 @@ class UserController extends Controller
     {
         $id = $_SESSION['home_userinfo']->customerid;
         $arr = DB::table('doindent')->where('uid',$id)->get();
-// dd($arr);
-
-
+        // dump($arr);
+        $carts = [];
+        foreach ($arr as $key => $value) {
+            
+            $carts[] =goods::join('indentpublic','indentpublic.wid','goodswares.id')->where(['indentpublic.bianhao'=>$value->indentbian])->get();
+        }
+        // dump($carts);
         //显示模板
-        return view('home.user.order',['arr'=>$arr]);
+        return view('home.user.order',['arr'=>$arr,"carts"=>$carts]);
     }
 
 
@@ -43,9 +48,7 @@ class UserController extends Controller
 
         $id = $_SESSION['home_userinfo']->customerid;
 
-     $address = DB::table('customercargo')->where('uid',$id)->get();
-
-
+        $address = DB::table('customercargo')->where('uid',$id)->get();
         //显示模板
         return view('home.user.address',['address'=>$address]);
     }

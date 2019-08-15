@@ -33,48 +33,7 @@
 </div>
 
 <!-- 分类条 -->
-<div class="container">
-    <div class="filter-box">
-        <div class="filter-list-wrap">
-            <dl class="filter-list clearfix filter-list-row-3">
-                <dt>分类：</dt>
-                <dd class="active">全部</dd>
-                    <dd><a href="" data-stat-id="b120dec55d40e599" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-b120dec55d40e599&#39;, &#39;//search.mi.com/search_手机-10&#39;, &#39;pcpid&#39;]);"></a></dd>
-             
-            </dl>
-            <a class="more J_filterToggle" href="javascript: void(0);" data-stat-id="3306e9b581810c0b" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-3306e9b581810c0b&#39;, &#39;javascript:void(0);&#39;, &#39;pcpid&#39;]);">更多<i class="iconfont"></i></a>
-        </div>
 
-
-
-
-        <div class="filter-list-wrap">
-            <dl class="filter-list clearfix filter-list-row-4">
-                <dt>机型：</dt>
-                <dd class="active">全部</dd>
-
-                    <dd><a href="" data-stat-id="4e1a960f60c0ad53" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-4e1a960f60c0ad53&#39;, &#39;//search.mi.com/search_手机-0-54321&#39;, &#39;pcpid&#39;]);"></a></dd>
-              
-
-            </dl>
-            <a class="more J_filterToggle" href="javascript: void(0);" data-stat-id="3306e9b581810c0b" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-3306e9b581810c0b&#39;, &#39;javascript:void(0);&#39;, &#39;pcpid&#39;]);">更多<i class="iconfont"></i></a>
-        </div>
-
-
-
-        <div class="filter-list-wrap">
-            <dl class="filter-list clearfix filter-list-row-2">
-                <dt>最新：</dt>
-                <dd class="active">部分</dd>
-                
-                    <dd>
-                        <a href="" data-stat-id="c6199f21493cb057" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-c6199f21493cb057&#39;, &#39;//search.mi.com/search_手机-0-0-1&#39;, &#39;pcpid&#39;]);"></a>
-                    </dd>
-            </dl>
-            <a class="more J_filterToggle" href="javascript: void(0);" data-stat-id="3306e9b581810c0b" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-3306e9b581810c0b&#39;, &#39;javascript:void(0);&#39;, &#39;pcpid&#39;]);">更多<i class="iconfont"></i></a>
-        </div>
-    </div>
-</div>
 <div class="content">
     <div class="container">
         <div class="order-list-box clearfix">
@@ -93,13 +52,13 @@
                 @foreach($wares as $wares)
                     <div class="goods-item">
                         <div class="figure figure-img">
-                            <a href="">
-                                <img src="/upload/{{$wares->waresimgpath}}" width="200" height="200" alt="">
+                            <a href="/detail/{{$wares->id}}">
+                                <img src="/uploads/{{$wares->waresimgpath}}" width="200" height="200" alt="">
                             </a>
                         </div>
                         <p class="desc"></p>
                         <h2 class="title">
-                            <a href="/detail?id={{$wares->id}}">
+                            <a href="/detail/{{$wares->id}}">
                                 {{$wares->waresname}}
                             </a>
                         </h2>
@@ -107,13 +66,14 @@
                         <div class="thumbs">
                             <ul class="thumb-list">
                                 <li>
-                                    <img src="/upload/{{$wares->waresimgpath}}" width="34" height="34" alt="小米手机5">
+                                    <a href="/detail/{{$wares->id}}">
+                                    <img src="/uploads/{{$wares->waresimgpath}}" width="34" height="34" alt="小米手机5">
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="actions clearfix">
-                            <a class="btn-like J_likeGoods" data-cid="1160800057" onclick="return false;" data-stat-id="ff751b1fdf797192" >
+                            <a href="/user/attentions/{{$wares->id}}" class="btn-like J_likeGoods" data-cid="1160800057" onclick="return false;" data-stat-id="ff751b1fdf797192" >
                                 <i class="iconfont"></i>
                                 <span>喜欢</span>
                             </a>

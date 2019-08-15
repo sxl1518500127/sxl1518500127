@@ -3,7 +3,7 @@
 @section('content')
     <div class="mws-panel grid_8">
         <div class="mws-panel-header">
-            <span>{{$goods->goodsmod}}--  >  -- {{$wares->waresname}}<a style="margin-left:800px" href="/admin/cates/show?id={{$goods->id}}">返回上一层</a></span>
+            <span>{{$goods->goodsmod}}--  >  --<d width="20px">  {{$wares->waresname}}</d></span><a style="float:right;margin-top:-20px" href="/admin/cates/show?id={{$goods->id}}">返回上一层</a>
         </div>
         <div class="mws-panel-body no-padding">
             
