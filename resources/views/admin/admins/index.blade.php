@@ -28,7 +28,7 @@
             <tr style="text-align:center;">
                 <td>{{ $v->adminid }}</td>
                 <td>{{ $v->adminname }}</td>
-                <td><img src="/uploads/{{ $v->adminphoto }}" style="width:100px"></td>
+                <td><img src="/uploads/{{ $v->adminphoto }}" style="width:50px;height:50px"></td>
 
                 <td>
                     <form action="/admin/admins/{{ $v->adminid }}" method="post" style="display: inline;">

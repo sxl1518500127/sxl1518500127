@@ -23,7 +23,6 @@
                     				<div class="mws-form-item clearfix">
                     					@foreach($nodes as $k=>$v)
 
-                    					<h3>{{ $controllernames[$k] }}</h3>
                     					<ul class="mws-form-list inline">
                     						@foreach($v as $kk=>$vv)
 

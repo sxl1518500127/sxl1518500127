@@ -24,9 +24,9 @@ Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/login/dologin','Admin\LoginController@dologin');
 
 // // 权限页面
-// Route::get('admin/allow',function(){ ·········
-// 	return view('admin.allow.allow');
-// });
+Route::get('admin/allow',function(){ 
+	return view('admin.allow.allow');
+});
 
 
 // 权限验证的中间件  【allow】
@@ -35,6 +35,7 @@ Route::group(['middleware'=>['login']],function(){
 
 	// 后台 首页 的路由
 	Route::get('admin','Admin\IndexController@index');
+	Route::get('admin/personal','Admin\IndexController@personal');
 
 	// 后台 用户 路由
 	Route::resource('admin/users','Admin\UsersController');

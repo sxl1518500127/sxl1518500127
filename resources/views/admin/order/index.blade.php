@@ -57,7 +57,7 @@
                         
                     @endif
                 </td>
-                <td><?php $time = date('Y-m-s h:i:s',$value->indenttime);?>{{$time}}</td>
+                <td>{{$value->created_at}}</td>
                 <td>
                     @if($value->indentstatus == "1")
                         <a href="/admin/fahuo/{{$value->indentbian}}" style="" class="btn-min btn-primary">发货</a>

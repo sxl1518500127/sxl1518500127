@@ -8,7 +8,7 @@
             <li id="J_navCategory" class="nav-category">
 
             <!-- start banner_y -->
-                <div style="  position: absolute;left:445px;z-index:1000" class="banner_y center">
+                <div style="  position: absolute;left:60px;z-index:1000" class="banner_y center">
                     <div class="nav">
                         <ul>
                             @foreach($data as $k=>$v)
