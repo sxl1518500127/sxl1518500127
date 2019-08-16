@@ -26,12 +26,11 @@
 </style>
 <!-- Inner Container Start -->
             <div class="container">
-            
             	<!-- Statistics Button Container -->
             	<div class="mws-stat-container clearfix">
                 	
                     <!-- Statistic Item -->
-                	<a class="mws-stat" href="#">
+                	<a class="mws-stat" href="/admin/admins">
                     	<!-- Statistic Icon (edit to change icon) -->
                     	<span class="mws-stat-icon icol32-house"></span>
                         
@@ -39,13 +38,13 @@
                         <span class="mws-stat-content">
                             <div class="yangshi">
                             	<span class="mws-stat-title">家庭成员</span>
-                                <span class="mws-stat-value">324</span>
+                                <span class="mws-stat-value">{{$aa}}</span>
 
                             </div>
                         </span>
                     </a>
 
-                	<a class="mws-stat" href="#">
+                	<a class="mws-stat" href="/admin/users">
                     	<!-- Statistic Icon (edit to change icon) -->
                     	<span class="mws-stat-icon icol32-group"></span>
                         
@@ -53,13 +52,13 @@
                         <span class="mws-stat-content">
                         	<div class="yangshi">
                                 <span class="mws-stat-title">用户数量</span>
-                                <span class="mws-stat-value">324</span>
+                                <span class="mws-stat-value">{{$users}}</span>
 
                             </div>
                         </span>
                     </a>
 
-                	<a class="mws-stat" href="#">
+                	<a class="mws-stat" href="/admin/order">
                     	<!-- Statistic Icon (edit to change icon) -->
                     	<span class="mws-stat-icon icol32-lorry"></span>
                         
@@ -67,7 +66,7 @@
                         <span class="mws-stat-content">
                         	<div class="yangshi">
                                 <span class="mws-stat-title">商城订单</span>
-                                <span class="mws-stat-value">324</span>
+                                <span class="mws-stat-value">{{$ding}}</span>
 
                             </div>
                         </span>
@@ -99,51 +98,17 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 4.0</font></font></td>
+                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">姓名</font></font></td>
+                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单号</font></font></td>
                                        
                                     </tr>
+                                    @foreach($countuserss as $k=>$v)
                                     <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 5.0</font></font></td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->indentname}}</font></font></td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->indentbian}}</font></font></td>
                                        
                                     </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 5.5</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 6</font></font></td>
-                                      
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 7</font></font></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AOL浏览器（AOL桌面）</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">壁虎</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Firefox 1.0</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">壁虎</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Firefox 1.5</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">壁虎</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">卡米诺1.5</font></font></td>
-                                      
-                                    </tr>
-                                   
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -159,49 +124,17 @@
                                 
                                 <tbody>
                                     <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 4.0</font></font></td>
+                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品名</font></font></td>
+                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品图</font></font></td>
                                     </tr>
+
+                                    @foreach($goodswares as $k=>$v)
                                     <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 5.0</font></font></td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->waresname}}</font></font></td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><img style="width:50px;height:50px"  src="/uploads/{{$v->waresimgpath}}"></font></font></td>
                                        
                                     </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 5.5</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 6</font></font></td>
-                                      
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Internet Explorer 7</font></font></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">三叉戟</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AOL浏览器（AOL桌面）</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">壁虎</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Firefox 1.0</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">壁虎</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Firefox 1.5</font></font></td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">壁虎</font></font></td>
-                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">卡米诺1.5</font></font></td>
-                                      
-                                    </tr>
+                                    @endforeach
                                    
                                 </tbody>
                             </table>

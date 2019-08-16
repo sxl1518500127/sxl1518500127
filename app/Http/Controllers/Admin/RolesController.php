@@ -13,7 +13,11 @@ class RolesController extends Controller
     {
         return [
             'userscontroller'=>'用户管理',
-            'goodscontroller'=>'商品管理',
+            'rolesontroller'=>'角色管理',
+            'nodescontroller'=>'角色管理',
+            'catescontroller'=>'角色管理',
+            'adminusercontroller'=>'角色管理',
+
         ];
     } 
 
@@ -58,6 +62,7 @@ class RolesController extends Controller
         
            $nodes = self::nodes();
         $controllernames = self::controllernames();
+        // dd($controllernames);
        
         // 加载页面
         return view('admin.roles.create',['nodes'=>$nodes,'controllernames'=>$controllernames]);
