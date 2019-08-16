@@ -178,7 +178,7 @@
                                         <div style="color:#ff6700" class="order-status">
                                             等待发货
                                             <span class="order-actions">
-                                                <!-- <a class="btn btn-small btn-primary" style="margin-left: 640px" href="/order/pay?id=23" target="_blank"></a> -->
+                                                <a class="btn btn-small btn-primary" style="margin-left: 640px" href="/order/money/{{$v->indentbian}}" target="_blank">退款</a>
                                                 <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id=23">订单详情</a>-->
                                             </span>
                                         </div>
@@ -349,7 +349,7 @@
                                                     </ul>
                                                 </td>
                                                 <td class="order-actions">
-                                                    <a class="btn btn-small btn-primary"  href="/commit/commits/{{$vel->id}}" target="_blank">评价</a>
+                                                    <a class="btn btn-small btn-primary"  href="/comment/comments/{{$vel->id}}" target="_blank">评价</a>
                                                 </td>
                                             </tr>
                                             

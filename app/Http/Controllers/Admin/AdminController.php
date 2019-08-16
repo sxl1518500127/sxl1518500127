@@ -91,7 +91,7 @@ class AdminController extends Controller
         
     }
 
-
+    // 用户修改
     public function edit($id)
     {
         // dd($id);
@@ -107,6 +107,7 @@ class AdminController extends Controller
         // echo "123";
     }
 
+     // 修改权限
     public function xgrole(Request $request,$id){
         // 开启事务
         DB::beginTransaction(); 

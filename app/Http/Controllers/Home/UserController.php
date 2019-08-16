@@ -207,17 +207,18 @@ class UserController extends Controller
 
         // 获取当前可评论的商品
         $ping = DB::table('doindent')->where(['uid'=>$id,'indentstatus'=>'4'])->get();
+
+        $lists = [];
         foreach ($ping as $k => $v) {
             $bianhao = $v->indentbian;
 
-        // 获取当前可评论的商品详情
-        $lists = DB::table('indentpublic')
-            ->join('goodswares', 'goodswares.id', '=', 'indentpublic.wid')
-            ->select('goodswares.*', 'indentpublic.*')
-            ->get();
+            // 获取当前可评论的商品详情
+            $lists[] = DB::table('indentpublic')
+                ->join('goodswares', 'goodswares.id', '=', 'indentpublic.wid')
+                ->select('goodswares.*', 'indentpublic.*')
+                ->where("indentpublic.bianhao",$bianhao)
+                ->get();
         }
-
-
         //显示模板
         return view('home.user.comment',['lists'=>$lists]);
     }
@@ -229,18 +230,12 @@ class UserController extends Controller
         //获取当前登陆的id
         $id = $_SESSION['home_userinfo']->customerid;
 
-        // 获取当前可评论的商品
-        $ping = DB::table('doindent')->where(['uid'=>$id,'indentstatus'=>'4'])->get();
-        foreach ($ping as $k => $v) {
-            $bianhao = $v->indentbian;
-
-            // 获取当前可评论的商品详情
-            $lists = DB::table('indentpublic')
+         // 获取当前可评论的商品详情
+        $lists = DB::table('indentpublic')
                 ->join('goodswares', 'goodswares.id', '=', 'indentpublic.wid')
-                ->where('goodswares.id',$wid)
+                ->where('indentpublic.id',$wid)
                 ->select('goodswares.*', 'indentpublic.*')
                 ->get();
-        }
 
         //显示模板
         return view('home.comment.index',['lists'=>$lists]);

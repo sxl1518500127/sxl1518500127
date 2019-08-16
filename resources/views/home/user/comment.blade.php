@@ -127,7 +127,8 @@ div.tab button.active {
                             </div>
 
                             <div id="London" style="display:block" class="tabcontent">
-                                @foreach($lists as $k=>$v)
+                                @foreach($lists as $k=>$vv)
+                                @foreach($vv as $ke=>$v)
                                     @if($v->iscomment == "1")
                                     <li class="xm-goods-item">
                                         <div class="figure figure-img">
@@ -136,19 +137,21 @@ div.tab button.active {
                                             </a>
                                         </div>
                                         <h3 class="title">
-                                            <a href="/detail?id">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
+                                            <a href="/detail/{{$v->wid}}">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
                                         </h3>
                                         <p class="price">{{$v->waresprice}}元</p>
                                         <div class="">
-                                            <a class="btn btn-primary" data-gid="2161000055" href="/comment/comments/{{$v->wid}}">去评价</a>
+                                            <a class="btn btn-primary" data-gid="2161000055" href="/comment/comments/{{$v->id}}">去评价</a>
                                         </div>
                                     </li>
                                     @endif
                                 @endforeach
+                                @endforeach
                             </div>
 
                             <div id="Paris" class="tabcontent">
-                                @foreach($lists as $k=>$v)
+                                @foreach($lists as $k=>$vv)
+                                @foreach($vv as $ke=>$v)
                                     @if($v->iscomment == "2")
                                     <li class="xm-goods-item">
                                         <div class="figure figure-img">
@@ -157,10 +160,11 @@ div.tab button.active {
                                             </a>
                                         </div>
                                         <h3 class="title">
-                                            <a href="/detail?id">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
+                                            <a href="/detail/{{$v->wid}}">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
                                         </h3>
                                         <p class="price">{{$v->waresprice}}元</p>
                                     @endif
+                                @endforeach
                                 @endforeach
                             </div>
                         </div>

@@ -364,7 +364,7 @@ class CartController extends Controller
                 $shopcart->uid = $_SESSION['home_userinfo']->customerid;
                 $shopcart->wid = $id;
                 $shopcart->xiaoji = $request->input("sku_price") * $request->input("num");
-                $shopcart->warespec = $request->input("sku_attr")." ".$request->input("color");
+                $shopcart->warespec = $request->input("sku_attr").",".$request->input("sku_color");
                 $shopcart->spec = $data->waresprice;
                 $shopcart->count = $request->input("num");
                 $res = $shopcart->save();
@@ -610,13 +610,43 @@ class CartController extends Controller
     }
     /**
      * Show the form for editing the specified resource.
-     *
+     *  退款模板
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function money($id)
     {
-        //
+        $doindent = doindent::where("indentbian",$id)->first();
+
+        $carts =goods::join('indentpublic','indentpublic.wid','goodswares.id')->where(['indentpublic.bianhao'=>$id])->get();
+
+        return view('home.user.money',["indent"=>$doindent,"cart"=>$carts]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *  执行退款
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function moneyinsert(Request $request)
+    {
+       // 评论内容
+        $what = $request->input('what');
+        $bianhao = $request->input('bianhao');
+
+        //当前评论内容的用户
+        $uid = $_SESSION['home_userinfo']->customerid;
+
+        $add = DB::table('commentwares')->insert(['commentstr'=>$commentstr,'wid'=>$wid,'uid'=>$uid,'commenttime'=>$start,'commentip'=>$ip,'score'=>$score]);
+
+        if ($add) {
+            echo "<script>alert('申请退款成功');location.href='/user/order';</script>";               
+            exit;
+        }else{
+            echo "<script>alert('申请退款失败');location.href='/user/order';</script>";               
+            exit;
+        }
     }
 
     /**

@@ -360,8 +360,6 @@
 
     $('#goodsDetailAddCartBtn').click(function () {
 
-        // console.log($('#yourformid').serialize());
-//        return false;
         $.ajax({
 
             type: "get",

@@ -91,13 +91,13 @@
                                     <div class="col col-check"> <i class="iconfont icon-checkbox icon-checkbox-selected J_itemCheckbox">√</i>
                                     </div>
                                     <div class="col col-img">
-                                        <a href="//item.mi.com/1151900011.html" target="_blank">
+                                        <a href="/detail/{{$value->id}}" target="_blank">
                                             <img alt="" src="/uploads/{{$value->waresimgpath}}" width="80" height="80"></a>
                                     </div>
                                     <div class="col col-name">
                                         <div class="tags"></div>
                                         <h3 class="name">
-                                            <a href="" target="_blank">{{$value->waresname}}</a>
+                                            <a href="/detail/{{$value->id}}" target="_blank">{{$value->waresname}}</a>
                                         </h3>
                                     </div>
                                     <div class="col col-price">{{$value->waresprice}}元</div>
