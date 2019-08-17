@@ -23,32 +23,25 @@ class IndexController extends Controller
     
     public static function getPidCatesData($pid = 0)
     { 
+        // 查询所有二级分类
         $data = Good::where('goodsmid',$pid)->get();
 
-  // $goodstar = DB::table('goodswares')->where('waresgid',17)->get();
-            // dump($goodstar);
         $sanji = [];
         $erji = [];
         
-        // dd($data);
+        // 遍历二级分类        
         foreach ($data as $k => $v) {
-            // dump($v->id);
+
+            // 二级分类
             $erji[$v->id] = Good::where('goodspath',"0,".$v->id)->get();
-            // dump($erji);
-            // if(empty()){}
             foreach($erji as $ke => $va){
-                // dump($va);
+                // 三级分类
                 foreach ($va as $key => $value) {
-                    # code...
                     $sanji[$v->id] =DB::table('goodswares')->where('waresgid',$value->id)->get();
                 }
             }
-            // $v->sub = self::getPidCatesData($v->id);
-
         }
-        // dump($data);
-        // dump($erji);
-        // dd($sanji);
+        // 返回到调用该静态方法的方法
         return $data;
         return $erji;
         return $sanji;
@@ -64,12 +57,10 @@ class IndexController extends Controller
         $sanji = [];
         $erji = [];
         
-        // dd($data);
+
         foreach ($data as $k => $v) {
-            // dump($v->id);
+
             $erji[$v->id] = Good::where('goodspath',"0,".$v->id)->get();
-            // dump($erji);
-            // if(empty()){}
             foreach($erji as $ke => $va){
                 // dump($va);
                 foreach ($va as $key => $value) {
@@ -95,12 +86,13 @@ class IndexController extends Controller
         $wares = [];
 
         foreach ($good as $k => $v) {
+            // 查询商品
             $wares[] = DB::table('goodswares')->where('waresgid',$v->id)->get();
         }
 
             
 
-    	// 显示模板
+    	// 显示模板并且传输数据
     	return view('home.index.index',['goods'=>$goods,'goodstar'=>$goodstar,'good'=>$good,'wares'=>$wares,'data'=>$data,"erji"=>$erji,"sanji"=>$sanji]);
     }
 

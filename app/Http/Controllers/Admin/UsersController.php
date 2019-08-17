@@ -123,6 +123,8 @@ class UsersController extends Controller
             $user = [];
             $user["customeremail"] = $request->input('customeremail','');
             $user["customerphone"] = $request->input('customerphone','');
+
+            //修改
             $upda = DB::table('usercustomer')->where('customerid', $id)->update($user);
             if($upda){
                 return redirect('admin/users')->with('success','修改成功');

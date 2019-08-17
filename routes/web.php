@@ -20,8 +20,16 @@ Route::post('admin/goods/xiugai','Admin\GoodsController@xiugai');
 
 // 后台 登录 路由
 Route::get('admin/login','Admin\LoginController@login');
+
 // // 后台 执行登录  路由
 Route::post('admin/login/dologin','Admin\LoginController@dologin');
+
+// // 后台 执行注销  路由
+Route::get('admin/exit','Admin\IndexController@exit');
+
+// 后台个人中心
+Route::get('admin/personal','Admin\IndexController@personal');
+
 
 // // 权限页面
 Route::get('admin/allow',function(){ 
@@ -30,12 +38,11 @@ Route::get('admin/allow',function(){
 
 
 // 权限验证的中间件  【allow】
-// Route::group(['middleware'=>['login','allow']],function(){
-Route::group(['middleware'=>['login']],function(){
+Route::group(['middleware'=>['login','allow']],function(){
+// Route::group(['middleware'=>['login']],function(){
 
 	// 后台 首页 的路由
 	Route::get('admin','Admin\IndexController@index');
-	Route::get('admin/personal','Admin\IndexController@personal');
 
 	// 后台 用户 路由
 	Route::resource('admin/users','Admin\UsersController');
@@ -166,3 +173,6 @@ Route::get('/user/attentions/{id}','Home\UserController@attentions');
 
 // 删除关注商品
 Route::get('/user/delatten/{id}','Home\UserController@delatten');
+
+// 确认收货
+Route::post('/user/tuiorder/{id}','Home\UserController@tuiorder');

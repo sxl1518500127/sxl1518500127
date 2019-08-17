@@ -147,7 +147,7 @@
                                 </dd>
                                 <dd class="goods-info-head-userfaq">
                                     <ul>
-                                        <li class="J_scrollHref" data-href="#goodsComment" data-index="2"> <i class="iconfont"></i> 评价<b>3090</b> </li>
+                                        <li class="J_scrollHref" data-href="#goodsComment" data-index="2"> <i class="iconfont"></i> 评价<b>{{$pshu}}</b> </li>
                                         <li class="J_scrollHref " data-href="#goodsComment" data-index="2"> <i class="iconfont"></i> 满意度<b>99.1%</b> </li>
                                     </ul>
                                 </dd>

@@ -254,7 +254,7 @@
                                         <div style="color:#ff6700" class="order-status">
                                             卖家已发货
                                             <span class="order-actions">
-                                                <a class="btn btn-small btn-primary" style="margin-left: 500px" href="/order/pay?id=23" target="_blank">确认收货</a>
+                                                <button class="btn btn-small btn-line-gray" data-toggle="modal" data-target="#myModal">确认收货</button>
                                                 <a class="btn btn-small btn-line-gray" href="user/orderView?id=23">查看物流</a>
                                             </span>
                                         </div>
@@ -310,6 +310,35 @@
                                                 </td>
                                                 
                                             </tr>
+                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+
+                                                                <h2 class="modal-title" id="myModalLabel">
+                                                                    <center>收货请输入密码</center>
+                                                                </h2>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            <form class="mws-form" action="/user/tuiorder/{{$vel->bianhao}}" method="post" enctype="multipart/form-data">
+                                                                {{ csrf_field() }}
+                                                                <div class="dt1">
+                                                                    <p class="dt-p f-l"><center>密码</center><input class="form-control"  name="password" oninput="myFunction()" type="password" value="" /></p>
+                                                                        <div style="clear:both;"></div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                                </button>
+                                                                <button type="Submit" class="btn btn-primary">
+                                                                    提交更改
+                                                                </button>
+                                                            </div>
+                                                            </form>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal -->
+                                                </div>
                                             @endif
                                             @endforeach
                                             @endforeach
@@ -318,6 +347,7 @@
                                 </div>
                                 <div> &nbsp;</div>
                                 @endif
+
                             @endforeach
                         </div>
 
@@ -466,6 +496,23 @@
   </div>
 </div>
 <style>
+input[type="password"],#btn1{
+  box-sizing: border-box;
+  text-align:center;
+  font-size:1.4em;
+  height:2.7em;
+  border-radius:4px;
+  border:1px solid #c8cccf;
+  color:#6a6f77;
+  -web-kit-appearance:none;
+  -moz-appearance: none;
+  display:block;
+  outline:0;
+  padding:0 1em;
+  text-decoration:none;
+  width:100%;
+}
+
 .pagination{
     text-align: center;
 }
@@ -521,5 +568,7 @@ function openCity(evt, cityName) {
 <script src="/h/homes/common/myjs/jquery.min.js"></script>
 <script src="/h/data/indexNav.js"></script>
 <script src="/h/data/indexData.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!-- <script src="/h/homes/common/myjs/common.js"></script> -->
 @endsection

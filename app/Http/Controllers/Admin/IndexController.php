@@ -41,8 +41,15 @@ class IndexController extends Controller
 
     }
 
+    // 后台个人中心页面
     public function personal()
     {
     	return view('admin.index.personal');
+    }
+
+    public function exit()
+    {
+        echo "<script>alert('退出成功');location.href='/admin/login';</script>";
+        $_SESSION = array();
     }
 }

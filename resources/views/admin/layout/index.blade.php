@@ -95,7 +95,8 @@
                         Hello, {{session('admin_userinfo')->adminuname}}
                     </div>
                     <ul>
-                    	<li><a href="/admin/personal">个人中心</a></li>
+                        <li><a href="/admin/personal">个人中心</a></li>
+                    	<li><a href="/admin/exit">注销</a></li>
 
                     </ul>
                 </div>

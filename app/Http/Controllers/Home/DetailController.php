@@ -15,11 +15,13 @@ class DetailController extends Controller
      */
     public function index($id)
     {
+        // 查询一级分类
         $goods = DB::table('goodswares')->where('id',$id)->first();
 
+        // 查询当前商品的规格
         $goodsspec = DB::table('goodsspec')->where('wid',$id)->first();
 
-        // dump($goods);
+        // 判断是否设置商品规格
         if($goodsspec){
             //规格
             $size = $goodsspec->goodspec;
@@ -33,7 +35,6 @@ class DetailController extends Controller
 
         //分割字符串
         $sizes = explode(',',$size);
-
 
         //分割字符串
         $colors = explode(',',$color);
@@ -56,80 +57,10 @@ class DetailController extends Controller
             ->where('goodswares.id',$id)
             ->get();
 
-        // $uid = $_SESSION['home_userinfo']->customerid ? $_SESSION['home_userinfo']->customerid : '1';
-
-        // 查询该商品是否以收藏
-        // $atten = DB::table('storeup')->where('wid',$id)->where('uid',$uid)->get();
-        // dd($atten);
-
+            $shu = DB::table('commentwares')->where('wid',$id)->get();
+            $pshu = count($shu);
 
         //显示模板
-        return view('home.goods.detail',['goods'=>$goods,'sizes'=>$sizes,'colors'=>$colors,'comment'=>$comment,'comments'=>$comments]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('home.goods.detail',['goods'=>$goods,'sizes'=>$sizes,'colors'=>$colors,'comment'=>$comment,'comments'=>$comments,'pshu'=>$pshu]);
     }
 }

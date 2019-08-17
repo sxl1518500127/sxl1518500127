@@ -17,9 +17,12 @@ class GoodsController extends Controller
      */
     public function index()
     {
+        // 查询出商品
         $wares = Goods::find($_GET["wares"]);
         $goods = DB::table('goods')->where('id', $_GET["goods"])->first();
         $spec = DB::table('goodsspec')->where('wid', $_GET["wares"])->first();
+
+        // 显示模板并且传输数据
         return view('admin.cates.update',['wares'=>$wares,"goods"=>$goods,"spec"=>$spec]);
     }
 
@@ -30,10 +33,13 @@ class GoodsController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        //接收产品id
         $id = $request->input('id');
+
+        // 当前id需要添加的子分类
         $goods = DB::table('goods')->where('id', $id)->first();
-        // $goods = Goods::find($id);
+
+        // 显示模板并且传输数据
         return view('admin.cates.add',['id'=>$id,"goods"=>$goods]);
     }
 
@@ -46,9 +52,7 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        // dump($request->input('id',''));
-        // die();
-         // 检查文件上传
+        // 检查文件上传
         if ($request->hasFile('waresimgpath')) {
             // 获取头像
             $path = $request->file('waresimgpath')->store(date('Ymd'));
@@ -57,7 +61,7 @@ class GoodsController extends Controller
         }
         // 开启事务
         DB::beginTransaction();
-        // dd($request->all());
+
         // 实例化模型
         $goods = new Goods;
         $goods->waresgid = $request->input('id','');
@@ -67,10 +71,12 @@ class GoodsController extends Controller
         $goods->waresdescript = $request->input('waresdescript','');
 
         // 添加头像
-        
         $goods->waresimgpath = $path;
+
+        // 执行添加
         $res = $goods->save();
       
+        // 判断是否添加成功
         if($res){
              $id = $goods->waresgid;
             DB::commit();
@@ -84,7 +90,7 @@ class GoodsController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 查询
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -93,21 +99,25 @@ class GoodsController extends Controller
         // 开启事务
         DB::beginTransaction();
 
+        // 查询出当前商品
         $wares = Goods::find($id);
-        // dump($wares->status);
-        // die();
+
+        // 判断是否下架
         if($wares->status == "1"){
             $wares->status = "0";
         }else{
             $wares->status = "1";
         }
+        // 执行添加
         $res = $wares->save();
 
-        ///admin/cates/show?id={{ $v->id }}
+        // 判断是否添加成功
         if($res){
+            // 提交事务
             DB::commit();
             return redirect("admin/cates/show?id=".$wares->waresgid)->with('success', '下架成功');
         }else{
+            // 回滚事务
             DB::rollBack();
             return back()->with('error', '下架失败');
         }
@@ -121,12 +131,13 @@ class GoodsController extends Controller
      */
     public function edit(Request $request,$id)
     {
-        
+        // 查询商品
         $wares = Goods::find($request->wares);
         $goods = DB::table('goods')->where('id', $id)->first();
         $spec = DB::table('goodsspec')->where('wid', $request->wares)->first();
-        return view('admin.cates.play',['wares'=>$wares,"goods"=>$goods,"spec"=>$spec]);
 
+        // 加载视图并传输数据
+        return view('admin.cates.play',['wares'=>$wares,"goods"=>$goods,"spec"=>$spec]);
     }
 
     /**
@@ -138,9 +149,12 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // 判断商品规格
         if($request->spec == "spec"){
 
+            // 查询当前商品的规格
             $spec = DB::table('goodsspec')->where('wid', $id)->first();
+            // 判断是否查询到此商品规格
             if($spec){
                 // 修改规格、
                 $spe = Spec::where('wid',$id)->first();
@@ -155,9 +169,11 @@ class GoodsController extends Controller
             $spe->goodspec = $request->input('goodspec','');
             $res = $spe->save();
             if($res){
+                // 提交事务
                 DB::commit();
                 return redirect('admin/goods/'.$request->input("goods").'/edit?wares='.$id)->with('success', '成功');
             }else{
+                // 回滚事务
                 DB::rollBack();
                 return back()->with('error', '失败');
             }
@@ -175,9 +191,11 @@ class GoodsController extends Controller
             $spe->color = $request->input('color','');
             $res = $spe->save();
             if($res){
+                // 提交事务
                 DB::commit();
                 return redirect('admin/goods/'.$request->input("goods").'/edit?wares='.$id)->with('success','成功');
             }else{
+                // 回滚事务
                 DB::rollBack();
                 return back()->with('error','失败');
             }
@@ -264,7 +282,7 @@ class GoodsController extends Controller
             DB::commit();
             return redirect('admin/cates/show?id='.$wares->waresgid)->with('success', '删除成功');
         }else{
-            
+            // 回滚事务
             DB::rollBack();
             return back()->with('admin/goods/'.$wares->waresgid.'/edit?wares='.$id, '删除失败');
         }

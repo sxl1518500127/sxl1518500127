@@ -73,7 +73,7 @@
                             </ul>
                         </div>
                         <div class="actions clearfix">
-                            <a href="/user/attentions/{{$wares->id}}" class="btn-like J_likeGoods" data-cid="1160800057" onclick="return false;" data-stat-id="ff751b1fdf797192" >
+                            <a href="/user/attentions/{{$wares->id}}" class="btn-like " >
                                 <i class="iconfont"></i>
                                 <span>喜欢</span>
                             </a>

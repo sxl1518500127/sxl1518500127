@@ -28,7 +28,7 @@
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
                                     <li>
-                                        <a href="/user/show">我的订单</a>
+                                        <a href="/user/order">我的订单</a>
                                     </li>
                                     
                                     <li>

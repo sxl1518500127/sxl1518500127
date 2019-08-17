@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Usercustomer;
 use App\Models\goods;
 use DB;
-use Illuminate\Support\Facades\Hash;
+use Hash;
+// use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -32,13 +33,12 @@ class UserController extends Controller
     {
         $id = $_SESSION['home_userinfo']->customerid;
         $arr = DB::table('doindent')->where('uid',$id)->get();
-        // dump($arr);
         $carts = [];
         foreach ($arr as $key => $value) {
             
             $carts[] =goods::join('indentpublic','indentpublic.wid','goodswares.id')->where(['indentpublic.bianhao'=>$value->indentbian])->get();
         }
-        // dump($carts);
+
         //显示模板
         return view('home.user.order',['arr'=>$arr,"carts"=>$carts]);
     }
@@ -111,7 +111,6 @@ class UserController extends Controller
         $id = $_SESSION['home_userinfo']->customerid;
 
         $address = DB::table('customercargo')->where('uid',$id)->count();
-        // dump($address);
 
         if ($address == 3) {
             $this->data['status'] = 3;
@@ -320,7 +319,10 @@ class UserController extends Controller
     // 取消关注
     public function delatten($id)
     {
+        // 获取当前登陆的id
         $uid = $_SESSION['home_userinfo']->customerid;
+
+        // 删除当前用户关注的商品
         $res = DB::table('storeup')->where(['wid'=>$id,'uid'=>$uid])->delete();  
         if ($res) {
             echo "<script>alert('取消关注成功');location.href='/user/attention';</script>";               
@@ -329,6 +331,29 @@ class UserController extends Controller
             echo "<script>alert('取消关注失败');location.href='/';</script>";               
             exit;
         }
+    }
+
+    public function tuiorder(Request $Request,$id)
+    {
+        $uid = $_SESSION['home_userinfo']->customerid;
+
+        $pass = $Request->input('password');
+
+        $user = DB::table('usercustomer')->where(['customerid'=>$uid])->first();
+
+
+        if(hash::check($pass,$user->customerpass)){
+            $ding = DB::table('doindent')->where('indentbian',$id)->update(['indentstatus'=>'4']);
+            if ($ding) {
+            echo "<script>alert('收货成功');location.href='/user/order';</script>";               
+            exit;
+            }
+        }else{
+            echo "<script>alert('密码不正确');location.href='/user/order';</script>";               
+            exit;
+        }
+
+
     }
 
 

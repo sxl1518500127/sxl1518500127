@@ -122,8 +122,8 @@ class AdminController extends Controller
                 return redirect('admin/admins')->with('success', '删除成功');
         }else{
             // 回滚事务
-                DB::rollBack();
-                return back()->with('error', '删除失败');
+             DB::rollBack();
+            return back()->with('error', '删除失败');
         }
         
     }
@@ -146,7 +146,6 @@ class AdminController extends Controller
 
         // 加载模板并且传过去数据
         return view('admin.admins.edit',['user'=>$userinfo,'roles'=>$roles]);
-        // echo "123";
     }
 
     // 执行修改
