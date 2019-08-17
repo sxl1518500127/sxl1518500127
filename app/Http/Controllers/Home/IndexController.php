@@ -20,6 +20,15 @@ class IndexController extends Controller
     	return  $links;
 
 	}
+
+    public static function config(){
+
+        // 获取友情链接信息
+        $config = DB::table('config')->first();
+        // dd($config);
+        return  $config;
+
+    }
     
     public static function getPidCatesData($pid = 0)
     { 
