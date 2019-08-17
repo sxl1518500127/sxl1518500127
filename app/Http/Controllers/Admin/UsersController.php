@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersStore;
 use App\Models\Usercustomer;
 use Hash;
 use DB;
-use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -68,7 +68,6 @@ class UsersController extends Controller
         $usercustomer->customerphone = $request->input('customerphone','');
 
         // 添加头像
-        
         $usercustomer->customerphoto = $path;
         $res = $usercustomer->save();
       
@@ -112,6 +111,8 @@ class UsersController extends Controller
             $user = [];
             $user["customeremail"] = $request->input('customeremail','');
             $user["customerphone"] = $request->input('customerphone','');
+
+            //修改
             $upda = DB::table('usercustomer')->where('customerid', $id)->update($user);
             if($upda){
                 return redirect('admin/users')->with('success','修改成功');

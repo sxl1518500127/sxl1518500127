@@ -12,8 +12,6 @@
                     <tr>
                         <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">退款编号</font></font></td>
                         <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> </font>{{$money->bianhao}}</font></td>
-                        
-                       
                     </tr>
                     <tr>
                         <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">退款申请人</font></font></td>

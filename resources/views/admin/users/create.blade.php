@@ -1,9 +1,6 @@
 @extends('admin.layout.index')
 
-
 @section('content')
-
-
 <!-- 显示 验证错误  开始 -->
 @if (count($errors) > 0)
     <div class="mws-form-message error">
@@ -66,8 +63,6 @@
                         <input type="file" name="customerphoto" value="" class="small">
                     </div>
                 </div>
-                
-                
             </div>
             <div class="mws-button-row">
                 <input type="submit" value="Submit" class="btn btn-danger">

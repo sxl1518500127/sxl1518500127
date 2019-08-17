@@ -1,6 +1,4 @@
 @extends('admin.layout.index')
-
-
 @section('content')
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
@@ -16,7 +14,6 @@
                         {{session('admin_userinfo')->adminuname}}
     				</div>
     			</div>
-
                 <div class="mws-form-row">
                     <label class="mws-form-label">昵称</label>
                     <div class="mws-form-item">
@@ -25,16 +22,12 @@
                     </div>
                 </div>
 
-   
-			
                 <div class="mws-form-row" style="width: 703px;">
                     <label class="mws-form-label">头像</label>
                     <div class="mws-form-item">
                         <img src="/uploads/{{session('admin_userinfo')->adminphoto}}">
                     </div>
                 </div>
-
-    			
     		</div>
     	</form>
     </div>    	

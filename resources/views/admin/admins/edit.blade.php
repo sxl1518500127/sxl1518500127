@@ -15,9 +15,6 @@
     </div>
 @endif
 <!-- 显示 验证错误  结束 -->
-
-
-
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
     	<span>权限修改</span>

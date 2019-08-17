@@ -15,10 +15,13 @@ class DetailController extends Controller
      */
     public function index($id)
     {
+        // 查询一级分类
         $goods = DB::table('goodswares')->where('id',$id)->first();
 
+        // 查询当前商品的规格
         $goodsspec = DB::table('goodsspec')->where('wid',$id)->first();
 
+        // 判断是否设置商品规格
         if($goodsspec){
             //规格
             $size = $goodsspec->goodspec;
@@ -53,8 +56,11 @@ class DetailController extends Controller
             ->take(2)
             ->where('goodswares.id',$id)
             ->get();
+        // 查看评论
+        $shu = DB::table('commentwares')->where('wid',$id)->get();
+        $pshu = count($shu);
 
         //显示模板
-        return view('home.goods.detail',['goods'=>$goods,'sizes'=>$sizes,'colors'=>$colors,'comment'=>$comment,'comments'=>$comments]);
+        return view('home.goods.detail',['goods'=>$goods,'sizes'=>$sizes,'colors'=>$colors,'comment'=>$comment,'comments'=>$comments,'pshu'=>$pshu]);
     }
 }

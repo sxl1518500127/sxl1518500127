@@ -45,19 +45,14 @@
 
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
                                     <li>
                                         <a href="/user/address">收货地址</a>
                                     </li>
                                 </ul>
                             </div>
 
-
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
                                     <li >
                                         <a href="/user/index">我的信息</a>
                                     </li>
@@ -80,7 +75,6 @@
                                 </ul>
                             </div>
                         </div>
-
 
                     </div>
                 </div>
@@ -111,7 +105,6 @@
             </div>
         </div>
     </div>
-
 
 @endsection
 

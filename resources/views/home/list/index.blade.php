@@ -29,7 +29,6 @@
     </div>
 </div>
 
-
 <div class="content">
     <div class="container">
         <div class="order-list-box clearfix">
@@ -49,7 +48,6 @@
                     <input type="hidden" name="order" value="DESC" />
                 </ul>
             </form>
-
         </div>
         <div  class="clearfix">
             <form name="compareForm" action="" method="post" enctype="multipart/form-data" >
@@ -70,21 +68,13 @@
                 </div>
                 @endforeach
             </form>
-
         </div>
 
-
-            <script src="/h/data/indexNav.js"></script>
-            <script src="/h/data/indexData.js"></script>
-
-            <!-- <script src="/h/homes/common/myjs/common.js"></script> -->
         <script type="Text/Javascript" language="JavaScript">
-            <!--
             function selectPage(sel)
             {
                 sel.form.submit();
             }
-            //-->
         </script>
         <script type="text/javascript">
             window.onload = function()
@@ -102,12 +92,10 @@
             var select_spe = "请选择商品属性";
         </script>
         <script type="Text/Javascript" language="JavaScript">
-            <!--
             function selectPage(sel)
             {
                 sel.form.submit();
             }
-            //-->
         </script>
     </div>
 </div>

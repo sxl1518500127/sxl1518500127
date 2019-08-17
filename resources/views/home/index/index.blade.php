@@ -12,51 +12,43 @@
                     <div class="nav">
                         <ul>
                             @foreach($data as $k=>$v)
-                            <li>
-
-                                <a href="">{{ $v->goodsmod }}</a>
-
-                                <div class="pop">
-
-                                    <div style="width:100px" class="left fl pull-left">
-                                    @foreach($erji as $kk=>$vv)
-
-                                        @if($v->id == $kk)
-                                            @foreach($vv as $er)
-                                                <div style="width:800px;height:100px;margin-left:10px">
-                                                    <span >{{$er->goodsmod}}</span>
-                                                    @foreach($sanji as $kkk => $san)
-                                                        @if($er->id == $kkk)
-                                                        <p>
-                                                            @foreach($san as $kkkk => $sano)
-                                                                @if($kkkk <=5)
-                                                                    <div style="width:100px;font-size:12px;float: left;margin-left:10px;margin-top:-30px;" >
-                                                                        <div class="xuangou_left ">
-                                                                            <a href="/detail/{{$sano->id}}">
-                                                                                <span  style="width:100px;height:30px;clear:both;overflow:hidden;">{{$sano->waresname}}</span>
-                                                                                <div class="clear"></div>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
+                                <li>
+                                    <a href="">{{ $v->goodsmod }}</a>
+                                    <div class="pop">
+                                        <div style="width:100px" class="left fl pull-left">
+                                            @foreach($erji as $kk=>$vv)
+                                                @if($v->id == $kk)
+                                                    @foreach($vv as $er)
+                                                        <div style="width:800px;height:100px;margin-left:10px">
+                                                            <span >{{$er->goodsmod}}</span>
+                                                            @foreach($sanji as $kkk => $san)
+                                                                @if($er->id == $kkk)
+                                                                    <p>
+                                                                        @foreach($san as $kkkk => $sano)
+                                                                            @if($kkkk <=5)
+                                                                                <div style="width:100px;font-size:12px;float: left;margin-left:10px;margin-top:-30px;" >
+                                                                                    <div class="xuangou_left ">
+                                                                                        <a href="/detail/{{$sano->id}}">
+                                                                                            <span  style="width:100px;height:30px;clear:both;overflow:hidden;">{{$sano->waresname}}</span>
+                                                                                            <div class="clear"></div>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </p>
+                                                                
                                                                 @endif
                                                             @endforeach
-                                                        </p>
-                                                        
-                                                        @endif
+
+                                                        </div>
                                                     @endforeach
-
-                                                </div>
+                                                @endif
                                             @endforeach
-                                        @endif
-                                    @endforeach
-
+                                        </div>
+                                        <div class="clear"></div>
                                     </div>
-
-                                   
-                                    <div class="clear"></div>
-
-                                </div>
-                            </li>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -221,10 +213,8 @@
                     <!--  这里遍历结束  -->
                         <li class="rainbow-item">
                             <a class="thumb" href="/datail"  target="_blank">
-                                <!-- <img src="http://i3.mifile.cn/a4/40d24892-317d-4883-ad63-647f1b9e3cdf" srcset="" alt="" /> -->
                             </a>
                             <h3 class="title">
-                                <!-- <a href="/datail" target="_blank"></a> -->
                             </h3>
                             <p class="desc"></p>
                             <p class="price"><a href="/home/list_search">更多>>></a></p>

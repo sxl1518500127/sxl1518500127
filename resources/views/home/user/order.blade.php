@@ -102,14 +102,11 @@
                                             等待付款
                                             <span class="order-actions">
                                                 <a class="btn btn-small btn-primary" style="margin-left: 640px" href="/order/getPay?indentbian={{$v->indentbian}}" target="_blank">立即支付</a>
-                                                <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id=23">订单详情</a>-->
                                             </span>
                                         </div>
                                         <p style="color:#ff6700" class="order-desc J_deliverDesc">
                                             现在支付，预计2-3天送达
                                             <span class="beta">wait</span>
-
-                                            
                                         </p>
                                     </div>
                                     <table class="order-detail-table">
@@ -138,27 +135,27 @@
                                         </thead>
                                         <tbody>
                                             @foreach($carts as $key => $vlaue )
-                                            @foreach($vlaue as $kee => $vel)
-                                            @if($vel->bianhao == $v->indentbian )
-                                            <tr>
-                                                <td class="order-items">
-                                                    <ul class="goods-list">
-                                                        <li>
-                                                            <div class="figure figure-thumb">
-                                                                <a href="/detail/{{$vel->wid}}" target="_blank">
-                                                                    <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
-                                                            </div>
-                                                            <p class="name">
-                                                                <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
-                                                            </p>
-                                                            <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            @endif
-                                            @endforeach
+                                                @foreach($vlaue as $kee => $vel)
+                                                    @if($vel->bianhao == $v->indentbian )
+                                                    <tr>
+                                                        <td class="order-items">
+                                                            <ul class="goods-list">
+                                                                <li>
+                                                                    <div class="figure figure-thumb">
+                                                                        <a href="/detail/{{$vel->wid}}" target="_blank">
+                                                                            <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
+                                                                    </div>
+                                                                    <p class="name">
+                                                                        <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
+                                                                    </p>
+                                                                    <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    @endif
+                                                @endforeach
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -179,7 +176,6 @@
                                             等待发货
                                             <span class="order-actions">
                                                 <a class="btn btn-small btn-primary" style="margin-left: 640px" href="/order/money/{{$v->indentbian}}" target="_blank">退款</a>
-                                                <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id=23">订单详情</a>-->
                                             </span>
                                         </div>
                                         <p style="color:#ff6700" class="order-desc J_deliverDesc">
@@ -213,27 +209,27 @@
                                         </thead>
                                         <tbody>
                                             @foreach($carts as $key => $vlaue )
-                                            @foreach($vlaue as $kee => $vel)
-                                            @if($vel->bianhao == $v->indentbian )
-                                            <tr>
-                                                <td class="order-items">
-                                                    <ul class="goods-list">
-                                                        <li>
-                                                            <div class="figure figure-thumb">
-                                                                <a href="/detail/{{$vel->wid}}" target="_blank">
-                                                                    <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
-                                                            </div>
-                                                            <p class="name">
-                                                                <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
-                                                            </p>
-                                                            <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            @endif
-                                            @endforeach
+                                                @foreach($vlaue as $kee => $vel)
+                                                    @if($vel->bianhao == $v->indentbian )
+                                                    <tr>
+                                                        <td class="order-items">
+                                                            <ul class="goods-list">
+                                                                <li>
+                                                                    <div class="figure figure-thumb">
+                                                                        <a href="/detail/{{$vel->wid}}" target="_blank">
+                                                                            <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
+                                                                    </div>
+                                                                    <p class="name">
+                                                                        <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
+                                                                    </p>
+                                                                    <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    @endif
+                                                @endforeach
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -252,15 +248,16 @@
                                         <div style="color:#ff6700" class="order-status">
                                             卖家已发货
                                             <span class="order-actions">
-                                                <a class="btn btn-small btn-primary" style="margin-left: 500px" href="/order/pay?id=23" target="_blank">确认收货</a>
+
+                                                <button class="btn btn-small btn-line-gray" data-toggle="modal" data-target="#myModal">确认收货</button>
+                          
                                                 <a class="btn btn-small btn-line-gray" href="/user/log/{{$v->indentbian}}">查看物流</a>
+                       
                                             </span>
                                         </div>
                                         <p style="color:#ff6700" class="order-desc J_deliverDesc">
                                             快递员正在向你飞奔而来
                                             <span class="beta">wait</span>
-
-                                            
                                         </p>
                                     </div>
                                     <table class="order-detail-table">
@@ -289,27 +286,56 @@
                                         </thead>
                                         <tbody>
                                             @foreach($carts as $key => $vlaue )
-                                            @foreach($vlaue as $kee => $vel)
-                                            @if($vel->bianhao == $v->indentbian )
-                                            <tr>
-                                                <td class="order-items">
-                                                    <ul class="goods-list">
-                                                        <li>
-                                                            <div class="figure figure-thumb">
-                                                                <a href="/detail/{{$vel->wid}}" target="_blank">
-                                                                    <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
-                                                            </div>
-                                                            <p class="name">
-                                                                <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
-                                                            </p>
-                                                            <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            @endif
-                                            @endforeach
+                                                @foreach($vlaue as $kee => $vel)
+                                                    @if($vel->bianhao == $v->indentbian )
+                                                    <tr>
+                                                        <td class="order-items">
+                                                            <ul class="goods-list">
+                                                                <li>
+                                                                    <div class="figure figure-thumb">
+                                                                        <a href="/detail/{{$vel->wid}}" target="_blank">
+                                                                            <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
+                                                                    </div>
+                                                                    <p class="name">
+                                                                        <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
+                                                                    </p>
+                                                                    <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+
+                                                                        <h2 class="modal-title" id="myModalLabel">
+                                                                            <center>收货请输入密码</center>
+                                                                        </h2>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                    <form class="mws-form" action="/user/tuiorder/{{$vel->bianhao}}" method="post" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        <div class="dt1">
+                                                                            <p class="dt-p f-l"><center>密码</center><input class="form-control"  name="password" oninput="myFunction()" type="password" value="" /></p>
+                                                                                <div style="clear:both;"></div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                                        </button>
+                                                                        <button type="Submit" class="btn btn-primary">
+                                                                            提交更改
+                                                                        </button>
+                                                                    </div>
+                                                                    </form>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal -->
+                                                        </div>
+                                                    @endif
+                                                @endforeach
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -321,43 +347,43 @@
 
                         <div id="bbb" class="tabcontent">
                             <h3>评价</h3>
-                                @foreach($arr as $k=>$v)
+                            @foreach($arr as $k=>$v)
                                 @if($v->indentstatus =="4")
-                                @foreach($carts as $key => $vlaue )
-                                @foreach($vlaue as $kee => $vel)
-                                @if($vel->bianhao == $v->indentbian )
-                                <div style="border:1px solid #ff6700" class="order-detail">
-                                    <div class="order-summary">小米专卖店 > 已收货</div>
-                                    <table class="order-detail-table">
-                                        <thead></thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="order-items">
-                                                    <ul class="goods-list">
-                                                        <li>
-                                                            <div class="figure figure-thumb">
-                                                                <a href="/detail/{{$vel->wid}}" target="_blank">
-                                                                    <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
-                                                            </div>
-                                                            <p class="name">
-                                                                <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
-                                                            </p>
-                                                            <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                <td class="order-actions">
-                                                    <a class="btn btn-small btn-primary"  href="/comment/comments/{{$vel->id}}" target="_blank">评价</a>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div> &nbsp;</div>
-                                @endif
-                                @endforeach
-                                @endforeach
+                                    @foreach($carts as $key => $vlaue )
+                                        @foreach($vlaue as $kee => $vel)
+                                            @if($vel->bianhao == $v->indentbian )
+                                            <div style="border:1px solid #ff6700" class="order-detail">
+                                                <div class="order-summary">小米专卖店 > 已收货</div>
+                                                <table class="order-detail-table">
+                                                    <thead></thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="order-items">
+                                                                <ul class="goods-list">
+                                                                    <li>
+                                                                        <div class="figure figure-thumb">
+                                                                            <a href="/detail/{{$vel->wid}}" target="_blank">
+                                                                                <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
+                                                                        </div>
+                                                                        <p class="name">
+                                                                            <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
+                                                                        </p>
+                                                                        <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td class="order-actions">
+                                                                <a class="btn btn-small btn-primary"  href="/comment/comments/{{$vel->id}}" target="_blank">评价</a>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div> &nbsp;</div>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
                                 @endif
                             @endforeach
                         </div>
@@ -370,14 +396,13 @@
                                     <div class="order-summary">
                                         <div style="color:#ff6700" class="order-status">
                                             退款
-
                                             <span class="order-actions">
                                                 <a class="btn btn-small btn-primary" style="margin-left: 640px" href="/order/moneystatus/{{$v->indentbian}}" >查看详情</a>
                                             </span>
                                         </div>
                                         <p style="color:#ff6700" class="order-desc J_deliverDesc">
                                             仅退款
-                                            <span class="beta">out</span>                                            
+                                            <span class="beta">out</span>                             
                                         </p>
                                     </div>
                                     <table class="order-detail-table">
@@ -406,27 +431,26 @@
                                         </thead>
                                         <tbody>
                                             @foreach($carts as $key => $vlaue )
-                                            @foreach($vlaue as $kee => $vel)
-                                            @if($vel->bianhao == $v->indentbian )
-                                            <tr>
-                                                <td class="order-items">
-                                                    <ul class="goods-list">
-                                                        <li>
-                                                            <div class="figure figure-thumb">
-                                                                <a href="/detail/{{$vel->wid}}" target="_blank">
-                                                                    <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
-                                                            </div>
-                                                            <p class="name">
-                                                                <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
-                                                            </p>
-                                                            <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                
-                                            </tr>
-                                            @endif
-                                            @endforeach
+                                                @foreach($vlaue as $kee => $vel)
+                                                    @if($vel->bianhao == $v->indentbian )
+                                                    <tr>
+                                                        <td class="order-items">
+                                                            <ul class="goods-list">
+                                                                <li>
+                                                                    <div class="figure figure-thumb">
+                                                                        <a href="/detail/{{$vel->wid}}" target="_blank">
+                                                                            <img src="/uploads/{{$vel->waresimgpath}}" width="80" height="80" alt=""></a>
+                                                                    </div>
+                                                                    <p class="name">
+                                                                        <a target="_blank" href="/detail/{{$vel->wid}}">{{$vel->waresname}}&nbsp;&nbsp;&nbsp;{{$vel->specstr}}</a>
+                                                                    </p>
+                                                                    <p class="price">{{$vel->waresprice}}元 × {{$vel->num}} = {{$vel->waresprice*$vel->num}}</p>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    @endif
+                                                @endforeach
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -449,9 +473,6 @@
     <i class="arrow arrow-b"></i>
 </div>
 
-
-
-
 <div class="modal modal-appcode modal-hide fade" id="J_modalAppcode">
   <a class="close" data-dismiss="modal" href="javascript: void(0);"><i class="iconfont">&#xe602;</i></a>
   <div class="modal-header">
@@ -463,6 +484,23 @@
   </div>
 </div>
 <style>
+input[type="password"],#btn1{
+  box-sizing: border-box;
+  text-align:center;
+  font-size:1.4em;
+  height:2.7em;
+  border-radius:4px;
+  border:1px solid #c8cccf;
+  color:#6a6f77;
+  -web-kit-appearance:none;
+  -moz-appearance: none;
+  display:block;
+  outline:0;
+  padding:0 1em;
+  text-decoration:none;
+  width:100%;
+}
+
 .pagination{
     text-align: center;
 }
@@ -516,7 +554,6 @@ function openCity(evt, cityName) {
 }
 </script>
 <script src="/h/homes/common/myjs/jquery.min.js"></script>
-<script src="/h/data/indexNav.js"></script>
-<script src="/h/data/indexData.js"></script>
-<!-- <script src="/h/homes/common/myjs/common.js"></script> -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 @endsection

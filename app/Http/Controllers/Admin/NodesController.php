@@ -11,20 +11,19 @@ class NodesController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 权限列表
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-              $data = DB::table('node')->get();
-
+        $data = DB::table('node')->get();
         // 显示数据
         return view('admin.nodes.index',['data'=>$data]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 权限模板
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -35,8 +34,7 @@ class NodesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * 进行添加权限
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -46,8 +44,6 @@ class NodesController extends Controller
         $data = $request->except('_token');
 
         $data['nodecroller'] = $data['nodecroller'].'controller';
-
-
 
         $res = DB::table('node')->insert($data);
 

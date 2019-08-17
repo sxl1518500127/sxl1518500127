@@ -20,9 +20,6 @@
 <script type="text/javascript" src="/h/homes/common/js/jquery.SuperSlide.js"></script>
 <script type="text/javascript" src="/h/homes/common/js/xiaomi_common.js"></script>
 
-
-
-
 <div id="main" class="layout">
     <div class="nl-content">
         <div class="nl-logo-area">

@@ -10,19 +10,16 @@ use DB;
 
 class ConfigController extends Controller
 {
-    //
+    //配置
     public function index()
     {
         $configs = Config::first();
-        // $configs = DB::table('config')->get();
+
         return view('admin.Config.index',['configs'=>$configs]);
         
     }
 
-    public function edit(Request $request,$id)
-    {
-        dd($request->inpuit());
-    }
+    //修改配置
     public function update(Request $request)
     {
         // 检查文件上传

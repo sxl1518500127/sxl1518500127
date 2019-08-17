@@ -156,9 +156,6 @@
     </div>
 </div>
 <script type="text/javascript">
-;
-
-
     function sendMobileCode()
     {
         // 获取用户的验证码
@@ -178,7 +175,6 @@
         let time = null;
 
         if ($('#dyMobileButton').html() == "获取" ) {
-            // console.log($('#dyMobileButton').html());
             let i = 60;
             time = setInterval(function(){
                 i--;
@@ -190,15 +186,11 @@
                     $('#dyMobileButton').html('获取');
                     $('#dyMobileButton').css('color','black');
                     clearInterval(time);
-
                 }
             },1000);
 
-
-
         // 发送Ajax  发送验证码
             $.get('/register/show',{phone},function(res){
-                // console.log(res);
                 if (res.error_code == 0) {
                     alert('发送成功!');
                 }else{

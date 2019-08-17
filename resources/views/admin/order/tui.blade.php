@@ -7,7 +7,6 @@
     height: 80px;
     float: left;
 }
-
 </style>
     <div class="mws-panel grid_8">
         <div class="mws-panel-header">
@@ -20,7 +19,6 @@
                     <tr>
                         <td><font style="vertical-adivgn: inherit;"><font style="vertical-adivgn: inherit;">退款编号</font></font></td>
                         <td><font style="vertical-adivgn: inherit;"><font style="vertical-adivgn: inherit;"> </font>{{$money->bianhao}}</font></td>
-                        
                        
                     </tr>
                     <tr>

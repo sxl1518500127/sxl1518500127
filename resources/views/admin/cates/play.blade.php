@@ -6,13 +6,11 @@
             <span>{{$goods->goodsmod}}--  >  --<d width="20px">  {{$wares->waresname}}</d></span><a style="float:right;margin-top:-20px" href="/admin/cates/show?id={{$goods->id}}">返回上一层</a>
         </div>
         <div class="mws-panel-body no-padding">
-            
             <table class="mws-table">
                 <tbody>
                     <tr>
                         <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">种类名称</font></font></td>
                         <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$goods->goodsmod}}</font></font></td>
-                       
                     </tr>
                     <tr>
                         <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品名称</font></font></td>
@@ -24,20 +22,20 @@
                     <tr>
                         <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品型号</font></font></td>
 
-                            <form class="mws-form" action="/admin/goods/{{$wares->id}}" method="post">
-                                {{csrf_field()}}
-                                {{ method_field('PUT') }}
-                                <td>
-                                    @if($spec == null)
-                                        <input type="text" class="small" title="" name="goodspec" value="">
-                                    @else
-                                        <input type="text" class="small" title="" name="goodspec" value="{{$spec->goodspec}}">
-                                    @endif
-                                    <input type="hidden" name="goods" value="{{$goods->id}}">
-                                    <input type="hidden" name="spec" value="spec">
-                                    <input type="submit" value="编辑" class="btn btn-success">
-                                </td>
-                            </form>
+                        <form class="mws-form" action="/admin/goods/{{$wares->id}}" method="post">
+                            {{csrf_field()}}
+                            {{ method_field('PUT') }}
+                            <td>
+                                @if($spec == null)
+                                    <input type="text" class="small" title="" name="goodspec" value="">
+                                @else
+                                    <input type="text" class="small" title="" name="goodspec" value="{{$spec->goodspec}}">
+                                @endif
+                                <input type="hidden" name="goods" value="{{$goods->id}}">
+                                <input type="hidden" name="spec" value="spec">
+                                <input type="submit" value="编辑" class="btn btn-success">
+                            </td>
+                        </form>
                     </tr>
 
                     <tr>

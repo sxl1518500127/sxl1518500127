@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *订单列表
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -26,8 +26,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     *  修改订单
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -37,7 +36,6 @@ class OrderController extends Controller
 
         // 实例化模型
         $doindent = doindent::where("indentbian",$request->input("indentbian"))->update(["indentphoto"=>$request->input("indentphoto"),"indentaddres"=>$request->input("indentaddres")]);
-
    
         if($doindent){
             DB::commit();
@@ -49,8 +47,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     *  订单详情
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -64,7 +61,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
      * 订单显示
      * @param  int  $id
      * @return \Illuminate\Http\Response

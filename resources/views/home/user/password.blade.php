@@ -5,9 +5,7 @@
 <link rel="stylesheet" href="/h/homes/common/css/main.min.css" />
 <link rel="stylesheet" href="/h/homes/common/css/address-edit.min.css" />
 @endsection
-
 @section('content')
-
     <div class="breadcrumbs">
         <div class="container">
             <a href='//www.mi.com/index.html'>首页</a>
@@ -45,19 +43,13 @@
 
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
                                     <li>
                                         <a href="/user/address">收货地址</a>
                                     </li>
                                 </ul>
                             </div>
-
-
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
                                     <li>
                                         <a href="/user/index">我的信息</a>
                                     </li>
@@ -66,16 +58,12 @@
 
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
                                     <li class="active">
                                         <a href="/user/index">修改密码</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -87,32 +75,32 @@
                             </div>
                             <div class="box-bd">
 
-                                        <div class="personal-r f-r">
-            <div class="personal-right">
-  
-                    <form class="mws-form" action="/user/newpass" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                                <div class="personal-r f-r">
+                                    <div class="personal-right">
+                          
+                                            <form class="mws-form" action="/user/newpass" method="post" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
 
-                    <div class="dt1">
-                        <p class="dt-p f-l">原 密 码 ：<input id="myInput" name="pass" type="password" oninput="myFunction()" value="" /></p>
-                            <div style="clear:both;"></div>
-                    </div>
+                                            <div class="dt1">
+                                                <p class="dt-p f-l">原 密 码 ：<input id="myInput" name="pass" type="password" oninput="myFunction()" value="" /></p>
+                                                    <div style="clear:both;"></div>
+                                            </div>
 
-                    <div class="dt1">
-                        <p class="dt-p f-l">新 密 码 ：<input id="myInput" name="newpass" type="password" oninput="myFunction()" value="" /></p>
-                            <div style="clear:both;"></div>
-                    </div>
+                                            <div class="dt1">
+                                                <p class="dt-p f-l">新 密 码 ：<input id="myInput" name="newpass" type="password" oninput="myFunction()" value="" /></p>
+                                                    <div style="clear:both;"></div>
+                                            </div>
 
-                    <div class="dt1">
-                        <p class="dt-p f-l">确认密码：<input id="myInput" name="newpasss" type="password" oninput="myFunction()" value="" /></p>
-                            <div style="clear:both;"></div>
-                    </div>
-  
-                    <input type="submit" id="baocun" style="display:none" class="btn btn-success" value="保存" />
-                    </form>
-                </div>
-            </div>
-        </div>
+                                            <div class="dt1">
+                                                <p class="dt-p f-l">确认密码：<input id="myInput" name="newpasss" type="password" oninput="myFunction()" value="" /></p>
+                                                    <div style="clear:both;"></div>
+                                            </div>
+                          
+                                            <input type="submit" id="baocun" style="display:none" class="btn btn-success" value="保存" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -141,7 +129,4 @@ function myFunction() {
 <script src="/h/homes/common/myjs/jquery.min.js"></script>
 <script src="/h/homes/common/js/address_all.js"></script>        
 <script src="/h/homes/common/myjs/address.js"></script>
-<script src="/h/data/indexNav.js"></script>
-<script src="/h/data/indexData.js"></script>
-<!-- <script src="/h/homes/common/myjs/common.js"></script> -->
 @endsection

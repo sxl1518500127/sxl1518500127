@@ -52,7 +52,6 @@ class CartController extends Controller
 
         }
         $listItem = trim($listItem,',');
-        // 
         $priceCount = self::priceCount();
         //接受搜索//购物车商品数量
         $count = CartController::countCar();
@@ -114,10 +113,7 @@ class CartController extends Controller
         echo '<script>'; echo 'alert("成功加入购物车");'; echo "location.href='/home/list_search'"; echo '</script>';
     }
 
-   
-
     //删除delete购物车数据
-    //
     public function delete(Request $request)
     {
         $alltotal  = 0;
@@ -127,7 +123,6 @@ class CartController extends Controller
             unset($_SESSION["car"][$request->input('id')]);
             $key = array_search($request->input('id'),$listItem);
             unset($listItem[$key]);
-
         }
 
         $skuid = $request->input('id');
@@ -135,7 +130,6 @@ class CartController extends Controller
 
             $uid = $_SESSION['home_userinfo']->customerid;
 
-            
             $cart = shopcart::where('uid',$uid)->where('wid',$skuid)->first();
 
             if($cart->delete()){
@@ -157,9 +151,7 @@ class CartController extends Controller
             die;
         }
     }
-
    
-
     //计算总计
     public function priceCount()
     {
@@ -328,7 +320,6 @@ class CartController extends Controller
                 $count += $value->num;
             }
         }
-
         return  $count;
     }
 
@@ -389,8 +380,6 @@ class CartController extends Controller
         $this->data['msg'] = '成功加入购物车';
         echo json_encode($this->data);
         die;
-
-
     }
 
     public function addproduct(Request $request)
@@ -544,7 +533,6 @@ class CartController extends Controller
                 echo json_encode($this->data);
                 die;
             }
-            
         }
         
         //计算总价

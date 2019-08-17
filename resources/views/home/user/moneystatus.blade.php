@@ -59,7 +59,6 @@
         <div class="section-header clearfix">
             <h3 class="title">退款详情 &nbsp;&nbsp;&nbsp;<span>&nbsp;&nbsp;&nbsp;</span> 订单编号:{{$money->bianhao}} &nbsp;&nbsp;&nbsp;&nbsp;  退款金额:{{$money->jiage}}元 <span>&nbsp;&nbsp;&nbsp;</span> 申请人 : {{$user->customername}}<span>&nbsp;&nbsp;&nbsp;</span>申请人手机号:{{$user->customerphone}} <div style="float:right;margin-left: 30px"><a href="/user/order">返回>></a></div></h3>  
            
-
         </div>
         <div>
             <h2 class="title"><a href="" ></a></h2>
@@ -85,11 +84,7 @@
                 </div>
             </div>
             @endforeach
-      
-       
-
         </div>
     </div>
-
 </form>
 </body>

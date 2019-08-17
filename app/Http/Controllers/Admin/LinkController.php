@@ -14,18 +14,15 @@ class LinkController extends Controller
     public function index(Request $request)
     {
         //获取数据
-        // $links = Link::where('friendlylink','linkname');
         $links = DB::table('friendlylink')->get();
-        // dd($links);
         
     	return view('admin.Link.index',['links'=>$links]);
     }
 
+    //添加友情链接
     public function store(Request $request)
     {
-    	// dump($request->input());
     	//获取网址
-    	
     	$input= $request->input();
     	
     	// 正则表达式
@@ -42,38 +39,30 @@ class LinkController extends Controller
         }else{
         	return back()->with('error','请添加正确的网址!');
         }
-
-
     }
 
+    //进行友情链接添加模板
     public function show()
     {	
 
     	return view('admin.Link.linkadd');
-
     }
 
-
-   public function destroy($id)
+    // 删除友情链接
+    public function destroy($id)
     {
         // 开启事务
         DB::beginTransaction(); 
 
-        // $id =$request->input('id');
         $res = DB::table('friendlylink')->where('id' ,$id)->delete();   
         if($res){
             //提交事务
             DB::commit();
             return redirect('admin/link')->with('success', '删除成功');
         }else{
-
             // 回滚事务
-            
             DB::rollBack();
             return back()->with('error', '删除失败');
         }
-        
     }
-
-
 }

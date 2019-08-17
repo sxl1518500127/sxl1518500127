@@ -11,17 +11,21 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+// 后台执行修改商品
 Route::post('admin/goods/xiugai','Admin\GoodsController@xiugai');
-
 
 // 后台 登录 路由
 Route::get('admin/login','Admin\LoginController@login');
+
 // // 后台 执行登录  路由
 Route::post('admin/login/dologin','Admin\LoginController@dologin');
+
+// // 后台 执行注销  路由
+Route::get('admin/exit','Admin\IndexController@exit');
+
+// 后台个人中心
+Route::get('admin/personal','Admin\IndexController@personal');
+
 
 // // 权限页面
 Route::get('admin/allow',function(){ 
@@ -30,12 +34,11 @@ Route::get('admin/allow',function(){
 
 
 // 权限验证的中间件  【allow】
-// Route::group(['middleware'=>['login','allow']],function(){
-Route::group(['middleware'=>['login']],function(){
+Route::group(['middleware'=>['login','allow']],function(){
+// Route::group(['middleware'=>['login']],function(){
 
 	// 后台 首页 的路由
 	Route::get('admin','Admin\IndexController@index');
-	Route::get('admin/personal','Admin\IndexController@personal');
 
 	// 后台 用户 路由
 	Route::resource('admin/users','Admin\UsersController');
@@ -46,8 +49,6 @@ Route::group(['middleware'=>['login']],function(){
 	// 后台商品添加
 	Route::resource('admin/goods','Admin\GoodsController');
 
-	// 后台执行修改商品
-
 
 	// 后台 分类 路由
 	Route::resource('admin/link','Admin\LinkController');
@@ -55,7 +56,7 @@ Route::group(['middleware'=>['login']],function(){
 	// 后台 订单 路由
 	Route::resource('admin/order','Admin\OrderController');
 
-	// 退款订单列表
+	// 退款
 	Route::get('admin/money','Admin\OrderController@money');
 	Route::get('admin/tui/{id}','Admin\OrderController@tui');
 	Route::get('admin/showtui/{id}','Admin\OrderController@showtui');
@@ -136,10 +137,6 @@ Route::get('/user/address','Home\UserController@address');
 // 前台评论
 Route::get('/user/comment','Home\UserController@comment');
 
-
-// 商品列表
-// Route::get('/home/list/{id}','Home\ListController@index');
-
 // 商品搜索
 Route::get('/home/list_search','Home\ListController@eidt');
 
@@ -190,3 +187,6 @@ Route::get('/user/attentions/{id}','Home\UserController@attentions');
 
 // 删除关注商品
 Route::get('/user/delatten/{id}','Home\UserController@delatten');
+
+// 确认收货
+Route::post('/user/tuiorder/{id}','Home\UserController@tuiorder');

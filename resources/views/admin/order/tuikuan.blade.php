@@ -7,7 +7,6 @@
     height: 80px;
     float: left;
 }
-
 </style>
     <div class="mws-panel grid_8">
         <div class="mws-panel-header">
@@ -24,14 +23,9 @@
                                 退款成功
                             <a href="/admin/tui/{{$id}}"><div style="margin-left:400px;margin-top:30px;  width:200px;height:60px;background: #ff9a02;border-radius:30px; border:1px solid blue;"><p style="margin-top: 20px">返回订单列表</p></div></a>
                         </td>
-
-                       
                     </tr>
-                  
-                    
                 </tbody>
             </table>
-                  
         </div>
     </div>
 @endsection

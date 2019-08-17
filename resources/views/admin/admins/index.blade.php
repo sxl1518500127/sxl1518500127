@@ -8,8 +8,6 @@
     <input type="submit"class="btn btn-danger"  value="搜索">
 </form>
 
-
-
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
         <span><i class="icon-table"></i> 成员列表</span>

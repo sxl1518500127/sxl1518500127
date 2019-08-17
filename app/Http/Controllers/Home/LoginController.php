@@ -16,10 +16,8 @@ class LoginController extends Controller
     // 加载登陆页面
     public function login()
     {
-
-     return view('home.login.login');
+        return view('home.login.login');
     }
-
 
     //加载登陆
     public function dologin(Request $request)
@@ -69,8 +67,6 @@ class LoginController extends Controller
                 }
             }
         }
-
-        
         //跳转
         return redirect('/');
 

@@ -64,10 +64,6 @@ class AdminController extends Controller
         // 管理员头像
     	$admin->adminphoto = $path;
 
-        // if ($admin->adminuname && $admin->adminname && $admin->adminpass && $admin->adminphoto) {
-        //     return back()->with('error', '不可为空');
-        // }
-
         // 查询账号是否重复
         $cs = DB::table('user')->where('adminuname',$admin->adminuname)->get();
 
@@ -122,8 +118,8 @@ class AdminController extends Controller
                 return redirect('admin/admins')->with('success', '删除成功');
         }else{
             // 回滚事务
-                DB::rollBack();
-                return back()->with('error', '删除失败');
+             DB::rollBack();
+            return back()->with('error', '删除失败');
         }
         
     }
@@ -146,7 +142,6 @@ class AdminController extends Controller
 
         // 加载模板并且传过去数据
         return view('admin.admins.edit',['user'=>$userinfo,'roles'=>$roles]);
-        // echo "123";
     }
 
     // 执行修改

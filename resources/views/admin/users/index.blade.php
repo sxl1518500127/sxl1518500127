@@ -1,8 +1,6 @@
 @extends('admin.layout.index')
 
-
 @section('content')
-
 
 <form action="/admin/users" method="get">
     关键字
@@ -10,8 +8,6 @@
 
     <input type="submit"class="btn btn-danger"  value="搜索">
 </form>
-
-
 
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
@@ -55,7 +51,7 @@
         </table>
             
         <div id="page_page">
-                {{ $users->appends($requests)->links() }}
+            {{ $users->appends($requests)->links() }}
 
         </div>
 

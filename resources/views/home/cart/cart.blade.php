@@ -2,8 +2,6 @@
 <link rel="icon" href="/h/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="/h/homes/common/css/base.min.css" />
 <link rel="stylesheet" href="/h/homes/common/css/cart.min.css" />
-
-
 <script src="/h/homes/common/myjs/jquery.min.js"></script>
 <script src="/h/homes/common/myjs/cart.js"></script>
 <script>
@@ -25,28 +23,24 @@
             <span class="sep">|</span>
             <a  rel="nofollow" class="link" href="/register" >注册</a>
         </div>
-       @else
-       
+        @else
         <div class="topbar-info" id="J_userInfo">
-                <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/index" target="_blank">
-                        <span class="name">{{$_SESSION["home_userinfo"]->customername}}</span> <i class="iconfont"></i>
-                    </a>
-                    <ul class="user-menu" style="display: none;">
-                        <li>
-                            <a rel="nofollow" href="/portal">个人中心</a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
-                        </li>
-                        <!-- <li>
-                            <a rel="nofollow" href="http://order.mi.com/user/favorite" target="_blank">我的喜欢</a>
-                        </li> -->
-                        <li>
-                            <a rel="nofollow" href="/user/logout">退出登录</a>
-                        </li>
-                    </ul>
-                </span>
+            <span class="user">
+                <a rel="nofollow" class="user-name" href="/user/index" target="_blank">
+                    <span class="name">{{$_SESSION["home_userinfo"]->customername}}</span> <i class="iconfont"></i>
+                </a>
+                <ul class="user-menu" style="display: none;">
+                    <li>
+                        <a rel="nofollow" href="/portal">个人中心</a>
+                    </li>
+                    <li>
+                        <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
+                    </li>
+                    <li>
+                        <a rel="nofollow" href="/user/logout">退出登录</a>
+                    </li>
+                </ul>
+            </span>
             <span class="sep">|</span>
             <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
         </div>
@@ -84,7 +78,7 @@
                     <div class="col col-action">操作</div>
                 </div>
                 <div class="list-body" id="J_cartListBody">
-                        @foreach($data as $value)
+                    @foreach($data as $value)
                         <div class="item-box" data-cid="{{$value->id}}">
                             <div class="item-table J_cartGoods" data-sid="{{$value->id}}" >
                                 <div class="item-row clearfix">
@@ -126,41 +120,39 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-                    </div>
-                </div>
-
-
-                <div class="cart-bar clearfix" id="J_cartBar">
-                    <div class="section-left">
-                        <a href="/" class="back-shopping J_goShoping"  >继续购物</a>
-                        @if(empty($_SESSION["home_login"]))
-                        <span class="total-price">
-                            <a href="/home/login">
-                              未登录,不能下订单和保存商品数量哦!
-                            </a>
-                        </span>
-                        @endif
-                    </div>
-
-                    <span class="total-price">
-                        合计（不含运费）： <em id="J_cartTotalPrice">{{$priceCount}}</em>
-                        元
-                    </span>
-                     @if(empty($_SESSION["home_login"]))
-
-                    <a href="/login" class="btn btn-a btn btn-primary btn-disabled" id="J_goCheckout">去结算</a>
-
-                    @else
-                    <a href="javascript:void(0);" class="btn btn-a btn btn-primary" id="J_goCheckout">去结算</a>
-                    @endif
-                    <div class="no-select-tip hide" id="J_noSelectTip">
-                        请勾选需要结算的商品
-                        <i class="arrow arrow-a"></i>
-                        <i class="arrow arrow-b"></i>
-                    </div>
+                    @endforeach
                 </div>
             </div>
+            <div class="cart-bar clearfix" id="J_cartBar">
+                <div class="section-left">
+                    <a href="/" class="back-shopping J_goShoping"  >继续购物</a>
+                    @if(empty($_SESSION["home_login"]))
+                    <span class="total-price">
+                        <a href="/home/login">
+                          未登录,不能下订单和保存商品数量哦!
+                        </a>
+                    </span>
+                    @endif
+                </div>
+
+                <span class="total-price">
+                    合计（不含运费）： <em id="J_cartTotalPrice">{{$priceCount}}</em>
+                    元
+                </span>
+                 @if(empty($_SESSION["home_login"]))
+
+                <a href="/login" class="btn btn-a btn btn-primary btn-disabled" id="J_goCheckout">去结算</a>
+
+                @else
+                <a href="javascript:void(0);" class="btn btn-a btn btn-primary" id="J_goCheckout">去结算</a>
+                @endif
+                <div class="no-select-tip hide" id="J_noSelectTip">
+                    请勾选需要结算的商品
+                    <i class="arrow arrow-a"></i>
+                    <i class="arrow arrow-b"></i>
+                </div>
+            </div>
+        </div>
 
         @endif
         <div class="cart-recommend hide" id="J_historyRecommend"></div>
@@ -189,6 +181,5 @@
                 </ul>
             </div>
         </div>
-
     </div>
 </div>

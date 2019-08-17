@@ -28,7 +28,6 @@
                 </tr>
             </thead>
             @foreach($doinent as $key => $value)
-            <!-- {{dump($value)}} -->
             <tr style="font-size:12px">
                 <td>{{ (($doinent->currentPage()-1)*12)+($key+1)}}</td>
                 <td>{{$value->indentname}}</td>
@@ -65,8 +64,6 @@
                         <a href="/admin/doindents/{{$value->indentbian}}" class="btn-min btn-primary">编辑</a>
                         <a href="/admin/store/{{$value->indentbian}}" class="btn-min btn-success">查看</a>
                         
-
-
                 </td>
             </tr>
             @endforeach

@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)http://order.mi.com/buy/checkout?r=80242.1469596349 -->
 <html lang="zh-CN" xml:lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-
     <title>回帖</title>
     <meta name="viewport" content="width=1226">
-
     <link type="text/css" rel="stylesheet" href="/h/homes/common/demo/css/application.css">
     <script type="text/javascript" src="/h/homes/common/demo/js/jquery.min.js"></script>
     <script type="text/javascript" src="/h/homes/common/lib/jquery.raty.min.js"></script>
     <link href="/h/homes/common//favicon.ico" rel="shortcut icon" type="image/x-icon">
-
     <link rel="shortcut icon" href="http://s01.mifile.cn/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://s01.mifile.cn/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/h/homes/common/css/base.min.css">
@@ -57,7 +53,7 @@
 </head>
 <body>
 <form action="/comment/insert" method="post">
-                        {{ csrf_field() }}
+    {{ csrf_field() }}
 
     <div class="section section-goods">
         <div class="section-header clearfix">
@@ -90,8 +86,7 @@
             <ul class="goods-list clearfix" id="J_goodsList">
                 <textarea name="commentstr" title="">外形如何,使用如何,写下您的感受吧...</textarea>
             </ul>
-        @endforeach
-
+            @endforeach
         </div>
     </div>
     <input type="hidden" name="wid" value="{{$v->wid}}">
@@ -103,14 +98,9 @@
     </div>
 </form>
 </body>
-
 <script type="text/javascript">
     $(function() {
-
-
-
         $.fn.raty.defaults.path = '/h/homes/common/lib/img';
-
         $('#precision-demo').raty({
             path      : '/h/homes/common/demo/img',
             cancelOff : 'cancel-off-big.png',
@@ -183,8 +173,7 @@
 
         $('#set-action').on('click', function() {
             var options = $('#set-function-demo').val(),
-                    command = "$('#function-demo').raty('set', " + options + ");";
-
+            command = "$('#function-demo').raty('set', " + options + ");";
             eval(command);
         });
 

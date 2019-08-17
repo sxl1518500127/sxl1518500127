@@ -10,8 +10,6 @@ use DB;
 
 class ListController extends Controller
 {
-
-
 	// 加载页面
     public function index()
     {
@@ -34,7 +32,6 @@ class ListController extends Controller
 		$this->cws->set_ignore(true);
 	} 
 
-
 	public function dataWord(){
 		$data = DB::table('goodswares')->get();
 		foreach($data as $k => $v){
@@ -45,7 +42,6 @@ class ListController extends Controller
 			
 		}
 	}
-    //
    
     public function eidt(Request $request){
     	
@@ -90,7 +86,6 @@ class ListController extends Controller
 		return $list;
 		
     }
-
 
     public function show($id)
     {

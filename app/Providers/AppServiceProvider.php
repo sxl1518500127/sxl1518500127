@@ -17,8 +17,10 @@ class AppServiceProvider extends ServiceProvider
     {
        
         View::share('links',IndexController::links());
+        View::share('config',IndexController::config());
         View::share('data',IndexController::getPidCatesData());
         View::share('erji',IndexController::getPidCatesData());
+
     }
 
     /**

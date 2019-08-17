@@ -9,7 +9,7 @@ use DB;
 class RolesController extends Controller
 {
 
-        public static function controllernames()
+    public static function controllernames()
     {
         return [
             'userscontroller'=>'用户管理',
@@ -32,8 +32,6 @@ class RolesController extends Controller
             $temp['nodename'] = $value->nodename;
             $arr[$value->nodecroller][] = $temp;
         }
-
-      
         return $arr;
     }
 
@@ -61,7 +59,6 @@ class RolesController extends Controller
         $nodes = self::nodes();
         $controllernames = self::controllernames();
     
-       
         // 加载页面
         return view('admin.roles.create',['nodes'=>$nodes,'controllernames'=>$controllernames]);
 
@@ -77,13 +74,9 @@ class RolesController extends Controller
     {
         //
         DB::beginTransaction();
-
         $rname = $request->input('rname');
         $nid = $request->input('nid');
-
         $rid = DB::table('roles')->insertGetId(['roles'=>$rname]);
-
-
 
         if($rid){
             foreach ($nid as $key => $value) {
@@ -95,7 +88,6 @@ class RolesController extends Controller
             }
             
         }
-
 
         DB::commit();
         return redirect('admin/roles')->with('success','添加成功');

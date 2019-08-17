@@ -1,18 +1,13 @@
 @extends('admin.layout.index')
-
 @section('content')
-
-
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
         <span>网站配置</span>
     </div>
     <div class="mws-panel-body no-padding">
-
         <form class="mws-form" action="/admin/config/update" method="post" enctype="multipart/form-data" >
             {{ csrf_field() }}
             {{ method_field('PUT') }}
-            
             <div class="mws-form-inline">
                 <div class="mws-form-row">
                     <label class="mws-form-label">网页名称</label>
@@ -20,9 +15,7 @@
                         <input type="text"  name="conname" value="{{ $configs->conname }}" class="small">
                     </div>
                 </div>
-                    <input type="hidden"  name="id" value="{{ $configs->id }}" class="small">
-
-        
+                <input type="hidden"  name="id" value="{{ $configs->id }}" class="small">
                 <div class="mws-form-row">
                     <label class="mws-form-label">网页关键字</label>
                     <div class="mws-form-item">

@@ -105,8 +105,6 @@ div.tab button.active {
 
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
                                     <li>
                                         <a href="/user/password">修改密码</a>
                                     </li>
@@ -128,43 +126,43 @@ div.tab button.active {
 
                             <div id="London" style="display:block" class="tabcontent">
                                 @foreach($lists as $k=>$vv)
-                                @foreach($vv as $ke=>$v)
-                                    @if($v->iscomment == "1")
-                                    <li class="xm-goods-item">
-                                        <div class="figure figure-img">
-                                            <a href="/detail/{{$v->wid}}">
-                                                <img src="/uploads/{{$v->waresimgpath}}" />
-                                            </a>
-                                        </div>
-                                        <h3 class="title">
-                                            <a href="/detail/{{$v->wid}}">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
-                                        </h3>
-                                        <p class="price">{{$v->waresprice}}元</p>
-                                        <div class="">
-                                            <a class="btn btn-primary" data-gid="2161000055" href="/comment/comments/{{$v->id}}">去评价</a>
-                                        </div>
-                                    </li>
-                                    @endif
-                                @endforeach
+                                    @foreach($vv as $ke=>$v)
+                                        @if($v->iscomment == "1")
+                                        <li class="xm-goods-item">
+                                            <div class="figure figure-img">
+                                                <a href="/detail/{{$v->wid}}">
+                                                    <img src="/uploads/{{$v->waresimgpath}}" />
+                                                </a>
+                                            </div>
+                                            <h3 class="title">
+                                                <a href="/detail/{{$v->wid}}">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
+                                            </h3>
+                                            <p class="price">{{$v->waresprice}}元</p>
+                                            <div class="">
+                                                <a class="btn btn-primary" data-gid="2161000055" href="/comment/comments/{{$v->id}}">去评价</a>
+                                            </div>
+                                        </li>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </div>
 
                             <div id="Paris" class="tabcontent">
                                 @foreach($lists as $k=>$vv)
-                                @foreach($vv as $ke=>$v)
-                                    @if($v->iscomment == "2")
-                                    <li class="xm-goods-item">
-                                        <div class="figure figure-img">
-                                            <a href="/detail/{{$v->wid}}">
-                                                <img src="/uploads/{{$v->waresimgpath}}" />
-                                            </a>
-                                        </div>
-                                        <h3 class="title">
-                                            <a href="/detail/{{$v->wid}}">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
-                                        </h3>
-                                        <p class="price">{{$v->waresprice}}元</p>
-                                    @endif
-                                @endforeach
+                                    @foreach($vv as $ke=>$v)
+                                        @if($v->iscomment == "2")
+                                        <li class="xm-goods-item">
+                                            <div class="figure figure-img">
+                                                <a href="/detail/{{$v->wid}}">
+                                                    <img src="/uploads/{{$v->waresimgpath}}" />
+                                                </a>
+                                            </div>
+                                            <h3 class="title">
+                                                <a href="/detail/{{$v->wid}}">{{$v->waresname}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{$v->specstr}}</a>
+                                            </h3>
+                                            <p class="price">{{$v->waresprice}}元</p>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </div>
                         </div>
@@ -193,7 +191,5 @@ function openCity(evt, cityName) {
 }
 </script>
 <script src="/h/homes/common/myjs/jquery.min.js"></script>
-<script src="/h/data/indexNav.js"></script>
-<script src="/h/data/indexData.js"></script>
 <script src="/h/homes/common/myjs/common.js"></script>
 @endsection

@@ -1,12 +1,9 @@
 @extends('admin.layout.index')
-
 @section('content')
-
 
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
         <span><i class="icon-table"></i><<<a href="/admin/cates">返回上一层</a> &nbsp;  {{$goods->goodsmod}}列表 <a style="margin-left:700px" href="/admin/goods/create?id={{$goods->id}}">添加{{$goods->goodsmod}}</a></span>
-        <!-- <span></span> -->
     </div>
     <div class="mws-panel-body no-padding">
         <table class="mws-table">
@@ -48,15 +45,9 @@
                     </td>
                 </tr>
                 @endforeach
-            
             </tbody>
-            <tfoot>
-
-
-            </tfoot>
         </table>
         <div id="page_page">
-
             {{ $wares->appends($requests)->links() }}
         </div>
     </div>

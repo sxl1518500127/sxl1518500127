@@ -1,26 +1,19 @@
 @extends('home.layout.index')
 
 @section('css')
-
-
     <script type="text/javascript" async="" src="http://a.stat.xiaomi.com/js/mstr.js?mstpid=a5543b161410aa8b-3306e9b581810c0b&amp;mid=&amp;phpsessid=&amp;mstuid=1469708547901_2895&amp;sessionId=1073614414&amp;muuid=&amp;mucid=&amp;mstprevpid=a5543b161410aa8b-3306e9b581810c0b&amp;lastsource=dami.com&amp;timestamp=1469723055285&amp;domain=.mi.com&amp;screen=1366*768&amp;language=zh-CN&amp;vendor=Google%20Inc.&amp;platform=Win32&amp;target=javascript%3Avoid(0)%3B&amp;prevtarget=javascript%3Avoid(0)%3B&amp;pid_loc=pcpid&amp;mstprev_pid_loc=pcpid&amp;domain_id=100&amp;pageid=a5543b161410aa8b&amp;curl=http%3A%2F%2Fsearch.mi.com%2Fsearch_%25E6%2589%258B%25E6%259C%25BA&amp;xmv=1469708547901_2895_1469721279109&amp;v=1.4.10&amp;vuuid=FBLQD4TR22D9FM9B"></script>
 
     <script type="text/javascript" async="" src="/h/homes/common/js/unjcV2.js"></script>
     <script type="text/javascript" async="" src="/h/homes/common/js/jquery-1.9.1.min.js"></script>
-
     <script src="/h/homes/common/js/base.min.js"></script>
-
     <script type="text/javascript" async="" src="/h/homes/common/js/jquery.statData.min.js"></script>
     <script type="text/javascript" async="" src="/h/homes/common/js/xmst.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-
     <title>小米商城</title>
-
     <link rel="shortcut icon" href="http://s01.mifile.cn/favicon.ico" type="image/x-icon">
     <link rel="icon" href="http://s01.mifile.cn/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/h/homes/common/css/base.min.css">
     <link rel="stylesheet" href="/h/homes/common/css/list.min.css">
-
     <script type="text/javascript">var _head_over_time = (new Date()).getTime();</script>
 
 @endsection
@@ -31,9 +24,7 @@
         <a href="/" data-stat-id="b0bcd814768c68cc" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-b0bcd814768c68cc&#39;, &#39;//www.mi.com/index.html&#39;, &#39;pcpid&#39;]);">首页</a><span class="sep">&gt;</span><a href="http://search.mi.com/search_%E6%89%8B%E6%9C%BA" data-stat-id="c80dafcf0a25c533" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-c80dafcf0a25c533&#39;, &#39;//search.mi.com/search_手机&#39;, &#39;pcpid&#39;]);">全部结果</a><span class="sep">&gt;</span><span>手机</span>
     </div>
 </div>
-
 <!-- 分类条 -->
-
 <div class="content">
     <div class="container">
         <div class="order-list-box clearfix">
@@ -73,7 +64,7 @@
                             </ul>
                         </div>
                         <div class="actions clearfix">
-                            <a href="/user/attentions/{{$wares->id}}" class="btn-like J_likeGoods" data-cid="1160800057" onclick="return false;" data-stat-id="ff751b1fdf797192" >
+                            <a href="/user/attentions/{{$wares->id}}" class="btn-like " >
                                 <i class="iconfont"></i>
                                 <span>喜欢</span>
                             </a>

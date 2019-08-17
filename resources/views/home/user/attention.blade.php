@@ -87,31 +87,31 @@ div.tab button.active {
                             </div>
                         </div>
 
-                            <div class="box-bd">
-                                <ul class="uc-nav-list">
-                                    <li>
-                                        <a href="/user/index">我的信息</a>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="box-bd">
+                            <ul class="uc-nav-list">
+                                <li>
+                                    <a href="/user/index">我的信息</a>
+                                </li>
+                            </ul>
+                        </div>
 
-                            <div class="box-bd">
-                                <ul class="uc-nav-list">
-                                    <li class="active">
-                                        <a href="/user/attention">我的关注</a>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="box-bd">
+                            <ul class="uc-nav-list">
+                                <li class="active">
+                                    <a href="/user/attention">我的关注</a>
+                                </li>
+                            </ul>
+                        </div>
 
-                            <div class="box-bd">
-                                <ul class="uc-nav-list">
+                        <div class="box-bd">
+                            <ul class="uc-nav-list">
 
-                                    
-                                    <li>
-                                        <a href="/user/password">修改密码</a>
-                                    </li>
-                                </ul>
-                            </div>
+                                
+                                <li>
+                                    <a href="/user/password">修改密码</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="span16">
@@ -122,33 +122,30 @@ div.tab button.active {
                             <div class="box-bd">
                                 <div class="xm-goods-list-wrap">
                                     @if(count($lists) > 0)
-                                    <ul class="xm-goods-list clearfix">
-                                    @foreach($lists as $k=>$v)
+                                        <ul class="xm-goods-list clearfix">
+                                            @foreach($lists as $k=>$v)
+                                                <li class="xm-goods-item">
+                                                    <div class="figure figure-img">
+                                                        <a href="/detail/{{$v->id}}" target="_blank">
+                                                            <img src="/uploads/{{$v->waresimgpath}}" />
+                                                        </a>
+                                                        <a href="/user/delatten/{{$v->id}}">取消关注</a>
+                                                    </div>
+                                                    <h3 class="title">
+                                                        <a href="/detail/{{$v->id}}">{{$v->waresname}}</a>
+                                                    </h3>
+                                                    <p class="price">{{$v->waresprice}}元</p>
+                                                    <div>
+                                                        <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/detail/{{$v->id}}">去购买</a>
+                                                        <br>
+                                                    </div>
+                                                </li>
+                                            @endforeach
 
-                                        <li class="xm-goods-item">
-                                            <div class="figure figure-img">
-                                                <a href="/detail/{{$v->id}}" target="_blank">
-                                                    <img src="/uploads/{{$v->waresimgpath}}" />
-                                                </a>
-                                                <a href="/user/delatten/{{$v->id}}">取消关注</a>
-                                            </div>
-                                            <h3 class="title">
-                                                <a href="/detail/{{$v->id}}">{{$v->waresname}}</a>
-                                            </h3>
-                                            <p class="price">{{$v->waresprice}}元</p>
-                                            <div>
-                                                <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/detail/{{$v->id}}">去购买</a>
-                                                <br>
-                                            </div>
-                                        </li>
-                                    @endforeach
-
-                                    </ul>
-                                   @else
+                                        </ul>
+                                    @else
                                         <b style="color:red">暂无关注</b>
                                     @endif
-
-
                                 </div>
                             </div>
                         </div>
@@ -177,7 +174,5 @@ function openCity(evt, cityName) {
 }
 </script>
 <script src="/h/homes/common/myjs/jquery.min.js"></script>
-<script src="/h/data/indexNav.js"></script>
-<script src="/h/data/indexData.js"></script>
 <script src="/h/homes/common/myjs/common.js"></script>
 @endsection

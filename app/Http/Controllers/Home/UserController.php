@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Usercustomer;
 use App\Models\goods;
 use DB;
-use Illuminate\Support\Facades\Hash;
+use Hash;
 
 class UserController extends Controller
 {
@@ -315,7 +315,10 @@ class UserController extends Controller
     // 取消关注
     public function delatten($id)
     {
+        // 获取当前登陆的id
         $uid = $_SESSION['home_userinfo']->customerid;
+
+        // 删除当前用户关注的商品
         $res = DB::table('storeup')->where(['wid'=>$id,'uid'=>$uid])->delete();  
         if ($res) {
             echo "<script>alert('取消关注成功');location.href='/user/attention';</script>";               
@@ -326,8 +329,33 @@ class UserController extends Controller
         }
     }
 
+    // 查看物流
     public function log($id)
     {
         return view("home.user.log",["id"=>$id]);
+    }
+
+    // 确认收货
+    public function tuiorder(Request $Request,$id)
+    {
+        $uid = $_SESSION['home_userinfo']->customerid;
+
+        $pass = $Request->input('password');
+
+        $user = DB::table('usercustomer')->where(['customerid'=>$uid])->first();
+
+
+        if(hash::check($pass,$user->customerpass)){
+            $ding = DB::table('doindent')->where('indentbian',$id)->update(['indentstatus'=>'4']);
+            if ($ding) {
+            echo "<script>alert('收货成功');location.href='/user/order';</script>";               
+            exit;
+            }
+        }else{
+            echo "<script>alert('密码不正确');location.href='/user/order';</script>";               
+            exit;
+        }
+
+
     }
 }

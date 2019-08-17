@@ -15,6 +15,7 @@ class LoginController extends Controller
     	return view('admin.login.login');
     }
 
+    // 登录判断
     public function dologin(Request $request)
    	{
    		// 获取信息
@@ -24,13 +25,14 @@ class LoginController extends Controller
 
    		$userinfo = DB::table('user')->where('adminuname',$adminuname)->first();
 
+      // 验证用户名正确
    		if(!$userinfo){
   			echo "<script>alert('用户名或者密码错误');location.href='/admin/login';</script>";   			
      			exit;
    		}
 
    		// 验证密码正确
-   		if ($adminpass !== $userinfo->adminpass) {
+   		if (!Hash::check($adminpass, $userinfo->adminpass)) {
    		    echo "<script>alert('用户名或者密码错误');location.href='/admin/login';</script>";   			
       			exit;
    		}
@@ -62,7 +64,6 @@ class LoginController extends Controller
 
          // 将权限压入session
          session(['admin_nodes'=>$nodes_data]);
-
 
    		// 跳转
    		return redirect('/admin');
