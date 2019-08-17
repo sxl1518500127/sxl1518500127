@@ -55,6 +55,12 @@ Route::group(['middleware'=>['login']],function(){
 	// 后台 订单 路由
 	Route::resource('admin/order','Admin\OrderController');
 
+	// 退款订单列表
+	Route::get('admin/money','Admin\OrderController@money');
+	Route::get('admin/tui/{id}','Admin\OrderController@tui');
+	Route::get('admin/showtui/{id}','Admin\OrderController@showtui');
+	Route::get('order/tuikuan/{id}','Admin\OrderController@tuikuan');
+
 	//后台发货 
 	Route::get('admin/fahuo/{id}','Admin\OrderController@fahuo');
 
@@ -101,15 +107,33 @@ Route::get('/home/addproduct','Home\CartController@addproduct');
 Route::post('/cart/delete','Home\CartController@delete');
 Route::get('/addcart','Home\CartController@addcart');
 Route::post('/order/postcon','Home\CartController@postcon');
+
+// 退款
+Route::post('/cart/moneyinsert','Home\CartController@moneyinsert');
 Route::get('/order/confirm','Home\CartController@confirm');
+
+//前台 退款详情
+Route::get('/order/moneystatus/{id}','Home\CartController@moneystatus');
 Route::get('/order/getPay','Home\CartController@getPay');
+
+//退款页面
 Route::get('/order/money/{id}','Home\CartController@money');
+
+// 支付成功
 Route::get('/order/success','Home\CartController@success');
 
 // 前台 用户gerenzhongxin 路由
 Route::get('/user/index','Home\UserController@index');
+
+//前台订单
 Route::get('/user/order','Home\UserController@order');
+
+Route::get('/user/log/{id}','Home\UserController@log');
+
+// 前台地址
 Route::get('/user/address','Home\UserController@address');
+
+// 前台评论
 Route::get('/user/comment','Home\UserController@comment');
 
 

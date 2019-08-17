@@ -9,6 +9,7 @@ use App\Http\Controllers\Home\CartController;
 use App\Models\shopcart;
 use App\Models\goods;
 use App\Models\coustomercargo;
+use App\Models\money;
 use App\Models\doindent;
 use App\Models\indentpublic;
 
@@ -21,11 +22,6 @@ class CartController extends Controller
      */
     public function index()
     {
-        // dump($_SESSION['home_login']);
-        // dump($_SESSION['home_userinfo']);
-        // // $_SESSION["car"] =null;
-        // dump($_SESSION["car"]);
-        // dump($_SESSION["car"]);
         $listItem ='';
         if(empty($_SESSION['home_login'])){
 
@@ -78,7 +74,6 @@ class CartController extends Controller
             // 获取商品
             $data = DB::table("goodswares")->where("id",$id)->first();
             $data->num  = 1;
-            // $data = DB::table("shopcart")->insert(["uid"->$_SESSION["home"]["user"],"wid"=>$id]);
             $data->xiaoji = $data->waresprice * $data->num;
             $data->spec = $data->waresprice;
             $_SESSION["car"][$id] = $data;
@@ -103,9 +98,6 @@ class CartController extends Controller
             $_SESSION["car"][$id]->num = $_SESSION["car"][$id]->num+1;
             $_SESSION["car"][$id]->xiaoji = ($_SESSION["car"][$id]->num * $_SESSION["car"][$id]->waresprice);
             if(!empty($_SESSION['home_login'])){
-
-                // dump( $_SESSION["car"][$id]->id);
-                // dump( $_SESSION["car"][$id]->num);
                 DB::beginTransaction();
                 $shopcart = DB::table("shopcart")->where("uid",$_SESSION['home_userinfo']->customerid)->where("wid",$_SESSION["car"][$id]->id)->update(["xiaoji"=>$_SESSION["car"][$id]->xiaoji,"count"=>$_SESSION["car"][$id]->num]);
                 if(!$shopcart){
@@ -234,7 +226,11 @@ class CartController extends Controller
 
         if($res){
             foreach ($carts as $key => $value) {
-                
+                $goods = goods::find($value->wid);
+                $goods->waressellcount = $goods->waressellcount + $value->count;
+                $goods->waresstock = $goods->waresstock - $value->count;
+                $aa = $goods->save();
+
                 //订单详情
                 $public = new indentpublic;
                 $public->wid = $value->wid;
@@ -250,8 +246,6 @@ class CartController extends Controller
             echo json_encode($this->data);
             die;
         }
-        // $listItem = $request->input('listItem');
-      
 
         //将订单商品信息存入到session中
         if(empty($listItem)){
@@ -278,14 +272,11 @@ class CartController extends Controller
         $address = $ad->cargoaddres;
         //获取购物商品的skuid
         $listItem = $_SESSION['listItem'];
-        // dump($listItem);
         
         $carts = [];
         $wares = [];
         foreach ($listItem as $key => $value) {
             //获取购物车信息
-            // $carts[$value] = DB::table("shopcart")->where('uid',$uid)->where('wid',$value)->first();
-
             $carts[] =goods::join('shopcart','shopcart.wid','goodswares.id')->where(['goodswares.id'=>$value,'shopcart.uid'=>$uid,'shopcart.wid'=>$value])->get();
 
             // 删除购物车  清除session
@@ -340,6 +331,7 @@ class CartController extends Controller
 
         return  $count;
     }
+
     /**
      * Store a newly created resource in storage.
      * 购物车详情到购物车
@@ -354,7 +346,6 @@ class CartController extends Controller
             // 获取商品
             $data = DB::table("goodswares")->where("id",$id)->first();
             $data->num  = 1;
-            // $data = DB::table("shopcart")->insert(["uid"->$_SESSION["home"]["user"],"wid"=>$id]);
             $data->xiaoji = $data->waresprice * $data->num;
             $data->spec = $data->waresprice;
             $_SESSION["car"][$id] = $data;
@@ -404,8 +395,6 @@ class CartController extends Controller
 
     public function addproduct(Request $request)
     {
-        //获取用户id
-
         //查找商品
         $sku = goods::find($request->input('id'));
         //判断是超过库存
@@ -458,14 +447,11 @@ class CartController extends Controller
                 $alltotal  = 0;
 
                 if(!empty($skus)){
-
                     foreach ($skus as $kk => $vv) {
                        if($vv != $request->input('id')){
-
                             $cart11 = shopcart::where('uid',$uid)->where('wid',$vv)->first();
                             $alltotal += $cart11->spec * ($cart11->count); 
                        }
-                        
                     }
                 }else{
                     $alltotal  = 0;
@@ -483,12 +469,10 @@ class CartController extends Controller
                     $this->totalPriceByDB($uid,$skus,$alltotal,$sku,$cart,$request);
                 }
 
-                // $this->data['alltotal'] = number_format($sku->waresprice*$request->input('num'),2);
                 $this->data['status'] = 0;
                 $this->data['xiaoji'] = number_format($sku->waresprice*$request->input('num'),2);//价格小计
                 $this->data['price'] = number_format($sku->waresprice,2);//当前价格
                 $this->data['msg'] = 'ok';
-                // dump($this->data);
                 echo json_encode($this->data); 
                 die;
             }else{
@@ -545,17 +529,13 @@ class CartController extends Controller
 
     }
 
-
     /**
      * 通过session获取购物车选择商品总价
      */
     private function totalPriceBySession($skus,$alltotal,$sku,$request)
     {
         foreach($skus as $k=>$v){
-            
-
             if(!empty($sku_2)){
-
                 $alltotal += session('cart')[$v][1]*$sku_2->price;
                
             }else{
@@ -593,9 +573,9 @@ class CartController extends Controller
     {
         //查询订单数据库
         $order = doindent::where('indentbian',$request->input('indentbian'))->first();
-        // $inep = indentpublic::where('bianhao',$request->input('indentbian'))->get();
+
         $inep =goods::join('indentpublic','indentpublic.wid','goodswares.id')->where(['indentpublic.bianhao'=>$request->input('indentbian')])->get();
-        // dd($inep);
+       
         //查询
         $beginTime = strtotime($order->created_at);
         $endTime = $beginTime + (48*3600);
@@ -608,6 +588,7 @@ class CartController extends Controller
                 'countTime'=>$countTime,
             ]);
     }
+
     /**
      * Show the form for editing the specified resource.
      *  退款模板
@@ -631,27 +612,50 @@ class CartController extends Controller
      */
     public function moneyinsert(Request $request)
     {
-       // 评论内容
+       // 退款原因
         $what = $request->input('what');
         $bianhao = $request->input('bianhao');
+        $add = DB::table('doindent')->where("indentbian",$bianhao)->first();
+        $d = DB::table('doindent')->where("indentbian",$bianhao)->update(["indentstatus"=>"5"]);
 
         //当前评论内容的用户
         $uid = $_SESSION['home_userinfo']->customerid;
 
-        $add = DB::table('commentwares')->insert(['commentstr'=>$commentstr,'wid'=>$wid,'uid'=>$uid,'commenttime'=>$start,'commentip'=>$ip,'score'=>$score]);
-
-        if ($add) {
+        $money = new money;
+        $money->what = $what; 
+        $money->bianhao = $bianhao; 
+        $money->uid = $uid; 
+        $money->jiage = $add->indentprice; 
+        $res = $money->save();
+        if ($res) {
             echo "<script>alert('申请退款成功');location.href='/user/order';</script>";               
             exit;
         }else{
             echo "<script>alert('申请退款失败');location.href='/user/order';</script>";               
             exit;
         }
+    } 
+
+    /**
+     * Show the form for editing the specified resource.
+     *  退款轉台
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function moneystatus($id)
+    {
+        $money = money::where("bianhao",$id)->first();
+
+        $user = DB::table("usercustomer")->where("customerid",$money->uid)->first();
+
+        $carts =goods::join('indentpublic','indentpublic.wid','goodswares.id')->where(['indentpublic.bianhao'=>$id])->get();
+
+        return view('home.user.moneystatus',["money"=>$money,"cart"=>$carts,"user"=>$user]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
+     *  支付成功
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -684,8 +688,5 @@ class CartController extends Controller
         }else{
             return back()->with('error', '支付失败');
         }
-        //
     }
-
-    
 }

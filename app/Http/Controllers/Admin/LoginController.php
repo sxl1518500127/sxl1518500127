@@ -17,18 +17,6 @@ class LoginController extends Controller
 
     public function dologin(Request $request)
    	{
-   		// dd($request);
-   		/*$arr = [
-   			['uname'=>'zhangsan','upass'=>Hash::make('123123')],
-   			['uname'=>'lisi','upass'=>Hash::make('123123')],
-   			['uname'=>'admin','upass'=>Hash::make('123123')],
-   		];
-
-   		foreach ($arr as $key => $value) {
-   			DB::table('admin_users')->insert($value);
-   		}*/
-
-   		
    		// 获取信息
    		$adminuname = $request->input('adminuname','');
    		$adminpass = $request->input('adminpass','');
@@ -36,14 +24,9 @@ class LoginController extends Controller
 
    		$userinfo = DB::table('user')->where('adminuname',$adminuname)->first();
 
-   		// if($adminpass == $userinfo->adminpass){
-   		// 	dd('123');
-   		// }
-   		// dump($adminpass);
-   		// dd($userinfo);
    		if(!$userinfo){
-			echo "<script>alert('用户名或者密码错误');location.href='/admin/login';</script>";   			
-   			exit;
+  			echo "<script>alert('用户名或者密码错误');location.href='/admin/login';</script>";   			
+     			exit;
    		}
 
    		// 验证密码正确

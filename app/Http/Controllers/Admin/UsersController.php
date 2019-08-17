@@ -83,17 +83,6 @@ class UsersController extends Controller
     }
 
     /**
-     * 显示详情页面
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * 显示修改页面
      *
      * @param  int  $id
@@ -175,11 +164,11 @@ class UsersController extends Controller
         if($res){
             //提交事务
             DB::commit();
-                return redirect('admin/users')->with('success', '删除成功');
+            return redirect('admin/users')->with('success', '删除成功');
         }else{
             // 回滚事务
-                DB::rollBack();
-                return back()->with('error', '删除失败');
+            DB::rollBack();
+            return back()->with('error', '删除失败');
         }
     }
 }

@@ -158,8 +158,13 @@
                         </ul>
                     </li>
 
-                    <li><a href="/admin/order"><i class="icon-calendar"></i> 订单管理 </a></li>
-
+                    <li class="active">
+                        <a href="#"><i class="icon-users"></i> 订单管理</a>
+                        <ul>
+                            <li><a href="/admin/order">订单管理 </a></li>
+                            <li><a href="/admin/money">退款管理</a></li>
+                        </ul>
+                    </li>
 
                     <li class="active">
                         <a href="#"><i class="icon-users"></i> 角色管理</a>

@@ -185,8 +185,6 @@
                                         <p style="color:#ff6700" class="order-desc J_deliverDesc">
                                             商家会尽快给你发货
                                             <span class="beta">wait</span>
-
-                                            
                                         </p>
                                     </div>
                                     <table class="order-detail-table">
@@ -255,7 +253,7 @@
                                             卖家已发货
                                             <span class="order-actions">
                                                 <a class="btn btn-small btn-primary" style="margin-left: 500px" href="/order/pay?id=23" target="_blank">确认收货</a>
-                                                <a class="btn btn-small btn-line-gray" href="user/orderView?id=23">查看物流</a>
+                                                <a class="btn btn-small btn-line-gray" href="/user/log/{{$v->indentbian}}">查看物流</a>
                                             </span>
                                         </div>
                                         <p style="color:#ff6700" class="order-desc J_deliverDesc">
@@ -371,16 +369,15 @@
                                 <div style="border:1px solid #ff6700" class="order-detail">
                                     <div class="order-summary">
                                         <div style="color:#ff6700" class="order-status">
-                                            退款成功
+                                            退款
+
                                             <span class="order-actions">
-                                                <a class="btn btn-small btn-primary" style="margin-left: 640px" href="/order/pay?id=23" target="_blank">查看详情</a>
+                                                <a class="btn btn-small btn-primary" style="margin-left: 640px" href="/order/moneystatus/{{$v->indentbian}}" >查看详情</a>
                                             </span>
                                         </div>
                                         <p style="color:#ff6700" class="order-desc J_deliverDesc">
                                             仅退款
-                                            <span class="beta">out</span>
-
-                                            
+                                            <span class="beta">out</span>                                            
                                         </p>
                                     </div>
                                     <table class="order-detail-table">

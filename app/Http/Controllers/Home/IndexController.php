@@ -24,31 +24,19 @@ class IndexController extends Controller
     public static function getPidCatesData($pid = 0)
     { 
         $data = Good::where('goodsmid',$pid)->get();
-
-  // $goodstar = DB::table('goodswares')->where('waresgid',17)->get();
-            // dump($goodstar);
         $sanji = [];
         $erji = [];
         
-        // dd($data);
         foreach ($data as $k => $v) {
-            // dump($v->id);
+            
             $erji[$v->id] = Good::where('goodspath',"0,".$v->id)->get();
-            // dump($erji);
-            // if(empty()){}
             foreach($erji as $ke => $va){
-                // dump($va);
                 foreach ($va as $key => $value) {
-                    # code...
                     $sanji[$v->id] =DB::table('goodswares')->where('waresgid',$value->id)->get();
                 }
             }
-            // $v->sub = self::getPidCatesData($v->id);
 
         }
-        // dump($data);
-        // dump($erji);
-        // dd($sanji);
         return $data;
         return $erji;
         return $sanji;
@@ -64,20 +52,13 @@ class IndexController extends Controller
         $sanji = [];
         $erji = [];
         
-        // dd($data);
         foreach ($data as $k => $v) {
-            // dump($v->id);
             $erji[$v->id] = Good::where('goodspath',"0,".$v->id)->get();
-            // dump($erji);
-            // if(empty()){}
             foreach($erji as $ke => $va){
-                // dump($va);
                 foreach ($va as $key => $value) {
-                    # code...
                     $sanji[$value->id] =DB::table('goodswares')->where('waresgid',$value->id)->get()->toArray();
                 }
             }
-            // $v->sub = self::getPidCatesData($v->id);
 
         }
     	// 小米明星单品
@@ -89,16 +70,11 @@ class IndexController extends Controller
         // 商品类型
         $good = DB::table('goods')->where('goodspath','0')->get();
 
-        // dd($good);
-
-
         $wares = [];
 
         foreach ($good as $k => $v) {
             $wares[] = DB::table('goodswares')->where('waresgid',$v->id)->get();
         }
-
-            
 
     	// 显示模板
     	return view('home.index.index',['goods'=>$goods,'goodstar'=>$goodstar,'good'=>$good,'wares'=>$wares,'data'=>$data,"erji"=>$erji,"sanji"=>$sanji]);

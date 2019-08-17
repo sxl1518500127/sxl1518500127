@@ -61,14 +61,13 @@ class CatesController extends Controller
     {
         // 获取pid
         $pid = $request->input('goodsmid');
-        // dump($pid);
+        
         if($pid == 0){
             $path = 0;
         }else{
             // 获取父级的数据
            $parent_data = DB::table("goods")->where("id",$pid)->first();
 
-           // dd($parent_data);
            $path = $parent_data->goodspath.','.$parent_data->id;
         }
 
@@ -96,7 +95,7 @@ class CatesController extends Controller
     {
 
         $id = $request->input('id');
-        // dump($id);
+        
         $wares = DB::table('goodswares')->where('waresgid', $id)->paginate(5);
         $goods = DB::table('goods')->where('id', $id)->first();
 
@@ -107,38 +106,6 @@ class CatesController extends Controller
         return view('admin.cates.show',['goods'=>$goods,"wares"=>$wares,'requests'=>$request->input()]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
 
 }

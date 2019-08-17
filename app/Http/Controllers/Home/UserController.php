@@ -32,13 +32,11 @@ class UserController extends Controller
     {
         $id = $_SESSION['home_userinfo']->customerid;
         $arr = DB::table('doindent')->where('uid',$id)->get();
-        // dump($arr);
         $carts = [];
         foreach ($arr as $key => $value) {
             
             $carts[] =goods::join('indentpublic','indentpublic.wid','goodswares.id')->where(['indentpublic.bianhao'=>$value->indentbian])->get();
         }
-        // dump($carts);
         //显示模板
         return view('home.user.order',['arr'=>$arr,"carts"=>$carts]);
     }
@@ -75,7 +73,6 @@ class UserController extends Controller
 
         $user = Usercustomer::where('customerid',$id)->first();
 
-        // dd($Request->hasFile('tupian'));
         if ($Request->hasFile('tupian')) {
             // 获取头像
             $path = $Request->file('tupian')->store(date('Ymd'));
@@ -111,7 +108,6 @@ class UserController extends Controller
         $id = $_SESSION['home_userinfo']->customerid;
 
         $address = DB::table('customercargo')->where('uid',$id)->count();
-        // dump($address);
 
         if ($address == 3) {
             $this->data['status'] = 3;
@@ -182,7 +178,6 @@ class UserController extends Controller
         $user = Usercustomer::where('customerid',$id)->first();
         $pass = $request->input('pass','');
         $newpass = Hash::make($request->newpass);
-        // dd($newpass);
 
         // 验证密码正确
         if (!Hash::check($pass,$user->customerpass)) {
@@ -331,5 +326,8 @@ class UserController extends Controller
         }
     }
 
-
+    public function log($id)
+    {
+        return view("home.user.log",["id"=>$id]);
+    }
 }

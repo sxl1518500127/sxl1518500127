@@ -108,7 +108,7 @@
                     <input class="search-text" type="search" id="search" name="search" autocomplete="off" />
                     <input type="submit" class="search-btn iconfont" value="&#xe616;" />
                     <div class="search-hot-words">
-                        <a href="/list_search?kWord=小米手机5">小米手机5</a>
+                        <a href="/home/list_search?search=荣耀">荣耀</a>
                     </div>
                 </form>
             </div>

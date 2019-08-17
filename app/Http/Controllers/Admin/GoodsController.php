@@ -94,8 +94,7 @@ class GoodsController extends Controller
         DB::beginTransaction();
 
         $wares = Goods::find($id);
-        // dump($wares->status);
-        // die();
+
         if($wares->status == "1"){
             $wares->status = "0";
         }else{
@@ -103,7 +102,6 @@ class GoodsController extends Controller
         }
         $res = $wares->save();
 
-        ///admin/cates/show?id={{ $v->id }}
         if($res){
             DB::commit();
             return redirect("admin/cates/show?id=".$wares->waresgid)->with('success', '下架成功');
@@ -231,7 +229,7 @@ class GoodsController extends Controller
         $spe->goodspec = $request->input('goodspec','');
         $res1 = $spe->save();
        
-        // 全部成功/admin/goods?goods={{$goods->id}}&wares={{$v->id}}
+        // 全部成功
         if($res && $res1){
             DB::commit();
             return redirect('/admin/goods?goods='.$request->input('goods').'&wares='.$request->input('wares'))->with('success', '修改成功');
@@ -260,7 +258,7 @@ class GoodsController extends Controller
 
         // 判断
         if($res1){
-            // 提交事务/admin/cates/show?id={{ $v->id }}
+            // 提交事务
             DB::commit();
             return redirect('admin/cates/show?id='.$wares->waresgid)->with('success', '删除成功');
         }else{

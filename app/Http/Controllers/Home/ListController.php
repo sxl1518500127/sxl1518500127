@@ -15,7 +15,6 @@ class ListController extends Controller
 	// 加载页面
     public function index()
     {
-    	// dd('0');
     	return view('home.list.index');
     }
 
@@ -38,10 +37,8 @@ class ListController extends Controller
 
 	public function dataWord(){
 		$data = DB::table('goodswares')->get();
-		// dump($data);
 		foreach($data as $k => $v){
 			$arr = $this->word($v->waresname);
-			// dump($arr);
 			foreach($arr as $kk => $vv){
 				DB::table('waresword')->insert(['waresid'=>$v->id,'word'=>$vv]);
 			}
@@ -52,10 +49,7 @@ class ListController extends Controller
    
     public function eidt(Request $request){
     	
-    	// $this->dataWord();
-    	// dump($count);
     	//接受搜索//购物车商品数量
-    	// $count = CartController::countCar();
     	$search = $request->input('search','');
     	//中文分词start
     	if(!empty($search)){
@@ -70,7 +64,6 @@ class ListController extends Controller
     	}
     	
     	//中文分词end
-    	// return view('home.list.list_search',['wares'=>$data2,"count"=>$count]);
     	return view('home.list.list_search',['wares'=>$data2,"search"=>$search]);
     }
 
@@ -88,36 +81,24 @@ class ListController extends Controller
 
 		//传递字符串
 		$this->cws->send_text($str);
-		//获取权重最高的前十个词
-		// $res = $cws->get_tops(10);// top 顶部
-
-
 		//获取所有的结果
 		$res = $this->cws->get_result();
-		// dd($res);
 		$list = [];
 		foreach($res as $k => $v){
 			$list[] = $v['word'];
 		}
 		return $list;
-
-
-
-
 		
     }
 
 
     public function show($id)
     {
-    	// dd($id);
-
 		$lists = DB::table('goods')
             ->join('goodswares', 'goodswares.waresgid', '=', 'goods.id')
             ->where('goods.id',$id)
             ->select('goodswares.*', 'goods.id')
             ->get();
-        // dd($lists);
     	return view('home.list.index',['lists'=>$lists]);
    			
     }

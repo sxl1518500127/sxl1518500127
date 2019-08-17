@@ -38,19 +38,16 @@ class LoginController extends Controller
 
         $userinfo = DB::table('usercustomer')->where('customername',$customername)->first();
 
-        if($customername !== $userinfo->customername){
-            echo "<script>alert('用户名错误');location.href='/login';</script>";               
+        if(!$userinfo){
+            echo "<script>alert('用户名或者密码错误');location.href='/login';</script>";               
                 exit;
+        }else{
 
-        }
+            if (!Hash::check($customerpass,$userinfo->customerpass)) {
 
-
-
-        // 验证密码正确
-        if (!Hash::check($customerpass,$userinfo->customerpass)) {
-
-            echo "<script>alert('密码错误');location.href='/login';</script>";            
-            exit;
+                echo "<script>alert('密码错误');location.href='/login';</script>";            
+                exit;
+            }
         }
 
         // 登录成功
