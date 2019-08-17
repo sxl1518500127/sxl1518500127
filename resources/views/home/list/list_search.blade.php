@@ -5,7 +5,7 @@
 
     <script type="text/javascript" async="" src="/h/homes/common/js/unjcV2.js"></script>
     <script type="text/javascript" async="" src="/h/homes/common/js/jquery-1.9.1.min.js"></script>
-    <script src="/h/homes/common/js/base.min.js"></script>
+    <!-- <script src="/h/homes/common/js/base.min.js"></script> -->
     <script type="text/javascript" async="" src="/h/homes/common/js/jquery.statData.min.js"></script>
     <script type="text/javascript" async="" src="/h/homes/common/js/xmst.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -87,7 +87,7 @@
 
 
 @section('LDjs')
-<script>
+<!-- <script>
     (function() {
         MI.namespace('GLOBAL_CONFIG');
         MI.GLOBAL_CONFIG = {
@@ -111,15 +111,15 @@
         MI.miniCart.init();
         MI.updateMiniCart();
     })();
-</script>
+</script> -->
 <script src="/h/homes/common/js/xmsg_ti.js"></script>
 
 <script>
     var SITE_ID = "Search";
     var SEARCH_WORDS = "手机";
 </script>
-<script src="/h/homes/common/js/goodsList.min.js"></script>
-    <script>
+<!-- <script src="/h/homes/common/js/goodsList.min.js"></script> -->
+  <!--   <script>
     var _msq = _msq || [];
     _msq.push(['setDomainId', 100]);
     _msq.push(['trackPageView']);
@@ -133,5 +133,5 @@
     })();
     $()
 
-    </script>
+    </script> -->
 @endsection

@@ -29,8 +29,6 @@
                         </div>
                     </div>
                     <div class="clearfix" id="">
-                        <!-- addresslist begin -->
-                       
                     </div>
                 </div>
 
@@ -123,7 +121,7 @@
                         <div class="big-pro-tip hide J_confirmBigProTip"></div>
                     </div>
                     <div class="fr">
-                        <a href="/order/getPay?indentbian={{$indents->indentbian}}" class="btn btn-primary" id="J_checkoutToPay">去结算</a>
+                        <a href="/order/getPay?indentbian={{$indents->indentbian}}" class="btn btn-primary" >去结算</a>
                     </div>
                 </div>
              </div>

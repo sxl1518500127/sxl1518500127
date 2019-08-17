@@ -34,8 +34,8 @@ Route::get('admin/allow',function(){
 
 
 // 权限验证的中间件  【allow】
-Route::group(['middleware'=>['login','allow']],function(){
-// Route::group(['middleware'=>['login']],function(){
+// Route::group(['middleware'=>['login','allow']],function(){
+Route::group(['middleware'=>['login']],function(){
 
 	// 后台 首页 的路由
 	Route::get('admin','Admin\IndexController@index');

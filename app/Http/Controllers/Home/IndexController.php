@@ -39,7 +39,7 @@ class IndexController extends Controller
             foreach($erji as $ke => $va){
                 // 三级分类
                 foreach ($va as $key => $value) {
-                    $sanji[$v->id] =DB::table('goodswares')->where('waresgid',$value->id)->get();
+                    $sanji[$v->id] =DB::table('goodswares')->where('waresgid',$value->id)->where("status","1")->get();
                 }
             }
 
@@ -62,16 +62,16 @@ class IndexController extends Controller
             $erji[$v->id] = Good::where('goodspath',"0,".$v->id)->get();
             foreach($erji as $ke => $va){
                 foreach ($va as $key => $value) {
-                    $sanji[$value->id] =DB::table('goodswares')->where('waresgid',$value->id)->get()->toArray();
+                    $sanji[$value->id] =DB::table('goodswares')->where('waresgid',$value->id)->where("status","1")->get()->toArray();
                 }
             }
 
         }
     	// 小米明星单品
-    	$goodstar = DB::table('goodswares')->orderBy("updated_at","desc")->limit(9)->get();
+    	$goodstar = DB::table('goodswares')->where("status","1")->orderBy("updated_at","desc")->limit(9)->get();
 
     	// 普通商品
-    	$goods = DB::table('goodswares')->orderBy("waressellcount","desc")->get();
+    	$goods = DB::table('goodswares')->where("status","1")->orderBy("waressellcount","desc")->get();
 
         // 商品类型
         $good = DB::table('goods')->where('goodspath','0')->get();
@@ -80,7 +80,7 @@ class IndexController extends Controller
 
         foreach ($good as $k => $v) {
             // 查询商品
-            $wares[] = DB::table('goodswares')->where('waresgid',$v->id)->get();
+            $wares[] = DB::table('goodswares')->where("status","1")->where('waresgid',$v->id)->get();
         }
     	// 显示模板并且传输数据
     	return view('home.index.index',['goods'=>$goods,'goodstar'=>$goodstar,'good'=>$good,'wares'=>$wares,'data'=>$data,"erji"=>$erji,"sanji"=>$sanji]);

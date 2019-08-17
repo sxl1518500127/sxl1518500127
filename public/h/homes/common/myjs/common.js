@@ -104,42 +104,7 @@ $(function(){
         //     $cont.html(str);
         // }
     }($);
-    
 
-    //分类导航
-    ~function($,cate){
-        function dealCateNavHtml(arr){
-            
-        
-        }
-        dealCateNavHtml(cate);
-        $('#J_categoryList').find('.category-item').on({
-            mouseenter: function(){
-                $(this).addClass('category-item-active');
-            },
-            mouseleave: function(){
-                $(this).removeClass('category-item-active');
-            }
-        });
-        //console.log($('#J_navCategory').find('.link-category').css('visibility'));
-        //分类导航划过显示
-        // $('#J_navCategory').on({
-        //     mouseenter:function(){
-
-        //         if($(this).find('.link-category').css('visibility')!='hidden'){
-        //             $('.site-category').show();
-        //         }
-                
-        //     },
-        //     mouseleave:function(){
-                
-        //         if($(this).find('.link-category').css('visibility')!='hidden'){
-        //             $('.site-category').hide();
-        //         }
-        //     }
-        // })
-
-    }($,cate);
 
 
     //点击播放视频

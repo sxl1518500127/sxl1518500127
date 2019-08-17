@@ -44,17 +44,23 @@ class ListController extends Controller
 	}
    
     public function eidt(Request $request){
-    	
+    	// $this->dataWord();
     	//接受搜索//购物车商品数量
     	$search = $request->input('search','');
     	//中文分词start
     	if(!empty($search)){
     		$gid = DB::table('waresword')->select('waresid')->where('word',$search)->get();
-	    	$gids = [];
-	    	foreach($gid as $k => $v){
-	    		$gids[] = $v->waresid;
-	    	}
-	    	$data2 = DB::table('goodswares')->whereIn('id',$gids)->get();
+    		if(!empty($gid[0])){
+
+		    	$gids = [];
+		    	foreach($gid as $k => $v){
+		    		$gids[] = $v->waresid;
+		    	}
+		    	$data2 = DB::table('goodswares')->whereIn('id',$gids)->get();
+    		}else{
+		    	$data2 = DB::table('goodswares')->where('waresname','like','%'.$search.'%')->get();
+
+    		}
     	}else{
     		$data2 = DB::table('goodswares')->get();
     	}
@@ -91,7 +97,7 @@ class ListController extends Controller
     {
 		$lists = DB::table('goods')
             ->join('goodswares', 'goodswares.waresgid', '=', 'goods.id')
-            ->where('goods.id',$id)
+            ->where('goods.goodsmid',$id)
             ->select('goodswares.*', 'goods.id')
             ->get();
     	return view('home.list.index',['lists'=>$lists]);

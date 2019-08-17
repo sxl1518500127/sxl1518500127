@@ -13,13 +13,13 @@
                         <ul>
                             @foreach($data as $k=>$v)
                                 <li>
-                                    <a href="">{{ $v->goodsmod }}</a>
-                                    <div class="pop">
-                                        <div style="width:100px" class="left fl pull-left">
+                                    <a href="/list/{{$v->id}}">{{ $v->goodsmod }}</a>
+                                    <div class="pop"  style="width:990px;background: rgba(225,225,225,0.9);" > 
+                                        <div style="width:100px;background: rgba(225,225,225,0.9);" class="left fl pull-left">
                                             @foreach($erji as $kk=>$vv)
                                                 @if($v->id == $kk)
                                                     @foreach($vv as $er)
-                                                        <div style="width:800px;height:100px;margin-left:10px">
+                                                        <div style="width:1000px;height:100px;margin-left:10px; ">
                                                             <span >{{$er->goodsmod}}</span>
                                                             @foreach($sanji as $kkk => $san)
                                                                 @if($er->id == $kkk)
